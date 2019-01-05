@@ -1,0 +1,21 @@
+{
+  "name": "track-fix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "compile-sass": "node-sass sass/main.scss dist/css/styles.css"
+  },
+  "author": "Massimo Ganzerli",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.9"
+  }
+}
