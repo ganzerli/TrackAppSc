@@ -20,13 +20,20 @@ export default class View {
           value = Templates.prototype.getResultElements(resultSet);
           console.log(value);
           value ? (x.innerHTML = value) : undefined;
-          //
+
           break;
         case "form-commands":
           // get static templates
           value = Templates.prototype.getAssignedHtml(ph);
           value ? (x.innerHTML = value) : undefined;
-          //
+
+          break;
+        case "subtitle":
+          // get static templates
+          const page = ph.getCurrentPage();
+          value = Templates.prototype.refreshSubtitle(page);
+          value ? (x.innerHTML = value) : undefined;
+
           break;
         default:
           console.log("ERROR : switch in View/index.js does not work fine");

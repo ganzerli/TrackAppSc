@@ -6,6 +6,7 @@ export function domSelector(page) {
       // return the array of elements that the view needs
       elementsArray = [];
       elementsArray.push(loadingId("form-commands"));
+      elementsArray.push(loadingId("subtitle"));
       break;
     case "LOAD-RESULTS":
       elementsArray = [];
@@ -14,6 +15,7 @@ export function domSelector(page) {
     case "SEARCH-DATA":
       elementsArray = [];
       elementsArray.push(loadingId("form-commands"));
+      elementsArray.push(loadingId("subtitle"));
       break;
     default:
       console.log("default");

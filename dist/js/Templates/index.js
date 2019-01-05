@@ -24,4 +24,9 @@ export default class Templates {
     // somehow pass the obkect and return the template
     return this.template;
   }
+
+  refreshSubtitle(page) {
+    this.template = page;
+    return this.template;
+  }
 }
