@@ -5,10 +5,10 @@ export const templatesArr = [
     html: `
     <div class="form-wrap" loading-id="INSERT-DATA"> 
     <div class="form-group form-group-input">
-        <input type="text" name="title" placeholder="title" class="form-input-text" />
+        <input loading-id="title" type="text" name="title" placeholder="title" class="form-input-text" />
     </div>
     <div class="form-group form-group-input">
-        <input type="text" name="body" placeholder="body" class="form-input-text" />
+        <input loading-id="body" type="text" name="body" placeholder="body" class="form-input-text" />
     </div>
     <div class="form-group form-group-submit">
         <input
@@ -27,7 +27,7 @@ export const templatesArr = [
     html: `
     <div class="form-wrap" loading-id="SEARCH-DATA"> 
     <div class="form-group form-group-input">
-        <input type="text" name="title" class="form-input-text" />
+        <input loading-id="search" type="text" name="search" class="form-input-text" />
     </div>
     <div class="form-group form-group-submit">
         <input

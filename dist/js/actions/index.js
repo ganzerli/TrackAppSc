@@ -10,6 +10,7 @@ import Calls from "../Calls/Calls";
  * IN THE WAY HOW THE TEMPLATE IS IMPLEMENTED
  */
 
+// get the records from somewhere and paint the result
 export const loadRecords = () => {
   const view = new View();
   const ph = new PageHandler();
@@ -27,10 +28,39 @@ export const loadRecords = () => {
   view.fill(elementsArray, ph);
 };
 
+export const insertRecord = parentElement => {
+  // attribute is defied in the template
+  const title = parentElement.querySelector("[loading-id=title]").value;
+  const body = parentElement.querySelector("[loading-id=body]").value;
+
+  if (title === "" || title === " " || body === "" || body === " ") {
+    console.log("something empty");
+  } else {
+    // load needed classes
+    const view = new View();
+    const ph = new PageHandler();
+    const call = new Calls();
+
+    // format record
+    const record = {
+      title,
+      body,
+      date: Date.now(),
+      checked: false
+    };
+    // in this method of call get <-----------  initialized the DB
+    const data = call.pushDataToIndexedDb(record);
+
+    // call a post request to the db
+    // get the result from db and display all together
+  }
+};
+
 /** IN DOM SELECTOR ARE DEFINED WHICH ELEMENTS ARE TO RELOAD WHEN CHANGING THE VIEW, ADDING SIMPLY AN ELEMENT TO THE ARRAY,
  * AND SPECIFYING IN THE VIEW HOW TO GET THE TEMPLATE.
  */
 
+// loads the form to search data
 export const loadSearchData = () => {
   const view = new View();
   const ph = new PageHandler();
@@ -41,9 +71,9 @@ export const loadSearchData = () => {
   const elementsArray = domSelector(page);
   // the view needs this instance of the object to load the html template extracting the oject of records
   view.fill(elementsArray, ph);
-  console.log("ACTION CALLED; LOADING FORM FOR Searching");
 };
 
+// loads the form for to insert the data
 export const loadInsertData = () => {
   const view = new View();
   const ph = new PageHandler();
@@ -56,5 +86,4 @@ export const loadInsertData = () => {
   console.log(elementsArray.length + "elements array");
   // the view needs this instance of the object to load the html template extracting the oject of records
   view.fill(elementsArray, ph);
-  console.log("ACTION CALLED; LOADING FORM FOR INSERTING");
 };

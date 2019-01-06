@@ -1,4 +1,9 @@
-import { loadRecords, loadInsertData, loadSearchData } from "../actions";
+import {
+  loadRecords,
+  insertRecord,
+  loadInsertData,
+  loadSearchData
+} from "../actions";
 
 const loadingId = x => document.querySelector("[loading-id=" + x + "]");
 
@@ -16,19 +21,19 @@ export const activateFormButton = () => {
 const submitForm = e => {
   // GETTING THE VALUE FROM THE FIRST DIV IN THE TEMPLATE
   const submitted = e.target.firstChild.nextSibling.getAttribute("loading-id");
-  console.log(submitted);
+
   // initiate a class that handles the calls
   switch (submitted) {
     case "SEARCH-DATA":
-      console.log(submitted);
+      // console.log(submitted);
       // displaying the result set
       loadRecords();
       // calling action to query api and fill the new view of the result
       break;
     case "INSERT-DATA":
-      //loadRecords();
-      console.log("inserting data to db");
-      console.log(submitted);
+      const form = e.target;
+      insertRecord(form);
+      //  console.log(submitted);
       break;
     default:
       console.log("default value of switch for form event listener");

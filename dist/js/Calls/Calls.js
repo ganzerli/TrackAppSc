@@ -9,10 +9,18 @@ export default class Calls {
   getDataFromIndexedDb() {
     const db = new ClientDb();
     this.response = db.getRecords();
-    console.log(this.response);
     return this.response;
   }
-  pushDataToIndexedDb() {}
+  // called from the action of the form to add an element
+  pushDataToIndexedDb(data) {
+    const db = new ClientDb();
+
+    db.recordsDb.onsuccess = () => {
+      return this.recordsDb.result;
+    };
+
+    db.insertRecord(data);
+  }
   // functions to get something from remote storage
   getDataFromBackend() {}
   pushDataToBackend() {}
