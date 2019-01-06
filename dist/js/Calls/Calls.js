@@ -6,20 +6,20 @@ export default class Calls {
   }
 
   // functions for fetching the local storage
+
   getDataFromIndexedDb() {
+    let resp;
     const db = new ClientDb();
-    this.response = db.getRecords();
-    return this.response;
+    resp = db.getRecords();
+
+    return resp;
+    // return this.response;
   }
+
   // called from the action of the form to add an element
   pushDataToIndexedDb(data) {
     const db = new ClientDb();
-
-    db.recordsDb.onsuccess = () => {
-      return this.recordsDb.result;
-    };
-
-    db.insertRecord(data);
+    return db.insertRecord(data);
   }
   // functions to get something from remote storage
   getDataFromBackend() {}

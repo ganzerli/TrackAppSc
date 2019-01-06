@@ -16,16 +16,19 @@ export const loadRecords = () => {
   const ph = new PageHandler();
   const call = new Calls();
 
-  const data = call.getDataFromIndexedDb();
+  const promise = call.getDataFromIndexedDb();
   //result set must be  in the format [{id title body},{},...]
-  ph.setResultSet(data);
-  // set the new page to load
-  ph.setCurrentPage("LOAD-RESULTS");
-  // take the element wanted and prepare layout with page
-  const page = ph.getCurrentPage();
-  const elementsArray = domSelector(page);
-  // the view needs this instance of the object to load the html template extracting the oject of records
-  view.fill(elementsArray, ph);
+  promise.then(data => {
+    console.log(data);
+    ph.setResultSet(data);
+    // set the new page to load
+    ph.setCurrentPage("LOAD-RESULTS");
+    // take the element wanted and prepare layout with page
+    const page = ph.getCurrentPage();
+    const elementsArray = domSelector(page);
+    // the view needs this instance of the object to load the html template extracting the oject of records
+    view.fill(elementsArray, ph);
+  });
 };
 
 export const insertRecord = parentElement => {
@@ -46,7 +49,7 @@ export const insertRecord = parentElement => {
       title,
       body,
       date: Date.now(),
-      checked: false
+      checked: "false"
     };
     // in this method of call get <-----------  initialized the DB
     const data = call.pushDataToIndexedDb(record);
@@ -82,8 +85,6 @@ export const loadInsertData = () => {
   // take the element wanted and prepare layout with page
   const page = ph.getCurrentPage();
   const elementsArray = domSelector(page);
-
-  console.log(elementsArray.length + "elements array");
   // the view needs this instance of the object to load the html template extracting the oject of records
   view.fill(elementsArray, ph);
 };

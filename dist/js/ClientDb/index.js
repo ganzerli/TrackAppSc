@@ -1,9 +1,9 @@
+import { resolve } from "path";
+
 export default class ClientDb {
   constructor() {
-    this.set = [
-      { id: 1, title: "some title", body: "some body" },
-      { id: 2, title: "another title", body: "somebody 2" }
-    ];
+    this.set = [];
+    this.storeArray = [];
     this.DB; //needed for the indexed db result
     //setup the transaction type
     //
@@ -35,7 +35,52 @@ export default class ClientDb {
     };
   }
 
-  // methods of this class
+  // methods of this class must get set in the db and map to this.set
+  fetchRecordsFromIndexedDb() {
+    return new Promise(resolve => {
+      // load the connection
+      // SUCCESS opening
+      this.recordsDb.onsuccess = () => {
+        this.DB = this.recordsDb.result;
+        // set transaction and get the object store from the store of transaction in thid db
+        let objectStore = this.DB.transaction("recordsDb").objectStore(
+          "recordsDb"
+        );
+        // this is the method to use to get the data
+        objectStore.openCursor().onsuccess = e => {
+          // assing the cursor
+          // the cursor has the forst key and a proprty move next
+          let cursor = e.target.result;
+          if (cursor) {
+            cursor.continue();
+            const respObj = {
+              title: cursor.value.title,
+              body: cursor.value.body,
+              date: cursor.value.date,
+              checked: cursor.value.checked
+            };
+            this.storeArray.push(respObj);
+          } else {
+            // when the cursor has finished , then return!!
+            resolve(this.storeArray);
+          }
+        };
+      };
+      //errors on connection
+      this.recordsDb.onerror = e => {
+        console.log("error" + e);
+      };
+    });
+  }
+
+  async loadSetFromIndexedDb() {
+    let result;
+    await this.fetchRecordsFromIndexedDb().then(res => {
+      result = [...res];
+    });
+
+    return result;
+  }
   /**
    * INSERT RECORT MIST SUPPLY TO THE INDEXED DB AN OBJECT WITH THE PROPS SET AS THE SCHEMA FOR TTHE DB
    *
@@ -43,6 +88,8 @@ export default class ClientDb {
   insertRecord(record) {
     // taking the record and push into array
     const theRecord = record;
+    // load the set
+    this.loadSetFromIndexedDb();
 
     // activate db
     // ERROR on open
@@ -69,13 +116,15 @@ export default class ClientDb {
       transaction.onerror = () => {
         console.log("something went wrong");
       };
+      // SET THE SET!!
+      this.set.push(record);
     };
-    //
-
+    // returns the set after new element is been pushed
     return this.set;
   }
-  getRecords() {
-    // getting all records and make an array
-    return this.set;
+
+  async getRecords() {
+    let a = await this.loadSetFromIndexedDb();
+    return a;
   }
 }
