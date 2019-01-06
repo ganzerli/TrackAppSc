@@ -85,11 +85,11 @@ export default class ClientDb {
    * INSERT RECORT MIST SUPPLY TO THE INDEXED DB AN OBJECT WITH THE PROPS SET AS THE SCHEMA FOR TTHE DB
    *
    */
-  insertRecord(record) {
+  async insertRecord(record) {
     // taking the record and push into array
     const theRecord = record;
     // load the set
-    this.loadSetFromIndexedDb();
+    let result = await this.loadSetFromIndexedDb();
 
     // activate db
     // ERROR on open
@@ -120,7 +120,7 @@ export default class ClientDb {
       this.set.push(record);
     };
     // returns the set after new element is been pushed
-    return this.set;
+    return result;
   }
 
   async getRecords() {

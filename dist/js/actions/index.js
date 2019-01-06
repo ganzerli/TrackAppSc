@@ -53,7 +53,8 @@ export const insertRecord = parentElement => {
     };
     // in this method of call get <-----------  initialized the DB
     const data = call.pushDataToIndexedDb(record);
-
+    // is now a promise;
+    console.log(data);
     // call a post request to the db
     // get the result from db and display all together
   }
