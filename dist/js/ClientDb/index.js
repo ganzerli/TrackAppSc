@@ -89,7 +89,7 @@ export default class ClientDb {
     // taking the record and push into array
     const theRecord = record;
     // load the set
-    let result = await this.loadSetFromIndexedDb();
+    let promise = this.loadSetFromIndexedDb();
 
     // activate db
     // ERROR on open
@@ -106,6 +106,7 @@ export default class ClientDb {
       let objectStore = transaction.objectStore("recordsDb");
       // make the request to the db
       let request = objectStore.add(theRecord);
+      console.log(request);
       // SUCCESS
       request.onsuccess = () => {
         // if refresh form needed or something
@@ -114,13 +115,16 @@ export default class ClientDb {
         console.log("the record is been added");
       };
       transaction.onerror = () => {
-        console.log("something went wrong");
+        console.log(
+          "something went wrong with transaction indexed Db insertrecord method"
+        );
       };
       // SET THE SET!!
       this.set.push(record);
     };
     // returns the set after new element is been pushed
-    return result;
+
+    return promise;
   }
 
   async getRecords() {
