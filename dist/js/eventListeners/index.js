@@ -2,7 +2,8 @@ import {
   loadRecords,
   insertRecord,
   loadInsertData,
-  loadSearchData
+  loadSearchData,
+  deleteRecord
 } from "../actions";
 
 const loadingId = x => document.querySelector("[loading-id=" + x + "]");
@@ -47,6 +48,7 @@ export const listenNavbar = () => {
   if (navbar) {
     navbar.addEventListener("click", e => delegationNavbar(e));
   }
+
   const delegationNavbar = e => {
     const trgt = e.target.getAttribute("loading-id");
 
@@ -54,6 +56,8 @@ export const listenNavbar = () => {
       //load form to search
       loadSearchData();
       console.log(trgt);
+      // loads the result
+      loadRecords();
     }
     if (trgt === "add-data") {
       // load the form
@@ -61,4 +65,29 @@ export const listenNavbar = () => {
       console.log(trgt);
     }
   };
+};
+
+export const listenResult = () => {
+  const resultContainer = loadingId("result-container");
+  if (resultContainer) {
+    resultContainer.addEventListener("click", resultDelegation);
+  }
+};
+
+const resultDelegation = e => {
+  // checking if it has a js attribute
+  let element = e.target.getAttribute("loading-id") || undefined;
+  //checking if an element with attribute there is
+  if (element) {
+    // split the id and the attribute
+    if (element.startsWith("delete-record-")) {
+      // A BTN DELETE HS BEEN CLICKED
+      // taking as array last numbers of attribute to have the id
+      let id = element.split("").splice(14, element.length - 14);
+      // id is an array
+      id = id.join("");
+      // now there is an id to send to the call,
+      deleteRecord(id);
+    }
+  }
 };

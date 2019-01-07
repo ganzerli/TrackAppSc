@@ -54,6 +54,7 @@ export default class ClientDb {
           if (cursor) {
             cursor.continue();
             const respObj = {
+              id: cursor.value.key,
               title: cursor.value.title,
               body: cursor.value.body,
               date: cursor.value.date,
@@ -75,8 +76,10 @@ export default class ClientDb {
 
   async loadSetFromIndexedDb() {
     let result;
+    // MUST BE AWAIT OR RETURNS ERROR THEN OF UNDEFINED !!
     await this.fetchRecordsFromIndexedDb().then(res => {
       result = [...res];
+      return result;
     });
 
     return result;
@@ -85,17 +88,11 @@ export default class ClientDb {
    * INSERT RECORT MIST SUPPLY TO THE INDEXED DB AN OBJECT WITH THE PROPS SET AS THE SCHEMA FOR TTHE DB
    *
    */
-  async insertRecord(record) {
+  insertRecord(record) {
     // taking the record and push into array
     const theRecord = record;
     // load the set
     let promise = this.loadSetFromIndexedDb();
-
-    // activate db
-    // ERROR on open
-    this.recordsDb.onerror = e => {
-      console.log("error" + e);
-    };
 
     // SUCCESS opening
     this.recordsDb.onsuccess = () => {
@@ -119,16 +116,39 @@ export default class ClientDb {
           "something went wrong with transaction indexed Db insertrecord method"
         );
       };
-      // SET THE SET!!
-      this.set.push(record);
+      // SET THE SET
+      //this.set.unshift(record);
+    };
+    // ERROR on open
+    this.recordsDb.onerror = e => {
+      console.log("error" + e);
     };
     // returns the set after new element is been pushed
 
     return promise;
   }
 
-  async getRecords() {
-    let a = await this.loadSetFromIndexedDb();
-    return a;
+  // DELETE
+  deleteOne(id) {
+    let transaction;
+    this.recordsDb.onsuccess = () => {
+      this.DB = this.recordsDb.result;
+      let transaction = this.DB.transaction(["recordsDb"], "readwrite");
+      let objectStore = transaction.objectStore("recordsDb");
+      const idInteger = parseInt(id);
+      objectStore.delete(idInteger);
+      transaction.oncomplete = () => {
+        console.log("the record SHOULD BE DELETED");
+      };
+    };
+    // not returning
+  }
+
+  //
+  getRecords() {
+    let promise = this.loadSetFromIndexedDb();
+    // here is the array
+    //promise.then(res => console.log(res));
+    return promise;
   }
 }

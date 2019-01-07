@@ -1,7 +1,11 @@
 import PageHandler from "./pages/pageHandler";
 import { domSelector } from "./pages/domSelector";
 import View from "./View";
-import { activateFormButton, listenNavbar } from "./eventListeners";
+import {
+  activateFormButton,
+  listenNavbar,
+  listenResult
+} from "./eventListeners";
 //on page loaded
 document.addEventListener("DOMContentLoaded", () => {
   // set base to load the components
@@ -15,4 +19,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // event listener fr the navbar
   listenNavbar();
   activateFormButton();
+  listenResult();
 });

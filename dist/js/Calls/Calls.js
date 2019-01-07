@@ -8,11 +8,10 @@ export default class Calls {
   // functions for fetching the local storage
 
   getDataFromIndexedDb() {
-    let resp;
+    let promise;
     const db = new ClientDb();
-    resp = db.getRecords();
-
-    return resp;
+    promise = db.getRecords();
+    return promise;
     // return this.response;
   }
 
@@ -20,6 +19,12 @@ export default class Calls {
   pushDataToIndexedDb(data) {
     const db = new ClientDb();
     return db.insertRecord(data);
+  }
+
+  deleteFromIndexedDb(id) {
+    const db = new ClientDb();
+    // check the returned value
+    db.deleteOne(id);
   }
   // functions to get something from remote storage
   getDataFromBackend() {}

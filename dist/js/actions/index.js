@@ -31,6 +31,10 @@ export const loadRecords = () => {
   });
 };
 
+/*
+ *   to search get the records and filter for the criteria
+ */
+
 export const insertRecord = parentElement => {
   // attribute is defied in the template
   const title = parentElement.querySelector("[loading-id=title]").value;
@@ -64,7 +68,7 @@ export const insertRecord = parentElement => {
  * AND SPECIFYING IN THE VIEW HOW TO GET THE TEMPLATE.
  */
 
-// loads the form to search data
+// loads ONLY THE FORM WITH STATIC TEMPLATE
 export const loadSearchData = () => {
   const view = new View();
   const ph = new PageHandler();
@@ -77,7 +81,7 @@ export const loadSearchData = () => {
   view.fill(elementsArray, ph);
 };
 
-// loads the form for to insert the data
+// LOADS ONL THE FORM FROM STATIC TEMPLATEfor to insert the data
 export const loadInsertData = () => {
   const view = new View();
   const ph = new PageHandler();
@@ -88,4 +92,13 @@ export const loadInsertData = () => {
   const elementsArray = domSelector(page);
   // the view needs this instance of the object to load the html template extracting the oject of records
   view.fill(elementsArray, ph);
+};
+
+export const deleteRecord = id => {
+  const call = new Calls();
+  call.deleteFromIndexedDb(id);
+  // deleting it directly from ui without loading the new view
+  const parent = document.querySelector(`[loading-id=result-container]`);
+  const deleted = document.querySelector(`[loading-id=result-record-${id}]`);
+  parent.removeChild(deleted);
 };
