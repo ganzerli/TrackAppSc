@@ -27,7 +27,7 @@ export const templatesArr = [
     html: `
     <div class="form-wrap" loading-id="SEARCH-DATA"> 
     <div class="form-group form-group-input">
-        <input loading-id="search" type="text" name="search" class="form-input-text" />
+        <input loading-id="input-search" type="text" name="search" class="form-input-text" />
     </div>
     <div class="form-group form-group-submit">
         <input

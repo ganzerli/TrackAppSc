@@ -4,7 +4,8 @@ import {
   loadInsertData,
   loadSearchData,
   deleteRecord,
-  checkRecord
+  checkRecord,
+  searchRecord
 } from "../actions";
 
 const loadingId = x => document.querySelector("[loading-id=" + x + "]");
@@ -17,6 +18,14 @@ export const activateFormButton = () => {
       e.preventDefault();
       submitForm(e);
     });
+  }
+};
+
+//search
+export const activateSearchListener = () => {
+  const searchInput = document.querySelector("[loading-id=input-search]");
+  if (searchInput) {
+    searchInput.addEventListener("keyup", e => searchRecord(e.target.value));
   }
 };
 
@@ -56,6 +65,7 @@ export const listenNavbar = () => {
     if (trgt === "search-data") {
       //load form to search
       loadSearchData();
+      activateSearchListener();
       console.log(trgt);
       // loads the result
       loadRecords();

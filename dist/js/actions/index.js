@@ -157,7 +157,7 @@ const getIdSession = () => {
     const oneMinute = 60000; // 60 000 ms ---> 60 s
     const oneHour = oneMinute * 60;
     // if now is more then toWait from the last record enter , register new session
-    if (now - parseInt(lastSessionEnter) > oneMinute) {
+    if (now - parseInt(lastSessionEnter) > oneHour * 8) {
       //get a new id
       localStorage.setItem("current-session-id", nowStr);
       localStorage.setItem("last-session-enter", nowStr);
@@ -171,3 +171,63 @@ const getIdSession = () => {
     }
   }
 };
+
+export const searchRecord = value => {
+  const view = new View();
+  const ph = new PageHandler();
+  const call = new Calls();
+
+  //only first time
+  const promise = call.getDataFromIndexedDb();
+  //result set must be  in the format [{id title body},{},...]
+  promise.then(data => {
+    /// first order the array!!
+    let sortedArray = sortObjectsByDate(data);
+    let leftArray = filterByValue(sortedArray, value);
+    console.log(leftArray);
+    ph.setResultSet(leftArray);
+    // set the new page to load
+    ph.setCurrentPage("LOAD-RESULTS");
+    // take the element wanted and prepare layout with page
+    const page = ph.getCurrentPage();
+    const elementsArray = domSelector(page);
+    // the view needs this instance of the object to load the html template extracting the oject of records
+    view.fill(elementsArray, ph);
+  });
+};
+
+const filterByValue = (arr, value) => {
+  let filtered = [];
+  // loop throught each element
+  for (let i in arr) {
+    const object = arr[i];
+    //chech if the title contains the value
+    if (object.title.includes(value) || object.body.includes(value)) {
+      filtered.push(object);
+    }
+  }
+  return filtered;
+};
+
+// when called on a button it console.log the selected html
+export function getHTMLOfSelection() {
+  var range;
+  if (document.selection && document.selection.createRange) {
+    range = document.selection.createRange();
+    console.log(range.htmlText);
+  } else if (window.getSelection) {
+    var selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+      range = selection.getRangeAt(0);
+      var clonedSelection = range.cloneContents();
+
+      var div = document.createElement("div");
+      div.appendChild(clonedSelection);
+      console.log(div.innerHTML);
+    } else {
+      return "";
+    }
+  } else {
+    return "";
+  }
+}

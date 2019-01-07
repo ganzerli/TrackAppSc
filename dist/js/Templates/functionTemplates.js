@@ -19,6 +19,7 @@ export const fillResultFromObject = recordObj => {
   }"  ${sessionBorder()}   >
     <h4>${recordObj.sessionId}</h4>
     <h3 class="result-record-title">${recordObj.title}</h3>
+    <button class="result-record-btn-marktext" loading-id="select-highlighted">selext</button>
     <p class="result-record-body">${recordObj.body}</p>
     <span class="result-record-date" loading-id="date-${
       recordObj.date
