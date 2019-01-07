@@ -18,7 +18,7 @@ export default class View {
           // get the template with results from the pages handler
           const resultSet = ph.getResultSet();
           value = Templates.prototype.getResultElements(resultSet);
-          console.log(value);
+
           value ? (x.innerHTML = value) : undefined;
 
           break;

@@ -33,7 +33,7 @@ export default class Templates {
       this.template += fillResultFromObject(obj);
       // somehow pass the obkect and return the template
     });
-    console.log(this.template);
+
     return this.template;
   }
 

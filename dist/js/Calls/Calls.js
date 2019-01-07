@@ -18,13 +18,18 @@ export default class Calls {
   // called from the action of the form to add an element
   pushDataToIndexedDb(data) {
     const db = new ClientDb();
-    return db.insertRecord(data);
+    db.insertRecord(data);
   }
 
   deleteFromIndexedDb(id) {
     const db = new ClientDb();
-    // check the returned value
     db.deleteOne(id);
+  }
+
+  updateRecord(dataObj) {
+    const db = new ClientDb();
+    db.updateOne(dataObj);
+    console.log("getting to db");
   }
   // functions to get something from remote storage
   getDataFromBackend() {}

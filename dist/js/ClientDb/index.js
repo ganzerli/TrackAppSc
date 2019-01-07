@@ -103,13 +103,13 @@ export default class ClientDb {
       let objectStore = transaction.objectStore("recordsDb");
       // make the request to the db
       let request = objectStore.add(theRecord);
-      console.log(request);
+      //console.log(request);
       // SUCCESS
       request.onsuccess = () => {
-        // if refresh form needed or something
+        console.log("the record is been added"); // if refresh form needed or something
       };
       transaction.oncomplete = () => {
-        console.log("the record is been added");
+        console.log("transaction end, recors should be inserted");
       };
       transaction.onerror = () => {
         console.log(
@@ -130,7 +130,6 @@ export default class ClientDb {
 
   // DELETE
   deleteOne(id) {
-    let transaction;
     this.recordsDb.onsuccess = () => {
       this.DB = this.recordsDb.result;
       let transaction = this.DB.transaction(["recordsDb"], "readwrite");
@@ -146,9 +145,31 @@ export default class ClientDb {
 
   //
   getRecords() {
+    // this.loadSetFromIndexedDb(); is an ASYNC fuction AWAITING the promise returned from this.fetchRecordsFromIndexedDb()
     let promise = this.loadSetFromIndexedDb();
-    // here is the array
+    //  ----->   to check
+    //console.log(promise);
     //promise.then(res => console.log(res));
     return promise;
+  }
+
+  updateOne(obj) {
+    // getting the element with this id
+
+    this.recordsDb.onsuccess = () => {
+      this.DB = this.recordsDb.result;
+      let transaction = this.DB.transaction(["recordsDb"], "readwrite");
+      let objectStore = transaction.objectStore("recordsDb");
+
+      let request = objectStore.put(obj);
+      // sucess updating
+      request.onsuccess = () => {
+        console.log("success updating");
+      };
+      //get the object
+      transaction.oncomplete = () => {
+        console.log("the record SHOULD BE UPDATED");
+      };
+    };
   }
 }

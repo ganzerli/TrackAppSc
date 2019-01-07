@@ -19,7 +19,8 @@ export const loadRecords = () => {
   const promise = call.getDataFromIndexedDb();
   //result set must be  in the format [{id title body},{},...]
   promise.then(data => {
-    console.log(data);
+    /// first order the array!!
+
     ph.setResultSet(data);
     // set the new page to load
     ph.setCurrentPage("LOAD-RESULTS");
@@ -56,11 +57,10 @@ export const insertRecord = parentElement => {
       checked: "false"
     };
     // in this method of call get <-----------  initialized the DB
-    const data = call.pushDataToIndexedDb(record);
-    // is now a promise;
-    console.log(data);
-    // call a post request to the db
-    // get the result from db and display all together
+    call.pushDataToIndexedDb(record);
+    // the call pushes to the indexed db the new record
+    loadRecords();
+    // load records gets all from the indexed db and reloads the page
   }
 };
 
@@ -101,4 +101,27 @@ export const deleteRecord = id => {
   const parent = document.querySelector(`[loading-id=result-container]`);
   const deleted = document.querySelector(`[loading-id=result-record-${id}]`);
   parent.removeChild(deleted);
+};
+
+export const checkRecord = id => {
+  const call = new Calls();
+  // get infos for the object
+  const element = document.querySelector(`[loading-id=result-record-${id}]`);
+  let data = element.getAttribute("json-data");
+  // preparing the object to update
+  data = JSON.parse(data);
+  // toggle the checked value
+
+  let checkedHtmlElement = element.querySelector(
+    `[loading-id=check-record-${id}]`
+  );
+
+  if (data.checked === "true") {
+    checkedHtmlElement.innerHTML = "false";
+    data.checked = "false";
+  } else {
+    checkedHtmlElement.innerHTML = "true";
+    data.checked = "true";
+  }
+  call.updateRecord(data);
 };
