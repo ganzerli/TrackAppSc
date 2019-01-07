@@ -20,8 +20,9 @@ export const loadRecords = () => {
   //result set must be  in the format [{id title body},{},...]
   promise.then(data => {
     /// first order the array!!
-
-    ph.setResultSet(data);
+    let sortedArray = sortObjectsByDate(data);
+    console.log(sortedArray);
+    ph.setResultSet(sortedArray);
     // set the new page to load
     ph.setCurrentPage("LOAD-RESULTS");
     // take the element wanted and prepare layout with page
@@ -45,16 +46,20 @@ export const insertRecord = parentElement => {
     console.log("something empty");
   } else {
     // load needed classes
-    const view = new View();
-    const ph = new PageHandler();
     const call = new Calls();
 
+    // session id
+
+    //
+    const sessionId = getIdSession();
+    console.log(sessionId);
     // format record
     const record = {
       title,
       body,
       date: Date.now(),
-      checked: "false"
+      checked: "false",
+      sessionId
     };
     // in this method of call get <-----------  initialized the DB
     call.pushDataToIndexedDb(record);
@@ -124,4 +129,45 @@ export const checkRecord = id => {
     data.checked = "true";
   }
   call.updateRecord(data);
+};
+
+const sortObjectsByDate = arr => {
+  // take smallest date and insert as [0]of an array
+  return arr.sort((a, b) => b.date - a.date);
+};
+
+const getIdSession = () => {
+  // check in local storage if there is
+  let storage = localStorage.getItem("current-session-id");
+  let lastSessionEnter = localStorage.getItem("last-session-enter");
+  const nowStr = Date.now().toString();
+
+  if (!storage || !lastSessionEnter) {
+    // set the first session id
+    localStorage.setItem("current-session-id", nowStr);
+    localStorage.setItem("last-session-enter", nowStr);
+    console.log("item set in local storage .." + nowStr);
+    return nowStr;
+  } else {
+    // there is a current-session-id item in local storage
+    // later
+    //
+    const currentSession = parseInt(storage);
+    const now = parseInt(nowStr);
+    const oneMinute = 60000; // 60 000 ms ---> 60 s
+    const oneHour = oneMinute * 60;
+    // if now is more then toWait from the last record enter , register new session
+    if (now - parseInt(lastSessionEnter) > oneMinute) {
+      //get a new id
+      localStorage.setItem("current-session-id", nowStr);
+      localStorage.setItem("last-session-enter", nowStr);
+      console.log("time is gone.. set new id " + nowStr);
+      return nowStr;
+    } else {
+      // keep the last session id
+      console.log("is about the same time.. keep id " + storage);
+      localStorage.setItem("last-session-enter", nowStr);
+      return storage;
+    }
+  }
 };

@@ -93,6 +93,7 @@ const resultDelegation = e => {
       let id = attribute.split("").splice(13, attribute.length - 13);
       // id is an array
       id = id.join("");
+
       checkRecord(id);
       deleteRecord(id);
       loadRecords();

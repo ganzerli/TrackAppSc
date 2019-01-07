@@ -1,4 +1,10 @@
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
+
+.checked {
+  background-color: rgba(139, 203, 223, 0.1);
+  border: solid 1px rgba(139, 203, 223, 0.3);
+}

@@ -30,6 +30,7 @@ export default class ClientDb {
       objectStore.createIndex("body", "body", { unique: false });
       objectStore.createIndex("date", "date", { unique: false });
       objectStore.createIndex("checked", "checked", { unique: false });
+      objectStore.createIndex("sessionId", "sessionId", { unique: false });
 
       console.log("database ready first time running");
     };
@@ -58,7 +59,8 @@ export default class ClientDb {
               title: cursor.value.title,
               body: cursor.value.body,
               date: cursor.value.date,
-              checked: cursor.value.checked
+              checked: cursor.value.checked,
+              sessionId: cursor.value.sessionId
             };
             this.storeArray.push(respObj);
           } else {
