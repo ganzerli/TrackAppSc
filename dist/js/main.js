@@ -17,7 +17,30 @@ document.addEventListener("DOMContentLoaded", () => {
   // call view with the page and the elements to load
   view.fill(elementsArray, ph);
   // event listener fr the navbar
+
+  mainClickListenerForClosingContents();
+
   listenNavbar();
   activateFormButton();
   listenResult();
 });
+
+function mainClickListenerForClosingContents() {
+  document.addEventListener("click", e => {
+    //check for elements
+    const goalFormStuff = document.querySelectorAll(
+      "[loading-id=goal-info-input]"
+    );
+    if (goalFormStuff && goalFormStuff.length > 0) {
+      console.log("there is the form somewhere");
+      if (
+        e.target.getAttribute("loading-id") !== "goal-info-input" &&
+        !e.target.hasAttribute("session-id")
+      ) {
+        console.log("other attribute");
+        const input = document.querySelectorAll("[loading-id=goal-info-input]");
+        input.forEach(i => i.classList.remove("active"));
+      }
+    }
+  });
+}

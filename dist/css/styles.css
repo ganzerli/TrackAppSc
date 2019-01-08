@@ -8,3 +8,24 @@
   background-color: rgba(139, 203, 223, 0.1);
   border: solid 1px rgba(139, 203, 223, 0.3);
 }
+
+/* json-data   attribute*/
+
+[json-data] {
+  color: #333;
+  padding: 0.5rem;
+}
+
+[loading-id="goal-info-input"] {
+  color: green;
+  height: 0;
+  display: none;
+}
+.active {
+  height: auto;
+  display: inline-block;
+}
+
+.the-form {
+  display: inline-block;
+}

@@ -1,5 +1,5 @@
 import ClientDb from "../ClientDb";
-
+import GoalsManager from "../GoalsManager";
 export default class Calls {
   constructor() {
     this.response = [];
@@ -29,7 +29,12 @@ export default class Calls {
   updateRecord(dataObj) {
     const db = new ClientDb();
     db.updateOne(dataObj);
-    console.log("getting to db");
+  }
+
+  checkGoal(name, sessionId, info) {
+    //update the goal in the storage
+    const gm = new GoalsManager(name, sessionId);
+    gm.writeGoal(info);
   }
   // functions to get something from remote storage
   getDataFromBackend() {}

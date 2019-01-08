@@ -30,6 +30,7 @@ export const loadRecords = () => {
     const elementsArray = domSelector(page);
     // the view needs this instance of the object to load the html template extracting the oject of records
     view.fill(elementsArray, ph);
+    //console.log("result refreshed");
   });
 };
 
@@ -256,9 +257,7 @@ export const setGoal = form => {
     // SOMETHING WRITTEN INSIDE :: CONTINUE
     // SAVE GOAL IN LOCAL STORAGE UNDER THIS SESSION ID
     const currentSessionId = getIdSession();
-    console.log(currentSessionId);
     // set as storage an object named sessionsgoals,
-
     let ref;
     // check for the record
     if (localStorage.getItem("session-goals")) {
@@ -267,8 +266,6 @@ export const setGoal = form => {
       localStorage.setItem("session-goals", "[]");
       ref = localStorage.getItem("session-goals");
     }
-
-    const newStoreObject = new Array();
     //if array empty add the obj
     if (ref === "[]") {
       // array empty
@@ -292,21 +289,14 @@ export const setGoal = form => {
         // check if there is already the same goal in the array
         goalsArray.forEach(x => {
           if (x.name === goal) {
-            console.log(x.name, "  ", goal);
             lock = true;
-            console.log("lock is:" + lock);
-          } else {
-            console.log(x.name, "  ", goal);
           }
         });
-        console.log("-----> lock is:" + lock);
+
         //if there is no goal with this name add goal
         if (!lock) {
           goalsArray.push({ name: goal, done: false });
           arr[0].goals = goalsArray;
-          console.log(arr[0].goals);
-          console.log(arr);
-          console.log("the value was not alredy in goals");
           localStorage.setItem("session-goals", JSON.stringify(arr));
         } else {
           //continue
@@ -336,10 +326,17 @@ export const setGoal = form => {
 /// G O A L S   G O A L S   G O A L S    G O A L S
 
 export const checkGoal = goalElement => {
-  console.log("check the goals!!");
-  console.log(goalElement);
-
-  // setting a goal handler that updates the goal taken the session id and name
-  // call.updateGoal _> takes the session id and name ,
-  // call calls the goalHandler that will
+  const goalName = goalElement.getAttribute("loading-id");
+  const sessionId = goalElement.getAttribute("session-id");
+  const form = goalElement.parentElement;
+  const input = form.querySelectorAll("[loading-id=goal-info-input]");
+  input.forEach(i => i.classList.add("active"));
+  // find the right input
+  // toggle class visible
+  // add listener to form on submit
+  //and call...
+  const call = new Calls();
+  call.checkGoal(goalName, sessionId);
+  // refresh the result
+  //loadRecords();
 };

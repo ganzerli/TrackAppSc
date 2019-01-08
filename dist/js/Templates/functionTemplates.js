@@ -5,13 +5,18 @@ export const fillResultFromObject = recordObj => {
   const theDate = new Date(recordObj.date).toLocaleString();
   const jsonString = JSON.stringify(recordObj);
   const bgClass = recordObj.checked === "true" ? "checked" : "";
+
   const sessionBorder = () => {
     const sessionNumbers = recordObj.sessionId
       .split("")
       .splice(recordObj.sessionId.length - 6, recordObj.sessionId.length)
       .join("");
 
-    const style = `style="border-right:5px solid #${sessionNumbers};"`;
+    const style = `style="
+                          border-right:5px solid #${sessionNumbers}; 
+                          border-bottom: 1px solid #${sessionNumbers};
+                          
+                          "`;
     return style;
   };
   //see if current session using get sessionid
@@ -40,14 +45,33 @@ export const fillResultFromObject = recordObj => {
       if (goals) {
         let result = goals.map(
           goal =>
-            ` <span class="result-record-onegoal" session-id="${
-              recordObj.sessionId
-            }" loadingId="${goal.name}"> ${goal.name} </span> `
+            ` 
+            <form onsubmit="return false" loading-id="form-info-goal" class="the-form">
+            <span
+              class="result-record-onegoal"
+              session-id="${recordObj.sessionId}"
+              loading-id="${goal.name}"
+            >
+              ${goal.name}
+            </span>
+            <br />
+      
+            <input
+              loading-id="goal-info-input"
+              type="text"
+              name="infogoal"
+              class="result-record-textfield"
+            />
+            <input type="submit" loading-id="goal-info-input" name="submit" class="btn-submit-goals" />
+          </form>
+          
+            `
         );
-
-        return `<span loading-id="goals-listener" class="result-record-goals">${result.join(
-          ""
-        )}</span>`;
+        return `
+        <span loading-id="goals-listener" class="result-record-goals">
+          ${result.join("")}
+        </span>
+        `;
         //make span line
       } else {
         //if no goals for this session return an empty string
