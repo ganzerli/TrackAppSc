@@ -4,7 +4,8 @@ import View from "./View";
 import {
   activateFormButton,
   listenNavbar,
-  listenResult
+  listenResult,
+  mainClickListenerForClosingContents
 } from "./eventListeners";
 //on page loaded
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,29 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
   view.fill(elementsArray, ph);
   // event listener fr the navbar
 
-  mainClickListenerForClosingContents();
-
   listenNavbar();
   activateFormButton();
   listenResult();
+  mainClickListenerForClosingContents();
 });
-
-function mainClickListenerForClosingContents() {
-  document.addEventListener("click", e => {
-    //check for elements
-    const goalFormStuff = document.querySelectorAll(
-      "[loading-id=goal-info-input]"
-    );
-    if (goalFormStuff && goalFormStuff.length > 0) {
-      console.log("there is the form somewhere");
-      if (
-        e.target.getAttribute("loading-id") !== "goal-info-input" &&
-        !e.target.hasAttribute("session-id")
-      ) {
-        console.log("other attribute");
-        const input = document.querySelectorAll("[loading-id=goal-info-input]");
-        input.forEach(i => i.classList.remove("active"));
-      }
-    }
-  });
-}

@@ -33,6 +33,7 @@ export const goalListener = () => {
     });
   }
 };
+
 //search
 export const activateSearchListener = () => {
   const searchInput = document.querySelector("[loading-id=input-search]");
@@ -125,14 +126,37 @@ const resultDelegation = e => {
       loadRecords();
     }
   }
-
-  // before a result is on the screen the goals are not there
-  goalListener();
 };
 
+/***
+ *  GOAL LISTENER IS IN THE MAIN LISTENER FOR CLOSING CONTEN..
+ * FOR FLOW REASON
+ */
 function goalsListenerDelegation(e) {
   const goalElement = e.target;
+  //console.log(this); // prints the whole node of results the outer span
+  checkGoal(goalElement);
+}
 
-  console.log(e.target); // prints the whole node of results the outer span
-  checkGoal(goalElement, e);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+export function mainClickListenerForClosingContents() {
+  document.addEventListener("click", e => {
+    //check for elements
+    const goalFormStuff = document.querySelectorAll(
+      "[loading-id=goal-info-input]"
+    );
+    if (goalFormStuff && goalFormStuff.length > 0) {
+      console.log("there is the form somewhere");
+      if (
+        e.target.getAttribute("loading-id") !== "goal-info-input" &&
+        !e.target.hasAttribute("session-id")
+      ) {
+        // closing other windows
+        const input = document.querySelectorAll("[loading-id=goal-info-input]");
+        input.forEach(i => i.classList.remove("active"));
+      } else if (e.target.hasAttribute("session-id")) {
+        //goalListener();
+      }
+    }
+  });
 }

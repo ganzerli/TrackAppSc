@@ -2,6 +2,7 @@ import { domSelector } from "../pages/domSelector";
 import View from "../View";
 import PageHandler from "../pages/pageHandler";
 import Calls from "../Calls/Calls";
+import { goalListener } from "../eventListeners";
 
 // actions are called from the event listeners, must initiate an instance of view and ph to pass to the vieew changing the page
 
@@ -30,7 +31,10 @@ export const loadRecords = () => {
     const elementsArray = domSelector(page);
     // the view needs this instance of the object to load the html template extracting the oject of records
     view.fill(elementsArray, ph);
-    //console.log("result refreshed");
+    console.log(
+      "###############--------result refreshed-----------####################"
+    );
+    goalListener();
   });
 };
 
@@ -271,7 +275,7 @@ export const setGoal = form => {
       // array empty
       const obj = {
         sessionId: currentSessionId,
-        goals: [{ name: goal, done: false, resetted: false, info: "" }]
+        goals: [{ name: goal, done: false, resetted: false, info: "", last: 0 }]
       };
       let data = [obj];
       //console.log(data);
@@ -295,7 +299,13 @@ export const setGoal = form => {
 
         //if there is no goal with this name add goal
         if (!lock) {
-          goalsArray.push({ name: goal, done: false });
+          goalsArray.push({
+            name: goal,
+            done: false,
+            resetted: false,
+            info: "",
+            last: 0
+          });
           arr[0].goals = goalsArray;
           localStorage.setItem("session-goals", JSON.stringify(arr));
         } else {
@@ -307,7 +317,9 @@ export const setGoal = form => {
         // create a new session object
         const obj = {
           sessionId: currentSessionId,
-          goals: [{ name: goal, done: false, resetted: false, info: "" }]
+          goals: [
+            { name: goal, done: false, resetted: false, info: "", last: 0 }
+          ]
         };
         // getting from the local storage the array stored and parse
         const dataArr = JSON.parse(ref);
@@ -326,17 +338,26 @@ export const setGoal = form => {
 /// G O A L S   G O A L S   G O A L S    G O A L S
 
 export const checkGoal = goalElement => {
+  const call = new Calls();
   const goalName = goalElement.getAttribute("loading-id");
   const sessionId = goalElement.getAttribute("session-id");
   const form = goalElement.parentElement;
-  const input = form.querySelectorAll("[loading-id=goal-info-input]");
-  input.forEach(i => i.classList.add("active"));
+  const inputText = form.querySelector("[loading-id=goal-info-input]");
   // find the right input
-  // toggle class visible
+  const input = form.querySelectorAll("[loading-id=goal-info-input]");
+  // add class visible
+  input.forEach(i => i.classList.add("active"));
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const info = inputText.value || "";
+    inputText.value = "";
+    call.checkGoal(goalName, sessionId, info);
+    input.forEach(i => i.classList.remove("active"));
+  });
   // add listener to form on submit
   //and call...
-  const call = new Calls();
-  call.checkGoal(goalName, sessionId);
+
   // refresh the result
   //loadRecords();
 };
