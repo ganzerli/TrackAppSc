@@ -17,6 +17,11 @@ export function domSelector(page) {
       elementsArray.push(loadingId("form-commands"));
       elementsArray.push(loadingId("subtitle"));
       break;
+    case "LOAD-SESSION-GOAL":
+      elementsArray = [];
+      elementsArray.push(loadingId("form-commands"));
+      elementsArray.push(loadingId("subtitle"));
+      break;
     default:
       console.log("default");
   }

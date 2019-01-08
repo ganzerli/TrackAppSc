@@ -16,11 +16,13 @@ export default class View {
         case "result-container":
           //get dinamic template from object
           // get the template with results from the pages handler
-          const resultSet = ph.getResultSet();
-          value = Templates.prototype.getResultElements(resultSet);
+          if (false) {
+          } else {
+            const resultSet = ph.getResultSet();
+            value = Templates.prototype.getResultElements(resultSet);
 
-          value ? (x.innerHTML = value) : undefined;
-
+            value ? (x.innerHTML = value) : undefined;
+          }
           break;
         case "form-commands":
           // get static templates

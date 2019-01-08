@@ -5,7 +5,9 @@ import {
   loadSearchData,
   deleteRecord,
   checkRecord,
-  searchRecord
+  searchRecord,
+  loadInputsSessionGoal,
+  setGoal
 } from "../actions";
 
 const loadingId = x => document.querySelector("[loading-id=" + x + "]");
@@ -32,7 +34,7 @@ export const activateSearchListener = () => {
 const submitForm = e => {
   // GETTING THE VALUE FROM THE FIRST DIV IN THE TEMPLATE
   const submitted = e.target.firstChild.nextSibling.getAttribute("loading-id");
-
+  const form = e.target;
   // initiate a class that handles the calls
   switch (submitted) {
     case "SEARCH-DATA":
@@ -42,9 +44,11 @@ const submitForm = e => {
       // calling action to query api and fill the new view of the result
       break;
     case "INSERT-DATA":
-      const form = e.target;
       insertRecord(form);
       //  console.log(submitted);
+      break;
+    case "LOAD-SESSION-GOAL":
+      setGoal(form);
       break;
     default:
       console.log("default value of switch for form event listener");
@@ -69,11 +73,13 @@ export const listenNavbar = () => {
       console.log(trgt);
       // loads the result
       loadRecords();
-    }
-    if (trgt === "add-data") {
+    } else if (trgt === "add-data") {
       // load the form
       loadInsertData();
       console.log(trgt);
+    } else if (trgt === "set-session-goal") {
+      //
+      loadInputsSessionGoal();
     }
   };
 };

@@ -136,7 +136,7 @@ const sortObjectsByDate = arr => {
   return arr.sort((a, b) => b.date - a.date);
 };
 
-const getIdSession = () => {
+export const getIdSession = () => {
   // check in local storage if there is
   let storage = localStorage.getItem("current-session-id");
   let lastSessionEnter = localStorage.getItem("last-session-enter");
@@ -146,17 +146,16 @@ const getIdSession = () => {
     // set the first session id
     localStorage.setItem("current-session-id", nowStr);
     localStorage.setItem("last-session-enter", nowStr);
-    console.log("item set in local storage .." + nowStr);
+    //console.log("item set in local storage .." + nowStr);
     return nowStr;
   } else {
     // there is a current-session-id item in local storage
-    // later
-    //
     const currentSession = parseInt(storage);
     const now = parseInt(nowStr);
     const oneMinute = 60000; // 60 000 ms ---> 60 s
     const oneHour = oneMinute * 60;
     // if now is more then toWait from the last record enter , register new session
+
     if (now - parseInt(lastSessionEnter) > oneHour * 8) {
       //get a new id
       localStorage.setItem("current-session-id", nowStr);
@@ -165,8 +164,9 @@ const getIdSession = () => {
       return nowStr;
     } else {
       // keep the last session id
-      console.log("is about the same time.. keep id " + storage);
+
       localStorage.setItem("last-session-enter", nowStr);
+      console.log("is about the same time.. keep id " + storage);
       return storage;
     }
   }
@@ -231,3 +231,86 @@ export function getHTMLOfSelection() {
     return "";
   }
 }
+
+/**
+ * LOADS ONLY THE FORM, so the result staythe same until refreshed
+ */
+export const loadInputsSessionGoal = () => {
+  console.log("load function called");
+  const ph = new PageHandler();
+  const view = new View();
+  //set the page in the page handler, for the dom selector and view
+  ph.setCurrentPage("LOAD-SESSION-GOAL");
+  //inside the domSelector set the element needed for this page
+  const elementsArray = domSelector(ph.getCurrentPage());
+  // give the array to the view to load the form
+  view.fill(elementsArray, ph);
+};
+
+export const setGoal = form => {
+  const goal = form.querySelector("[loading-id=session-goal-input]").value;
+  if (!goal || goal === "" || goal === " " || goal === "  ") {
+    // NOTHING WRITTEN NO GOAL
+    return;
+  } else {
+    // SOMETHING WRITTEN INSIDE :: CONTINUE
+    // SAVE GOAL IN LOCAL STORAGE UNDER THIS SESSION ID
+    const currentSessionId = getIdSession();
+    console.log(currentSessionId);
+    // set as storage an object named sessionsgoals,
+
+    let ref;
+    // check for the record
+    if (localStorage.getItem("session-goals")) {
+      ref = localStorage.getItem("session-goals");
+    } else {
+      localStorage.setItem("session-goals", "[]");
+      ref = localStorage.getItem("session-goals");
+    }
+
+    const newStoreObject = new Array();
+    //if array empty add the obj
+    if (ref === "[]") {
+      // array empty
+      const obj = {
+        sessionId: currentSessionId,
+        goals: [{ name: goal, done: false }]
+      };
+      let data = [obj];
+      console.log(data);
+      localStorage.setItem("session-goals", JSON.stringify(data));
+    } else {
+      //parse array from local storage
+      const arr = JSON.parse(ref);
+      console.log(
+        currentSessionId + " ------   " + arr[0].sessionId + "   " + arr[0]
+      );
+      if (currentSessionId === arr[0].sessionId) {
+        //push to array
+        const goalsArray = arr[0].goals;
+        let lock = false;
+        // check if there is already the same goal in the array
+        goalsArray.forEach(x => {
+          x.name === goal ? false : (lock = true);
+        });
+        console.log(lock + "goal already set for this session");
+        //if there is no goal with this name add goal
+        if (!lock) {
+          goalsArray.push({ name: goal, done: false });
+          arr[0].goals = goalsArray;
+          console.log(arr[0].goals);
+          console.log(arr);
+          localStorage.setItem("session-goals", JSON.stringify(arr));
+        } else {
+          //continue
+        }
+      } else {
+        // create a new session id and insert there
+        // implement new session
+        console.log("new session for new goals");
+      }
+
+      //if there is the id..
+    }
+  }
+};

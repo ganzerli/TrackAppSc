@@ -39,5 +39,23 @@ export const templatesArr = [
     </div>
     </div>
     `
+  },
+  {
+    name: "LOAD-SESSION-GOAL",
+    html: `
+    <div class="form-wrap" loading-id="LOAD-SESSION-GOAL"> 
+    <div class="form-group form-group-input">
+        <input loading-id="session-goal-input" type="text" name="search" class="form-input-text" />
+    </div>
+    <div class="form-group form-group-submit">
+        <input
+        type="submit"
+        name="submit"
+        value="set goal"
+        class="form-input-submit"
+        />
+    </div>
+    </div>
+    `
   }
 ];
