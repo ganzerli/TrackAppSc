@@ -8,7 +8,7 @@ export default class GoalsManager {
     this.sessionIndex;
     this.goalIndex;
     this.done;
-    this.resetted;
+    this.resetted = false; // is anyway not accessed from the check if not alredy checked
     this.lastEnter = 0;
   }
 
@@ -20,9 +20,9 @@ export default class GoalsManager {
       ///////////////////////    SCREEN FOR BUGS   ////////////////////////////////
       let status;
       this.dataObj.forEach((session, index) => {
-        console.log(session.sessionId);
-        console.log(session.goals);
-        console.log(index);
+        //     console.log(session.sessionId);
+        //    console.log(session.goals);
+        //   console.log(index);
         if (session.sessionId === this.sessionId) {
           this.sessionIndex = index;
         }
@@ -33,18 +33,18 @@ export default class GoalsManager {
         session.goals.forEach((g, i) => {
           if (g.name === this.name) {
             //remember index
-            console.log(i);
+            //     console.log(i);
             this.goalIndex = i;
             // set what to return
             /// check for last time !!!!!
             ///////-----------
-            console.log(g.last); //__> time of last update goal
+            //            console.log(g.last); //__> time of last update goal
 
             const tenSeconds = 1000 * 10;
-            if (Date.now() - g.last > tenSeconds) {
+            if (Date.now() - g.last > tenSeconds * 6) {
               console.log("is been a while.. let return something");
-              console.log(g.done);
-              console.log(g.resetted);
+              //console.log(g.done);
+              //console.log(g.resetted);
 
               if (!g.done) {
                 //to check as done
@@ -55,7 +55,7 @@ export default class GoalsManager {
               }
               this.lastEnter = Date.now();
               //
-              console.log("something wrong:     shoud return true");
+
               status = true;
               //
             } else {
@@ -82,7 +82,19 @@ export default class GoalsManager {
     // boolean
     if (this.goalStatus()) {
       // everything should have a sense now
-      //take the index insert all and save back
+      //getting reference from stored object from the local storage
+      const goalObjRef = this.dataObj[this.sessionIndex].goals[this.goalIndex];
+      //
+      const newObject = {
+        name: this.name,
+        done: this.done,
+        resetted: this.resetted,
+        info: this.info,
+        last: this.lastEnter
+      };
+
+      this.dataObj[this.sessionIndex].goals[this.goalIndex] = newObject;
+      localStorage.setItem("session-goals", JSON.stringify(this.dataObj));
     }
   }
 }
