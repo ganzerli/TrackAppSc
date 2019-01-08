@@ -83,6 +83,16 @@ export const fillResultFromObject = recordObj => {
     }
   };
 
+  // style goals
+  const goalStyle = () => {
+    // get storage
+    // loop and find the session
+    //search the object name
+    //if the name is the same as recordobj.title
+    //watch for checked and resetted
+    return ""; //different class or styles for different value
+  };
+
   return `
   <div class="result-record-container ${bgClass}" json-data='${jsonString}' loading-id="result-record-${
     recordObj.id

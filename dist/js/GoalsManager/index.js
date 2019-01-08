@@ -26,26 +26,17 @@ export default class GoalsManager {
         if (session.sessionId === this.sessionId) {
           this.sessionIndex = index;
         }
-
         // searching for a goal, no duplicates
         //looping throught the {session:"123" , goals:[]}
         // find which index is this goal
         session.goals.forEach((g, i) => {
           if (g.name === this.name) {
             //remember index
-            //     console.log(i);
             this.goalIndex = i;
-            // set what to return
-            /// check for last time !!!!!
-            ///////-----------
-            //            console.log(g.last); //__> time of last update goal
-
+            /// check for last time !!!!
             const tenSeconds = 1000 * 10;
             if (Date.now() - g.last > tenSeconds * 6) {
-              console.log("is been a while.. let return something");
-              //console.log(g.done);
-              //console.log(g.resetted);
-
+              console.log("time check ok");
               if (!g.done) {
                 //to check as done
                 this.done = true;
@@ -54,10 +45,7 @@ export default class GoalsManager {
                 //to check as reminded
               }
               this.lastEnter = Date.now();
-              //
-
               status = true;
-              //
             } else {
               console.log("something wrong:   date.now was to near  ");
               status = false;
