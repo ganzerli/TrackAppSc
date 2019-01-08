@@ -277,7 +277,7 @@ export const setGoal = form => {
         goals: [{ name: goal, done: false }]
       };
       let data = [obj];
-      console.log(data);
+      //console.log(data);
       localStorage.setItem("session-goals", JSON.stringify(data));
     } else {
       //parse array from local storage
@@ -291,22 +291,42 @@ export const setGoal = form => {
         let lock = false;
         // check if there is already the same goal in the array
         goalsArray.forEach(x => {
-          x.name === goal ? false : (lock = true);
+          if (x.name === goal) {
+            console.log(x.name, "  ", goal);
+            lock = true;
+            console.log("lock is:" + lock);
+          } else {
+            console.log(x.name, "  ", goal);
+          }
         });
-        console.log(lock + "goal already set for this session");
+        console.log("-----> lock is:" + lock);
         //if there is no goal with this name add goal
         if (!lock) {
           goalsArray.push({ name: goal, done: false });
           arr[0].goals = goalsArray;
           console.log(arr[0].goals);
           console.log(arr);
+          console.log("the value was not alredy in goals");
           localStorage.setItem("session-goals", JSON.stringify(arr));
         } else {
           //continue
+          console.log(lock + "goal already set for this session");
         }
       } else {
-        // create a new session id and insert there
-        // implement new session
+        // the storage has an object but the name of [0] does not match
+        // create a new session object
+        const obj = {
+          sessionId: currentSessionId,
+          goals: [{ name: goal, done: false }]
+        };
+        // getting from the local storage the array stored and parse
+        const dataArr = JSON.parse(ref);
+        //[{},{},...]
+        // pushing in the forst position [0] the new object
+        dataArr.unshift(obj);
+        // parsing back the object to string and set in local storage
+        localStorage.setItem("session-goals", JSON.stringify(dataArr));
+        console.log(localStorage.getItem("session-goals"));
         console.log("new session for new goals");
       }
 

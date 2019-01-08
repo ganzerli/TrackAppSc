@@ -22,12 +22,48 @@ export const fillResultFromObject = recordObj => {
       return recordObj.sessionId;
     }
   };
+  // get the goals from local storage
+  const insertGoals = () => {
+    const storedArray = JSON.parse(localStorage.getItem("session-goals"));
+    if (storedArray) {
+      let goals;
+      // loop throught sessions {sessionId:12345, goals[]}
+      for (let i in storedArray) {
+        //check which is the session
+        console.log(recordObj.sessionId);
+        console.log(storedArray[i].sessionId);
+
+        if (recordObj.sessionId === storedArray[i].sessionId) {
+          console.log(storedArray[i].sessionId);
+          // if this session Object has ever had goals, they are displayed
+          goals = [...storedArray[i].goals];
+        }
+      }
+
+      //if for this session there are goals;
+      if (goals) {
+        let result = goals.map(
+          goal => ` <span class="result-record-onegoal"> ${goal.name} </span> `
+        );
+
+        return `<span class="result-record-goals>${result.join("")}</span>`;
+        //make span line
+      } else {
+        //if no goals for this session return an empty string
+        return "  ----> no goals";
+      }
+    } else {
+      // no local storage
+      return "---> no goals";
+    }
+  };
 
   return `
   <div class="result-record-container ${bgClass}" json-data='${jsonString}' loading-id="result-record-${
     recordObj.id
   }"  ${sessionBorder()}   >
     <h4>${checkSession()}  ${recordObj.sessionId}</h4>
+    <small> ${insertGoals()} </small>
     <h3 class="result-record-title">${recordObj.title}</h3>
     <button class="result-record-btn-marktext" loading-id="select-highlighted">selext</button>
     <p class="result-record-body">${recordObj.body}</p>
