@@ -7,7 +7,8 @@ import {
   checkRecord,
   searchRecord,
   loadInputsSessionGoal,
-  setGoal
+  setGoal,
+  checkGoal
 } from "../actions";
 
 const loadingId = x => document.querySelector("[loading-id=" + x + "]");
@@ -23,6 +24,15 @@ export const activateFormButton = () => {
   }
 };
 
+//goal bar listener
+export const goalListener = () => {
+  const goalsBar = document.querySelectorAll("[loading-id=goals-listener]");
+  if (goalsBar && goalsBar.length > 0) {
+    goalsBar.forEach(bar => {
+      bar.addEventListener("click", goalsListenerDelegation);
+    });
+  }
+};
 //search
 export const activateSearchListener = () => {
   const searchInput = document.querySelector("[loading-id=input-search]");
@@ -57,7 +67,7 @@ const submitForm = e => {
   // take the inputs and send a post request to backend for to load the record
 };
 
-export const listenNavbar = () => {
+export function listenNavbar() {
   const navbar = loadingId("navbar-commands");
   if (navbar) {
     navbar.addEventListener("click", e => delegationNavbar(e));
@@ -82,7 +92,7 @@ export const listenNavbar = () => {
       loadInputsSessionGoal();
     }
   };
-};
+}
 
 export const listenResult = () => {
   const resultContainer = loadingId("result-container");
@@ -115,4 +125,13 @@ const resultDelegation = e => {
       loadRecords();
     }
   }
+
+  // before a result is on the screen the goals are not there
+  goalListener();
 };
+
+function goalsListenerDelegation(e) {
+  const goalElement = e.target;
+  //console.log(this);// prints the whole node of results the outer span
+  checkGoal(goalElement);
+}

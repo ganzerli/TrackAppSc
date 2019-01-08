@@ -21,7 +21,7 @@ export const loadRecords = () => {
   promise.then(data => {
     /// first order the array!!
     let sortedArray = sortObjectsByDate(data);
-    console.log(sortedArray);
+    // console.log(sortedArray);
     ph.setResultSet(sortedArray);
     // set the new page to load
     ph.setCurrentPage("LOAD-RESULTS");
@@ -166,7 +166,7 @@ export const getIdSession = () => {
       // keep the last session id
 
       localStorage.setItem("last-session-enter", nowStr);
-      console.log("is about the same time.. keep id " + storage);
+      //  console.log("is about the same time.. keep id " + storage);
       return storage;
     }
   }
@@ -274,7 +274,7 @@ export const setGoal = form => {
       // array empty
       const obj = {
         sessionId: currentSessionId,
-        goals: [{ name: goal, done: false }]
+        goals: [{ name: goal, done: false, resetted: false, info: "" }]
       };
       let data = [obj];
       //console.log(data);
@@ -317,7 +317,7 @@ export const setGoal = form => {
         // create a new session object
         const obj = {
           sessionId: currentSessionId,
-          goals: [{ name: goal, done: false }]
+          goals: [{ name: goal, done: false, resetted: false, info: "" }]
         };
         // getting from the local storage the array stored and parse
         const dataArr = JSON.parse(ref);
@@ -329,8 +329,17 @@ export const setGoal = form => {
         console.log(localStorage.getItem("session-goals"));
         console.log("new session for new goals");
       }
-
-      //if there is the id..
     }
   }
+};
+
+/// G O A L S   G O A L S   G O A L S    G O A L S
+
+export const checkGoal = goalElement => {
+  console.log("check the goals!!");
+  console.log(goalElement);
+
+  // setting a goal handler that updates the goal taken the session id and name
+  // call.updateGoal _> takes the session id and name ,
+  // call calls the goalHandler that will
 };
