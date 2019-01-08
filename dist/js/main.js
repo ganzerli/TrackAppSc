@@ -9,7 +9,6 @@ import {
 //on page loaded
 document.addEventListener("DOMContentLoaded", () => {
   // set base to load the components
-  localStorage.clear();
   const ph = new PageHandler();
   const view = new View();
   const page = ph.getCurrentPage();
@@ -21,5 +20,4 @@ document.addEventListener("DOMContentLoaded", () => {
   listenNavbar();
   activateFormButton();
   listenResult();
-  localStorage.clear();
 });
