@@ -22,6 +22,16 @@ export function domSelector(page) {
       elementsArray.push(loadingId("form-commands"));
       elementsArray.push(loadingId("subtitle"));
       break;
+    case "LOAD-ALARM-INPUT":
+      elementsArray = [];
+      elementsArray.push(loadingId("form-commands"));
+      elementsArray.push(loadingId("subtitle"));
+      break;
+    case "LOAD-GOALS":
+      elementsArray = [];
+      elementsArray.push(loadingId("result-container"));
+      break;
+
     default:
       console.log("default");
   }

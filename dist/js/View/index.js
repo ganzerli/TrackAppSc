@@ -6,11 +6,11 @@ export default class View {
   fill(array, ph = null) {
     // looping throught the interested elements
     let value;
-    array.forEach(x => {
+    array.forEach(domElement => {
       // removing old elements
-      x.innerHTML = "";
+      domElement.innerHTML = "";
       // getting the page to send for the tmeplate
-      const interestedAttribute = x.attributes["loading-id"].value;
+      const interestedAttribute = domElement.attributes["loading-id"].value;
       // see which template matches the attributes and return the right html for this element
       switch (interestedAttribute) {
         case "result-container":
@@ -19,22 +19,22 @@ export default class View {
           if (false) {
           } else {
             const resultSet = ph.getResultSet();
-            value = Templates.prototype.getResultElements(resultSet);
-
-            value ? (x.innerHTML = value) : undefined;
+            value = Templates.prototype.getResultElements(resultSet, ph);
+            value ? (domElement.innerHTML = value) : undefined;
           }
           break;
         case "form-commands":
           // get static templates
           value = Templates.prototype.getAssignedHtml(ph);
-          value ? (x.innerHTML = value) : undefined;
+          // set the template as content of the dom element in scope  ---  domElement  --
+          value ? (domElement.innerHTML = value) : undefined;
 
           break;
         case "subtitle":
           // get static templates
           const page = ph.getCurrentPage();
           value = Templates.prototype.refreshSubtitle(page);
-          value ? (x.innerHTML = value) : undefined;
+          value ? (domElement.innerHTML = value) : undefined;
 
           break;
         default:

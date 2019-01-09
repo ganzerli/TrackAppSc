@@ -18,7 +18,7 @@ export const loadRecords = () => {
   const call = new Calls();
 
   const promise = call.getDataFromIndexedDb();
-  //result set must be  in the format [{id title body},{},...]
+  //result set must be  in the format [{id, title, body},{},...]
   promise.then(data => {
     /// first order the array!!
     let sortedArray = sortObjectsByDate(data);
@@ -64,7 +64,8 @@ export const insertRecord = parentElement => {
       body,
       date: Date.now(),
       checked: "false",
-      sessionId
+      sessionId,
+      alarm: ""
     };
     // in this method of call get <-----------  initialized the DB
     call.pushDataToIndexedDb(record);
@@ -241,7 +242,6 @@ export function getHTMLOfSelection() {
  * LOADS ONLY THE FORM, so the result staythe same until refreshed
  */
 export const loadInputsSessionGoal = () => {
-  console.log("load function called");
   const ph = new PageHandler();
   const view = new View();
   //set the page in the page handler, for the dom selector and view
@@ -296,7 +296,6 @@ export const setGoal = form => {
             lock = true;
           }
         });
-
         //if there is no goal with this name add goal
         if (!lock) {
           goalsArray.push({
@@ -361,4 +360,122 @@ export const checkGoal = goalElement => {
   //and call...
 
   // refresh the result
+};
+
+export const loadInputAlarm = () => {
+  const ph = new PageHandler();
+  const view = new View();
+  //set the page in the page handler, for the dom selector and view
+  ph.setCurrentPage("LOAD-ALARM-INPUT");
+  //inside the domSelector set the element needed for this page
+  const elementsArray = domSelector(ph.getCurrentPage());
+  // give the array to the view to load the form
+  view.fill(elementsArray, ph);
+};
+
+export const setAlarm = form => {
+  console.log("set alarm submitted");
+  // take parameters out of thhe form,
+  const title = form.querySelector("[loading-id=alarm-name]").value;
+  const body = "";
+  const date = form.querySelector("[loading-id=alarm-day]").value.split("-");
+  // extracting the date
+  const year = date[0];
+  const month = parseInt(date[1]) - 1;
+  const day = date[2];
+
+  let hours = form.querySelector("[loading-id=alarm-time-hours]").value;
+  const minutes = form.querySelector("[loading-id=alarm-time-minutes]").value;
+  // creating a date hakdlebar string
+
+  // cheks day undefined
+  if (
+    title === "" ||
+    title === " " ||
+    hours === "" ||
+    minutes === "" ||
+    isNaN(month) ||
+    date.length < 1
+  ) {
+    console.log(" something empty ");
+  } else {
+    const d = new Date(year, month, day, hours, minutes, 0, 0);
+    // parse to ms
+    const dateParsedMs = Date.parse(d);
+
+    console.log("something empty");
+    // is alarm field is false
+    const sessionId = getIdSession();
+    const newObj = {
+      title,
+      body,
+      date: Date.now(),
+      checked: false,
+      sessionId,
+      alarm: dateParsedMs
+    };
+    console.log(newObj);
+
+    if (addAlarm(newObj)) {
+      console.log("the alarm is set");
+      // write object in records
+      const call = new Calls();
+      call.pushDataToIndexedDb(newObj);
+      loadRecords();
+    } else {
+      //
+      console.log("the record could not be inserted");
+    }
+
+    // set as local storage alarms[{nameb, .. when}]
+    // loading the page if there are alarms check every minute.. until there are alarms loop goes
+    // it just checks in the alarms array when , if the time is up, show card popup and remove.
+  }
+};
+
+const addAlarm = obj => {
+  const alarms = JSON.parse(localStorage.getItem("alarms"));
+  let result = alarms || [];
+  // are used for the final chech to compare if the array has more elements
+
+  if (alarms) {
+    if (alarms.length < 1) {
+      // if for some reason push to []
+      console.log("array is empty, but inserting ");
+      result.push(obj);
+    } else {
+      // there are other records
+      result.push(obj);
+      console.log("isert in existing array");
+    }
+  } else {
+    //set item and return true
+    console.log("no object in local storage");
+    result.push(obj);
+  }
+  // last check
+  if (result && result.length > 0) {
+    localStorage.setItem("alarms", JSON.stringify(result));
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export const refreshResultGoals = () => {
+  console.log("refresh goals");
+  const call = new Calls();
+  //
+  console.log(call.getGoals());
+  // RESPONSE
+  const view = new View();
+  const ph = new PageHandler();
+
+  //inside the domSelector set the element needed for this page
+  ph.setCurrentPage("LOAD-GOALS");
+  ph.setResultSet(call.getGoals());
+  //
+  const elementsArray = domSelector(ph.getCurrentPage());
+  // the view needs this instance of the object to load the html template extracting the oject of records
+  view.fill(elementsArray, ph);
 };

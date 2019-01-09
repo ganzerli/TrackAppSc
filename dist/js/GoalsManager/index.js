@@ -1,6 +1,6 @@
 export default class GoalsManager {
   constructor(name, sessionId) {
-    //console.log("goalsmanager instanciated and redy");
+    console.log("goalsmanager instanciated and redy");
     this.name = name;
     this.sessionId = sessionId;
     this.dataObj = JSON.parse(localStorage.getItem("session-goals"));
@@ -77,5 +77,14 @@ export default class GoalsManager {
       localStorage.setItem("session-goals", JSON.stringify(this.dataObj));
       return newObject;
     }
+  }
+
+  getGoals() {
+    let goals = [];
+    const itemArr = JSON.parse(localStorage.getItem("session-goals"));
+    if (itemArr) {
+      goals = [...itemArr];
+    }
+    return goals;
   }
 }

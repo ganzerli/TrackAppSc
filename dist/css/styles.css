@@ -39,3 +39,7 @@
 .goal {
   color: blue;
 }
+
+.alarm {
+  background: rgb(255, 175, 175) !important;
+}

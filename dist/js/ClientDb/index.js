@@ -1,5 +1,3 @@
-import { resolve } from "path";
-
 export default class ClientDb {
   constructor() {
     this.set = [];
@@ -31,6 +29,7 @@ export default class ClientDb {
       objectStore.createIndex("date", "date", { unique: false });
       objectStore.createIndex("checked", "checked", { unique: false });
       objectStore.createIndex("sessionId", "sessionId", { unique: false });
+      objectStore.createIndex("alarm", "alarm", { unique: false });
 
       console.log("database ready first time running");
     };
@@ -60,7 +59,8 @@ export default class ClientDb {
               body: cursor.value.body,
               date: cursor.value.date,
               checked: cursor.value.checked,
-              sessionId: cursor.value.sessionId
+              sessionId: cursor.value.sessionId,
+              alarm: cursor.value.alarm
             };
             this.storeArray.push(respObj);
           } else {

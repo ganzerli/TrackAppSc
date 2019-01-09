@@ -8,7 +8,10 @@ import {
   searchRecord,
   loadInputsSessionGoal,
   setGoal,
-  checkGoal
+  checkGoal,
+  loadInputAlarm,
+  setAlarm,
+  refreshResultGoals
 } from "../actions";
 
 const loadingId = x => document.querySelector("[loading-id=" + x + "]");
@@ -61,6 +64,12 @@ const submitForm = e => {
     case "LOAD-SESSION-GOAL":
       setGoal(form);
       break;
+
+    case "LOAD-ALARM-INPUT":
+      setAlarm(form);
+      alarmsCheck();
+      break;
+
     default:
       console.log("default value of switch for form event listener");
   }
@@ -75,6 +84,7 @@ export function listenNavbar() {
   }
 
   const delegationNavbar = e => {
+    // get attribute of clicked element
     const trgt = e.target.getAttribute("loading-id");
 
     if (trgt === "search-data") {
@@ -89,8 +99,10 @@ export function listenNavbar() {
       loadInsertData();
       console.log(trgt);
     } else if (trgt === "set-session-goal") {
-      //
       loadInputsSessionGoal();
+      activateGoalLoad();
+    } else if (trgt === "set-session-alarm") {
+      loadInputAlarm();
     }
   };
 }
@@ -155,8 +167,37 @@ export function mainClickListenerForClosingContents() {
         const input = document.querySelectorAll("[loading-id=goal-info-input]");
         input.forEach(i => i.classList.remove("active"));
       } else if (e.target.hasAttribute("session-id")) {
-        //goalListener();
       }
     }
   });
+}
+
+export function alarmsCheck() {
+  const alarms = localStorage.getItem("alarms");
+  let timeout = setTimeout(alarmsCheck, 1000 * 10);
+  //check if there is the object
+  if (alarms && alarms !== "[]") {
+    JSON.parse(alarms).forEach((elem, index) => {
+      //loop throught the obj arr and find if one has an alarm
+      if (elem.alarm > 1000 && elem.alarm !== "") {
+        if (Date.now() > elem.alarm) {
+          alert(elem.title);
+          let resetArr = [...JSON.parse(alarms)];
+          resetArr.splice(index, 1);
+          localStorage.setItem("alarms", JSON.stringify(resetArr));
+        }
+      }
+    });
+  } else {
+    //console.log("NO alarms are set");
+    clearTimeout(timeout);
+  }
+}
+
+export function activateGoalLoad() {
+  const form = document.querySelector("[loading-id=form-commands]");
+  if (form) {
+    const button = form.querySelector("[loading-id=load-goals]");
+    button.addEventListener("click", refreshResultGoals);
+  }
 }

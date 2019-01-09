@@ -1,6 +1,6 @@
 import { getIdSession } from "../actions";
 
-export const fillResultFromObject = recordObj => {
+export const fillResultFromRecord = recordObj => {
   // takes the object and returns a template
   const theDate = new Date(recordObj.date).toLocaleString();
   const jsonString = JSON.stringify(recordObj);
@@ -99,14 +99,45 @@ export const fillResultFromObject = recordObj => {
     return resClass; //different class or styles for different value
   };
 
+  const isAlarm = recordObject => {
+    if (recordObject.alarm) {
+      if (recordObj.alarm !== "" || recordObj.body === "") {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  };
+
+  isAlarm(recordObj);
+
+  const setAlarmStyle = recordObj => {
+    if (isAlarm(recordObj)) {
+      //return a class for alarm
+      return "alarm";
+    } else {
+      return "";
+    }
+  };
+
   return `
-  <div class="result-record-container ${bgClass}" json-data='${jsonString}' loading-id="result-record-${
+  <div class="result-record-container ${bgClass} ${setAlarmStyle(
+    recordObj
+  )}" json-data='${jsonString}' loading-id="result-record-${
     recordObj.id
   }"  ${sessionBorder()}   >
-    <h4 class="result-record-session">${checkSession()}  </h4>
+    <h4 class="result-record-session">${
+      isAlarm(recordObj) ? "ALARM" : checkSession()
+    }  </h4>
     <small> ${insertGoals()} </small>
     <h3 class="result-record-title">${recordObj.title}</h3>
-    <button class="result-record-btn-marktext" loading-id="select-highlighted">selext</button>
+
+    ${
+      isAlarm(recordObj)
+        ? ""
+        : '<button class="result-record-btn-marktext" loading-id="select-highlighted">selext</button>'
+    }
+    
     <p class="result-record-body">${recordObj.body}</p>
     <span class="result-record-date" loading-id="date-${
       recordObj.date
@@ -119,5 +150,40 @@ export const fillResultFromObject = recordObj => {
     }">DELETE</button>
     
   </div>
+  `;
+};
+
+//#####################################################################################################################################################
+//####################################################################################################################################################
+//####################################################################################################################################################
+//####################################################################################################################################################
+
+export const fillResultFromGoal = obj => {
+  const goalsInfo = goals => {
+    let result = goals.map(
+      g => `
+     <span class="result-goal-name">${g.name}</span>
+     <span class="result-goal-done">${g.done}</span>
+     <span class="result-goal-resetted">${g.resetted}</span>
+     <p class="result-goal-info">${g.info}</p>
+     <button class="btn-goal-delete" loading-id="delete-goal" info="${
+       g.name
+     }">delete</button>
+     `
+    );
+    return result.join();
+  };
+  return `
+  
+  <div class="result-goal-container" loading-id="result-goal">
+  <h3 class="result-record-title">${obj.sessionId}</h3>
+  <div class="goal-display">
+   ${goalsInfo(obj.goals)}
+  </div>
+  
+  </div>
+
+
+
   `;
 };

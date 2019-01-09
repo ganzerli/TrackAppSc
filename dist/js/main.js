@@ -5,7 +5,8 @@ import {
   activateFormButton,
   listenNavbar,
   listenResult,
-  mainClickListenerForClosingContents
+  mainClickListenerForClosingContents,
+  alarmsCheck
 } from "./eventListeners";
 //on page loaded
 document.addEventListener("DOMContentLoaded", () => {
@@ -23,5 +24,5 @@ document.addEventListener("DOMContentLoaded", () => {
   activateFormButton();
   listenResult();
   mainClickListenerForClosingContents();
-  localStorage.clear();
+  alarmsCheck();
 });
