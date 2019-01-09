@@ -486,11 +486,20 @@ export const refreshResultGoals = () => {
 
   const result = document.querySelector("[loading-id=result-container]");
   const buttons = result.querySelectorAll("[loading-id=delete-goal]");
+  const buttonsStatus = result.querySelectorAll("[loading-id=btn-goal-status]");
 
   if (buttons) {
     console.log(buttons);
     buttons.forEach(btn => {
       btn.addEventListener("click", e => deleteGoal(e));
+    });
+  }
+
+  console.log(buttonsStatus);
+  if (buttonsStatus) {
+    console.log(buttonsStatus);
+    buttonsStatus.forEach(btn => {
+      btn.addEventListener("click", btnGoalCkeck);
     });
   }
 };
@@ -502,4 +511,8 @@ function deleteGoal(e) {
   grandParent.removeChild(parent);
   //get the goal name and delete
   Calls.prototype.deleteGoal(name);
+}
+
+function btnGoalCkeck(e) {
+  // best is make a form same as the other
 }

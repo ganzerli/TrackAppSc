@@ -159,12 +159,43 @@ export const fillResultFromRecord = recordObj => {
 //####################################################################################################################################################
 
 export const fillResultFromGoal = obj => {
+  const btnStatus = goal => {
+    const js = JSON.stringify(goal);
+
+    console.log(js);
+    if (goal.resetted) {
+      return `<button session-id="${
+        obj.sessionId
+      }" info-obj='${js}'  loading-id="btn-goal-status" class="red" disabled >-</button>`;
+    }
+    if (goal.done) {
+      return `<button session-id="${
+        obj.sessionId
+      }" info-obj='${js}'  loading-id="btn-goal-status" class="red">Remind..</button>`;
+    } else {
+      return `<button session-id="${
+        obj.sessionId
+      }" info-obj='${js}'  loading-id="btn-goal-status" class="green">Done!</button>`;
+    }
+  };
+
+  const getStauts = goal => {
+    if (goal.resetted) {
+      return '<span class="goal">Goal Resetted</span>';
+    }
+    if (goal.done) {
+      return '<span class="green">Goal Done</span>';
+    } else {
+      return '<span class="goal">Goal To Do</span>';
+    }
+  };
+
   const goalsInfo = goals => {
     let result = goals.map(
       g => `<div class="goal-container loading-id="${g.name}">
       <span class="result-goal-name">${g.name}</span>
-      <span class="result-goal-done">${g.done}</span>
-      <span class="result-goal-resetted">${g.resetted}</span>
+      <span class="result-goal-status">${getStauts(g)}</span>
+      <span class="result-goal-status-btn">${btnStatus(g)}</span>
       <p class="result-goal-info">${g.info}</p>
       <button class="btn-goal-delete" sessionId="${
         obj.sessionId
