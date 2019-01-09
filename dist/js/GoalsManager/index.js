@@ -17,19 +17,16 @@ export default class GoalsManager {
   goalStatus() {
     // GOAL STATUS
     if (this.name !== "goal-info-input" && this.sessionId) {
-      ///////////////////////    SCREEN FOR BUGS   ////////////////////////////////
+      ////////////////////  ^-----   SCREEN FOR BUGS   ////////////////////////////////
       let status;
       this.dataObj.forEach((session, index) => {
-        //     console.log(session.sessionId);
-        //    console.log(session.goals);
-        //   console.log(index);
         if (session.sessionId === this.sessionId) {
           this.sessionIndex = index;
         }
-        // searching for a goal, no duplicates
-        //looping throught the {session:"123" , goals:[]}
-        // find which index is this goal
+        // searching for a goal, no duplicates , , looping throught the {session:"123" , goals:[]}
+
         session.goals.forEach((g, i) => {
+          // find which index is this goal
           if (g.name === this.name) {
             //remember index
             this.goalIndex = i;
@@ -54,8 +51,7 @@ export default class GoalsManager {
         });
       });
       return status;
-      /////////////////////screen for bugs -- keep -- ///////
-      //
+      /////////////////////screen for bugs -- keep -- ///////-------v
     } else {
       console.log("something wrong:     first screen not passed");
       return false;
@@ -66,13 +62,9 @@ export default class GoalsManager {
     const info = newInfo || "";
     this.info = info;
 
-    console.log("status  " + this.goalStatus());
-    // boolean
     if (this.goalStatus()) {
       // everything should have a sense now
       //getting reference from stored object from the local storage
-      const goalObjRef = this.dataObj[this.sessionIndex].goals[this.goalIndex];
-      //
       const newObject = {
         name: this.name,
         done: this.done,
@@ -83,6 +75,7 @@ export default class GoalsManager {
 
       this.dataObj[this.sessionIndex].goals[this.goalIndex] = newObject;
       localStorage.setItem("session-goals", JSON.stringify(this.dataObj));
+      return newObject;
     }
   }
 }

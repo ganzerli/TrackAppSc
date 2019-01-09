@@ -354,10 +354,11 @@ export const checkGoal = goalElement => {
     inputText.value = "";
     call.checkGoal(goalName, sessionId, info);
     input.forEach(i => i.classList.remove("active"));
+    // if call returns something..
+    loadRecords();
   });
   // add listener to form on submit
   //and call...
 
   // refresh the result
-  //loadRecords();
 };

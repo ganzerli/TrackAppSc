@@ -29,3 +29,13 @@
 .the-form {
   display: inline-block;
 }
+
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
+.goal {
+  color: blue;
+}

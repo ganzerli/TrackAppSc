@@ -23,4 +23,5 @@ document.addEventListener("DOMContentLoaded", () => {
   activateFormButton();
   listenResult();
   mainClickListenerForClosingContents();
+  localStorage.clear();
 });

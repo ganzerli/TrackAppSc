@@ -48,11 +48,15 @@ export const fillResultFromObject = recordObj => {
             ` 
             <form onsubmit="return false" loading-id="form-info-goal" class="the-form">
             <span
-              class="result-record-onegoal"
+              class="result-record-onegoal ${goalStyle(
+                goal.done,
+                goal.resetted
+              )}"
               session-id="${recordObj.sessionId}"
               loading-id="${goal.name}"
             >
               ${goal.name}
+
             </span>
             <br />
       
@@ -84,20 +88,22 @@ export const fillResultFromObject = recordObj => {
   };
 
   // style goals
-  const goalStyle = () => {
-    // get storage
-    // loop and find the session
-    //search the object name
-    //if the name is the same as recordobj.title
-    //watch for checked and resetted
-    return ""; //different class or styles for different value
+  const goalStyle = (done, resetted) => {
+    let resClass = "goal";
+    if (done && !resetted) {
+      resClass = "green";
+    }
+    if (resetted) {
+      resClass = "red";
+    }
+    return resClass; //different class or styles for different value
   };
 
   return `
   <div class="result-record-container ${bgClass}" json-data='${jsonString}' loading-id="result-record-${
     recordObj.id
   }"  ${sessionBorder()}   >
-    <h4 class="result-record-session">${checkSession()}</h4>
+    <h4 class="result-record-session">${checkSession()}  </h4>
     <small> ${insertGoals()} </small>
     <h3 class="result-record-title">${recordObj.title}</h3>
     <button class="result-record-btn-marktext" loading-id="select-highlighted">selext</button>
