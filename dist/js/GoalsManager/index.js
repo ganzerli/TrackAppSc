@@ -87,4 +87,26 @@ export default class GoalsManager {
     }
     return goals;
   }
+
+  deleteGoal(name) {
+    let sessionIndex;
+    let goalIndex;
+    const itemArr = JSON.parse(localStorage.getItem("session-goals"));
+    // search throught
+    itemArr.forEach((session, i) => {
+      session.goals.forEach((goal, ind) => {
+        console.log(i, ind);
+        if (goal.name === name) {
+          // remember the indexes
+          sessionIndex = i;
+          goalIndex = ind;
+        }
+      });
+    });
+
+    itemArr[sessionIndex].goals.splice([goalIndex], 1);
+
+    localStorage.setItem("session-goals", JSON.stringify(itemArr));
+    return itemArr;
+  }
 }

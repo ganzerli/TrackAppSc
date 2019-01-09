@@ -207,8 +207,13 @@ const filterByValue = (arr, value) => {
   // loop throught each element
   for (let i in arr) {
     const object = arr[i];
+    const theDate = new Date(object.date).toLocaleString();
     //chech if the title contains the value
-    if (object.title.includes(value) || object.body.includes(value)) {
+    if (
+      object.title.includes(value) ||
+      object.body.includes(value) ||
+      theDate.includes(value)
+    ) {
       filtered.push(object);
     }
   }
@@ -465,8 +470,6 @@ const addAlarm = obj => {
 export const refreshResultGoals = () => {
   console.log("refresh goals");
   const call = new Calls();
-  //
-  console.log(call.getGoals());
   // RESPONSE
   const view = new View();
   const ph = new PageHandler();
@@ -478,4 +481,25 @@ export const refreshResultGoals = () => {
   const elementsArray = domSelector(ph.getCurrentPage());
   // the view needs this instance of the object to load the html template extracting the oject of records
   view.fill(elementsArray, ph);
+
+  // add event listener for buttons in the result
+
+  const result = document.querySelector("[loading-id=result-container]");
+  const buttons = result.querySelectorAll("[loading-id=delete-goal]");
+
+  if (buttons) {
+    console.log(buttons);
+    buttons.forEach(btn => {
+      btn.addEventListener("click", e => deleteGoal(e));
+    });
+  }
 };
+
+function deleteGoal(e) {
+  const name = e.target.getAttribute("info");
+  const parent = e.target.parentElement;
+  const grandParent = parent.parentElement;
+  grandParent.removeChild(parent);
+  //get the goal name and delete
+  Calls.prototype.deleteGoal(name);
+}

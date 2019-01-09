@@ -41,6 +41,11 @@ export default class Calls {
     const gm = new GoalsManager();
     return gm.getGoals();
   }
+
+  deleteGoal(name) {
+    const gm = new GoalsManager();
+    return gm.deleteGoal(name);
+  }
   // functions to get something from remote storage
   getDataFromBackend() {}
   pushDataToBackend() {}

@@ -161,29 +161,20 @@ export const fillResultFromRecord = recordObj => {
 export const fillResultFromGoal = obj => {
   const goalsInfo = goals => {
     let result = goals.map(
-      g => `
-     <span class="result-goal-name">${g.name}</span>
-     <span class="result-goal-done">${g.done}</span>
-     <span class="result-goal-resetted">${g.resetted}</span>
-     <p class="result-goal-info">${g.info}</p>
-     <button class="btn-goal-delete" loading-id="delete-goal" info="${
-       g.name
-     }">delete</button>
-     `
+      g => `<div class="goal-container loading-id="${g.name}">
+      <span class="result-goal-name">${g.name}</span>
+      <span class="result-goal-done">${g.done}</span>
+      <span class="result-goal-resetted">${g.resetted}</span>
+      <p class="result-goal-info">${g.info}</p>
+      <button class="btn-goal-delete" sessionId="${
+        obj.sessionId
+      }" loading-id="delete-goal" info="${g.name}">delete</button>
+      </div>`
     );
-    return result.join();
+    return result.join("");
   };
-  return `
-  
-  <div class="result-goal-container" loading-id="result-goal">
+  return `<div class="result-goal-container" loading-id="result-goal">
   <h3 class="result-record-title">${obj.sessionId}</h3>
-  <div class="goal-display">
-   ${goalsInfo(obj.goals)}
-  </div>
-  
-  </div>
-
-
-
-  `;
+  <div class="goal-display">${goalsInfo(obj.goals)}</div>
+  </div>`;
 };
