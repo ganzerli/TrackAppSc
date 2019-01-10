@@ -1,6 +1,7 @@
 import PageHandler from "./pages/pageHandler";
 import { domSelector } from "./pages/domSelector";
 import View from "./View";
+
 import {
   activateFormButton,
   listenNavbar,

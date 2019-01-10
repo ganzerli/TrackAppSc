@@ -212,24 +212,38 @@ export function loginForm(startFunction) {
     //
     const form = document.querySelector("[loading-id=login-form]");
     form.addEventListener("submit", () => {
-      const email = form.querySelector("[name=email]");
-      const password = form.querySelector("[name=password]");
+      const email = form.querySelector("[name=email]").value;
+      const password = form.querySelector("[name=password]").value;
       const logIn = form.querySelector("[loading-id=form-radio-login]").checked;
       const signUp = form.querySelector("[loading-id=form-radio-signup]")
         .checked;
 
       if (logIn && !signUp) {
-        console.log("logIn" + logIn + " is clicked.. further to logIn");
+        console.log(
+          "logIn" +
+            logIn +
+            " is clicked.. further to logIn" +
+            email +
+            " " +
+            password
+        );
         //
         //
-        login();
+        login(email, password);
         //
         //
       } else if (!logIn && signUp) {
-        console.log("signUp" + signUp + " is clicked.. further to signUp");
+        console.log(
+          "signUp" +
+            signUp +
+            " is clicked.. further to signUp" +
+            email +
+            " " +
+            password
+        );
         //
         //
-        signup();
+        signup(email, password);
         //
         //
       }

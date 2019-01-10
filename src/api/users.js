@@ -19,10 +19,6 @@ router.get("/index", (req, res) => {
   });
 });
 
-router.get("/login", (req, res) => {
-  res.json({ response: "response" });
-});
-
 router.get("/all", (req, res) => {
   db.getAll()
     .then(response => res.json({ all: response }))
@@ -31,11 +27,15 @@ router.get("/all", (req, res) => {
 
 router.post("/register", (req, res) => {
   // check if the email already exists
+
+  //console.log("password" + req.body.email + " " + req.body.password);
+
   db.findEmail(req.body.email).then(user => {
     if (user) {
       res.status(400).json({ email: "email already exists" });
     } else {
       // if no email is found, free..
+
       bcrypt.genSalt(10, (err, salt) => {
         // when salt is generated crypt the password
         bcrypt.hash(req.body.password, salt, (err, hash) => {
@@ -49,6 +49,10 @@ router.post("/register", (req, res) => {
       });
     }
   });
+});
+
+router.post("/login", (req, res) => {
+  res.json({ response: "response" });
 });
 
 module.exports = router;
