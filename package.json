@@ -13,7 +13,8 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "node-sass": "^4.11.0",

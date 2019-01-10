@@ -6,6 +6,10 @@ const app = express();
 //importing other routes
 const users = require("./api/users");
 //const profiles = require("./src/api/profiles");
+
+// BODY PARSER NEEDS MIDDLEWARE
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // setup of app server
 app.use(bodyParser.json());
 // setup the engine of the index file

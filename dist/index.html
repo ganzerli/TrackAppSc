@@ -32,11 +32,30 @@
       <!--########-->
       <section class="display">
         <div class="result-container" loading-id="result-container">
-          <form class="login-form" onsubmit="return false">
-            <input type="text" name="username" />
-            <input type="password" name="password" />
-            <input type="submit" value="login" />
-            <input type="submit" value="signup" />
+          <form
+            class="login-form"
+            onsubmit="return false"
+            loading-id="login-form"
+          >
+            <input type="email" name="email" placeholder="email" />
+            <input type="password" name="password" placeholder="password" />
+            <br />
+            <label for="login-signup">Login</label>
+            <input
+              type="radio"
+              name="login-signup"
+              value="login"
+              loading-id="form-radio-login"
+              checked
+            />
+            <label for="login-signup">Sign Up</label>
+            <input
+              type="radio"
+              name="login-signup"
+              value="register"
+              loading-id="form-radio-signup"
+            />
+            <input type="submit" />
           </form>
         </div>
       </section>
@@ -44,7 +63,7 @@
     </main>
     <!--main end -->
     <!--footer statrt-->
-    <footer class="footer">here is the footer wow</footer>
+    <footer class="footer">&nbsp;</footer>
     <!--footer end-->
     <script src="main-bundle.js"></script>
   </body>

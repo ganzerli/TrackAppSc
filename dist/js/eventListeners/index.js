@@ -14,6 +14,8 @@ import {
   refreshResultGoals
 } from "../actions";
 
+import { login, signup } from "../auth";
+
 const loadingId = x => document.querySelector("[loading-id=" + x + "]");
 
 export const activateFormButton = () => {
@@ -200,4 +202,30 @@ export function activateGoalLoad() {
     const button = form.querySelector("[loading-id=load-goals]");
     button.addEventListener("click", refreshResultGoals);
   }
+}
+
+export function loginForm(startFunction) {
+  const form = document.querySelector("[loading-id=login-form]");
+  form.addEventListener("submit", () => {
+    const email = form.querySelector("[name=email]");
+    const password = form.querySelector("[name=password]");
+    const logIn = form.querySelector("[loading-id=form-radio-login]").checked;
+    const signUp = form.querySelector("[loading-id=form-radio-signup]").checked;
+
+    if (logIn && !signUp) {
+      console.log("logIn" + logIn + " is clicked.. further to logIn");
+      //
+      //
+      login();
+      //
+      //
+    } else if (!logIn && signUp) {
+      console.log("signUp" + signUp + " is clicked.. further to signUp");
+      //
+      //
+      signup();
+      //
+      //
+    }
+  });
 }
