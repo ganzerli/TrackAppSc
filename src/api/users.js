@@ -36,21 +36,17 @@ router.post("/register", (req, res) => {
       res.status(400).json({ email: "email already exists" });
     } else {
       // if no email is found, free..
-      bcrypt
-        .genSalt(10, (err, salt) => {
-          // when salt is generated crypt the password
-          bcrypt.hash(req.body.password, salt, (err, hash) => {
-            if (err) throw err;
-            hashedPassword = hash;
-            //save
-            db.insertUser(req.body.email, hashedPassword);
-            //respond
-            res.json({ msg: "success" });
-          });
-        })
-        .catch(err => {
-          res.status(404).json(err);
+      bcrypt.genSalt(10, (err, salt) => {
+        // when salt is generated crypt the password
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+          if (err) console.log(err);
+          hashedPassword = hash;
+          //save
+          db.insertUser(req.body.email, hashedPassword).then(all =>
+            res.json(all)
+          );
         });
+      });
     }
   });
 });

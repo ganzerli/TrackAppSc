@@ -205,27 +205,37 @@ export function activateGoalLoad() {
 }
 
 export function loginForm(startFunction) {
-  const form = document.querySelector("[loading-id=login-form]");
-  form.addEventListener("submit", () => {
-    const email = form.querySelector("[name=email]");
-    const password = form.querySelector("[name=password]");
-    const logIn = form.querySelector("[loading-id=form-radio-login]").checked;
-    const signUp = form.querySelector("[loading-id=form-radio-signup]").checked;
+  //
+  const BACKEND = true;
+  //
+  if (BACKEND) {
+    //
+    const form = document.querySelector("[loading-id=login-form]");
+    form.addEventListener("submit", () => {
+      const email = form.querySelector("[name=email]");
+      const password = form.querySelector("[name=password]");
+      const logIn = form.querySelector("[loading-id=form-radio-login]").checked;
+      const signUp = form.querySelector("[loading-id=form-radio-signup]")
+        .checked;
 
-    if (logIn && !signUp) {
-      console.log("logIn" + logIn + " is clicked.. further to logIn");
-      //
-      //
-      login();
-      //
-      //
-    } else if (!logIn && signUp) {
-      console.log("signUp" + signUp + " is clicked.. further to signUp");
-      //
-      //
-      signup();
-      //
-      //
-    }
-  });
+      if (logIn && !signUp) {
+        console.log("logIn" + logIn + " is clicked.. further to logIn");
+        //
+        //
+        login();
+        //
+        //
+      } else if (!logIn && signUp) {
+        console.log("signUp" + signUp + " is clicked.. further to signUp");
+        //
+        //
+        signup();
+        //
+        //
+      }
+    });
+  } else {
+    // if no backend just leave the normal functions
+    startFunction();
+  }
 }

@@ -11,7 +11,7 @@ class Users {
         password
       };
       this.users.push(obj);
-      console.log("user inserted");
+      return this.users;
     };
   }
 
@@ -22,8 +22,9 @@ class Users {
     });
   }
 
-  insertUser(email, hashedPassword) {
-    this.modelAndSend(email, hashedPassword);
+  async insertUser(email, hashedPassword) {
+    const res = await this.modelAndSend(email, hashedPassword);
+    return res;
   }
 
   getAll() {
