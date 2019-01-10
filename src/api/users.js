@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const router = express.Router();
 const Users = require("../database/Users");
-
+const bcrypt = require("bcryptjs");
 const db = new Users();
 
 //util
@@ -23,14 +23,30 @@ router.get("/login", (req, res) => {
   res.json({ response: "response" });
 });
 
+router.get("/all", (req, res) => {
+  db.getAll()
+    .then(response => res.json({ all: response }))
+    .catch(empty => res.status(400).json(empty));
+});
+
 router.post("/register", (req, res) => {
   // check if the email already exists
   db.findEmail(req.body.email).then(user => {
     if (user) {
       res.status(400).json({ email: "email already exists" });
     } else {
-      db.insertUser(req.body.email, req.body.password);
-      res.json({ msg: "success" });
+      // if no email is found, free..
+      bcrypt.genSalt(10, (err, salt) => {
+        // when salt is generated crypt the password
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+          if (err) throw err;
+          hashedPassword = hash;
+          //save
+          db.insertUser(req.body.email, hashedPassword);
+          //respond
+          res.json({ msg: "success" });
+        });
+      });
     }
   });
 });

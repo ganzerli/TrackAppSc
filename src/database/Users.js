@@ -25,5 +25,16 @@ class Users {
   insertUser(email, hashedPassword) {
     this.modelAndSend(email, hashedPassword);
   }
+
+  getAll() {
+    return new Promise((resolve, reject) => {
+      const all = [...this.users];
+      if (all && all.length > 0) {
+        resolve(all);
+      } else {
+        reject([]);
+      }
+    });
+  }
 }
 module.exports = Users;
