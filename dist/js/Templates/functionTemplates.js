@@ -164,18 +164,78 @@ export const fillResultFromGoal = obj => {
 
     console.log(js);
     if (goal.resetted) {
-      return `<button session-id="${
-        obj.sessionId
-      }" info-obj='${js}'  loading-id="btn-goal-status" class="red" disabled >-</button>`;
+      return `
+      <form
+        session-id="${obj.sessionId}"
+        info-obj='${js}'
+        onsubmit="return false"
+        loading-id="form-info-goal"
+        class="the-form"
+      >
+        <input
+          loading-id="goal-info-inputField"
+          type="text"
+          name="infogoal"
+          class="goal-info-inputField"
+        />
+        <input
+          type="submit"
+          loading-id="goal-info-submit"
+          name="submit"
+          class="btn-submit-goals"
+          value="x"
+        />
+        </form>
+        `;
     }
     if (goal.done) {
-      return `<button session-id="${
-        obj.sessionId
-      }" info-obj='${js}'  loading-id="btn-goal-status" class="red">Remind..</button>`;
+      return `
+      <form
+        session-id="${obj.sessionId}"
+        info-obj='${js}'
+        onsubmit="return false"
+        loading-id="form-info-goal"
+        class="the-form"
+      >
+        <input
+          loading-id="goal-info-inputField"
+          type="text"
+          name="infogoal"
+          class="goal-info-inputField"
+        />
+        <input
+          type="submit"
+          loading-id="goal-info-submit"
+          name="submit"
+          class="btn-submit-goals"
+          value="reset"
+        />
+        </form>
+        `;
     } else {
-      return `<button session-id="${
-        obj.sessionId
-      }" info-obj='${js}'  loading-id="btn-goal-status" class="green">Done!</button>`;
+      return `
+      <form
+      session-id="${obj.sessionId}"
+      info-obj='${js}'
+      onsubmit="return false"
+      loading-id="form-info-goal"
+      class="the-form"
+    >
+      <input
+        loading-id="goal-info-inputField"
+        type="text"
+        name="infogoal"
+        class="goal-info-inputField"
+      />
+      <input
+        type="submit"
+        loading-id="goal-info-submit"
+        name="submit"
+        class="btn-submit-goals"
+        value="to Do!"
+      />
+      </form>
+      `;
     }
   };
 
@@ -193,7 +253,7 @@ export const fillResultFromGoal = obj => {
   const goalsInfo = goals => {
     let result = goals.map(
       g => `<div class="goal-container loading-id="${g.name}">
-      <span class="result-goal-name">${g.name}</span>
+      <h3 class="result-goal-name">${g.name}</h3>
       <span class="result-goal-status">${getStauts(g)}</span>
       <span class="result-goal-status-btn">${btnStatus(g)}</span>
       <p class="result-goal-info">${g.info}</p>

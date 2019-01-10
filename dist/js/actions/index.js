@@ -341,7 +341,7 @@ export const setGoal = form => {
 
 /// G O A L S   G O A L S   G O A L S    G O A L S
 
-export const checkGoal = goalElement => {
+export const checkGoalFromRecord = goalElement => {
   const call = new Calls();
   const goalName = goalElement.getAttribute("loading-id");
   const sessionId = goalElement.getAttribute("session-id");
@@ -486,7 +486,7 @@ export const refreshResultGoals = () => {
 
   const result = document.querySelector("[loading-id=result-container]");
   const buttons = result.querySelectorAll("[loading-id=delete-goal]");
-  const buttonsStatus = result.querySelectorAll("[loading-id=btn-goal-status]");
+  const forms = result.querySelectorAll("[loading-id=form-info-goal]");
 
   if (buttons) {
     console.log(buttons);
@@ -495,11 +495,11 @@ export const refreshResultGoals = () => {
     });
   }
 
-  console.log(buttonsStatus);
-  if (buttonsStatus) {
-    console.log(buttonsStatus);
-    buttonsStatus.forEach(btn => {
-      btn.addEventListener("click", btnGoalCkeck);
+  console.log(forms);
+  if (forms) {
+    console.log(forms);
+    forms.forEach(btn => {
+      btn.addEventListener("submit", checkGoal);
     });
   }
 };
@@ -513,6 +513,14 @@ function deleteGoal(e) {
   Calls.prototype.deleteGoal(name);
 }
 
-function btnGoalCkeck(e) {
+function checkGoal(e) {
+  const call = new Calls();
+  const form = e.target;
+  const info = form.querySelector("[loading-id=goal-info-inputField]").value;
+  const sessionId = form.getAttribute("session-id");
+  const goalName = JSON.parse(form.getAttribute("info-obj")).name;
+  // console.log(info, sessionId, goalName);
+  call.checkGoal(goalName, sessionId, info);
   // best is make a form same as the other
+  refreshResultGoals();
 }

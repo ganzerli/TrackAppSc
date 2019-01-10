@@ -8,7 +8,7 @@ import {
   searchRecord,
   loadInputsSessionGoal,
   setGoal,
-  checkGoal,
+  checkGoalFromRecord,
   loadInputAlarm,
   setAlarm,
   refreshResultGoals
@@ -146,8 +146,8 @@ const resultDelegation = e => {
  */
 function goalsListenerDelegation(e) {
   const goalElement = e.target;
-  //console.log(this); // prints the whole node of results the outer span
-  checkGoal(goalElement);
+  console.log(goalElement); // prints the whole node of results the outer span
+  checkGoalFromRecord(goalElement);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
