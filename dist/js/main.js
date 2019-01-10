@@ -11,8 +11,12 @@ import {
 //on page loaded
 document.addEventListener("DOMContentLoaded", () => {
   // set base to load the components
-  // const login = prompt("log - in - name");
-  if (true) {
+  const login = false;
+  // making login
+
+  //
+
+  if (false) {
     const ph = new PageHandler();
     const view = new View();
     const page = ph.getCurrentPage();
