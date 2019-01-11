@@ -208,7 +208,7 @@ export const fillResultFromGoal = obj => {
           loading-id="goal-info-submit"
           name="submit"
           class="btn-submit-goals"
-          value="reset"
+          value="Unset"
         />
         </form>
         `;
@@ -232,7 +232,7 @@ export const fillResultFromGoal = obj => {
         loading-id="goal-info-submit"
         name="submit"
         class="btn-submit-goals"
-        value="to Do!"
+        value="Done !"
       />
       </form>
       `;

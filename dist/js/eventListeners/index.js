@@ -207,11 +207,11 @@ export function activateGoalLoad() {
 export function loginForm(startFunction) {
   //
   const BACKEND = true;
-  //
   if (BACKEND) {
     //
     const form = document.querySelector("[loading-id=login-form]");
     form.addEventListener("submit", () => {
+      let feedback = document.querySelector("[loading-id=form-feedback]");
       const email = form.querySelector("[name=email]").value;
       const password = form.querySelector("[name=password]").value;
       const logIn = form.querySelector("[loading-id=form-radio-login]").checked;
@@ -219,33 +219,42 @@ export function loginForm(startFunction) {
         .checked;
 
       if (logIn && !signUp) {
-        console.log(
-          "logIn" +
-            logIn +
-            " is clicked.. further to logIn" +
-            email +
-            " " +
-            password
-        );
         //
-        //
-        login(email, password);
-        //
-        //
+        login(email, password)
+          .then(data => {
+            if (data.err) {
+              console.log(data.err);
+              // say user not found
+              feedback.classList.add("form-feedback-error");
+              feedback.innerHTML = data.err;
+              setTimeout(() => {
+                feedback.classList.remove("form-feedback-error");
+                feedback.innerHTML = "";
+              }, 3000);
+            } else {
+              //all good call function
+              if (data.success) {
+                document.querySelector("[loading-id=footer]").innerHTML =
+                  data.token;
+              }
+              startFunction();
+              //
+              feedback.parentElement.innerHTML = "WELCOME";
+              console.log(data);
+
+              //get token from data
+              //
+              //
+              console.log("WELCOME");
+              // DO SOMETHING WITHF RESULT
+
+              //
+            }
+          })
+          .catch(err => console.log(err));
       } else if (!logIn && signUp) {
-        console.log(
-          "signUp" +
-            signUp +
-            " is clicked.. further to signUp" +
-            email +
-            " " +
-            password
-        );
-        //
-        //
+        // signup is just a function that show if the user is registered.
         signup(email, password);
-        //
-        //
       }
     });
   } else {

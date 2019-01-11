@@ -43,3 +43,11 @@
 .alarm {
   background: rgb(255, 175, 175) !important;
 }
+.form-feedback {
+  &-error {
+    background: rgb(255, 175, 175);
+  }
+  &-go {
+    background: rgb(184, 255, 175);
+  }
+}

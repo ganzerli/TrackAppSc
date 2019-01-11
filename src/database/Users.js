@@ -19,6 +19,7 @@ class Users {
     return new Promise((resolve, reject) => {
       const found = this.users.find(user => user.email === email);
       resolve(found);
+      // not rejected to check if user is udefined
     });
   }
 
@@ -33,7 +34,21 @@ class Users {
       if (all && all.length > 0) {
         resolve(all);
       } else {
-        reject([]);
+        reject({ err: "no records found" });
+      }
+    });
+  }
+
+  findOne(email, password) {
+    //console.log(email, password + "SAVING!!!!!!!!!");
+    return new Promise((resolve, reject) => {
+      const found = this.users.find(
+        user => user.email === email && user.password === password
+      );
+      if (found) {
+        resolve(found);
+      } else {
+        reject({ err: "User not found" });
       }
     });
   }

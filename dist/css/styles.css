@@ -35,3 +35,9 @@
 
 .alarm {
   background: #ffafaf !important; }
+
+.form-feedback-error {
+  background: #ffafaf; }
+
+.form-feedback-go {
+  background: #b8ffaf; }

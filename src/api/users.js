@@ -3,6 +3,10 @@ const path = require("path");
 const router = express.Router();
 const Users = require("../database/Users");
 const bcrypt = require("bcryptjs");
+
+const jwt = require("jsonwebtoken");
+const keys = require("../../config/keys");
+
 const db = new Users();
 
 //util
@@ -26,20 +30,15 @@ router.get("/all", (req, res) => {
 });
 
 router.post("/register", (req, res) => {
-  // check if the email already exists
-
-  //console.log("password" + req.body.email + " " + req.body.password);
-
   db.findEmail(req.body.email).then(user => {
     if (user) {
       res.status(400).json({ email: "email already exists" });
     } else {
-      // if no email is found, free..
-
+      //crypt password
       bcrypt.genSalt(10, (err, salt) => {
         // when salt is generated crypt the password
         bcrypt.hash(req.body.password, salt, (err, hash) => {
-          if (err) console.log(err);
+          if (err) throw err;
           hashedPassword = hash;
           //save
           db.insertUser(req.body.email, hashedPassword).then(all =>
@@ -52,7 +51,41 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  res.json({ response: "response" });
+  const email = req.body.email;
+  const password = req.body.password;
+  //check email first, then get password
+  db.findEmail(email).then(user => {
+    if (user) {
+      // got user obj from db
+      bcrypt.compare(password, user.password).then(passwordMatch => {
+        if (passwordMatch) {
+          //return the object
+          console.log("password matched , signing JWTtoken");
+          //
+          const payload = { id: user.id, email: user.email };
+          //creaating token, that has data, to send as response
+          jwt.sign(
+            payload,
+            keys.secretOrKey,
+            { expiresIn: 3600 * 10 },
+            (err, token) => {
+              res.json({
+                success: true,
+                token: "Bearer " + token
+              });
+            }
+          );
+          //
+          //res.json(user);
+        } else {
+          res.status(400).json({ err: "Password does not match" });
+        }
+      });
+    } else {
+      // find email return alwais a promise, with user or undefined
+      res.status(400).json({ err: "User not found" });
+    }
+  });
 });
 
 module.exports = router;
