@@ -1,18 +1,22 @@
 const express = require("express");
 const path = require("path");
-const router = express.Router();
+
 const Users = require("../database/Users");
 const bcrypt = require("bcryptjs");
 
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 
+const passport = require("passport");
+
+//init DATABASE
 const db = new Users();
 
 //util
 const l = x => console.log(x);
-///
 
+/// init router
+const router = express.Router();
 router.use(express.static(path.resolve(__dirname, "..", "..", "dist")));
 // needed to load css and the info in the dist folder
 router.get("/index", (req, res) => {
@@ -38,7 +42,7 @@ router.post("/register", (req, res) => {
       bcrypt.genSalt(10, (err, salt) => {
         // when salt is generated crypt the password
         bcrypt.hash(req.body.password, salt, (err, hash) => {
-          if (err) throw err;
+          if (err) l(err);
           hashedPassword = hash;
           //save
           db.insertUser(req.body.email, hashedPassword).then(all =>
@@ -87,5 +91,19 @@ router.post("/login", (req, res) => {
     }
   });
 });
+
+// to make private routes is needed a lybrary like passport, the server needs some middleware to get private requests using passport
+// in app js is implemented the middleware for passport
+router.get(
+  "/mcsrg",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    // passport sets te data sent from the strategy jwt in req.user, whatever name has other else
+    const email = req.user.email;
+    const id = req.user.id;
+    // check the
+    res.json({ id, email });
+  }
+);
 
 module.exports = router;
