@@ -13,6 +13,7 @@ import {
   setAlarm,
   refreshResultGoals
 } from "../actions";
+import { getCryptAll } from "../actions/crypt";
 
 import { login, signup } from "../auth";
 
@@ -60,6 +61,7 @@ const submitForm = e => {
       // calling action to query api and fill the new view of the result
       break;
     case "INSERT-DATA":
+      // if crypt somewhere then run the other
       insertRecord(form);
       //  console.log(submitted);
       break;
@@ -105,6 +107,8 @@ export function listenNavbar() {
       activateGoalLoad();
     } else if (trgt === "set-session-alarm") {
       loadInputAlarm();
+    } else if ("set-session-cryptmsg") {
+      getCryptAll();
     }
   };
 }

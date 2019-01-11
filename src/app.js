@@ -6,6 +6,7 @@ const passport = require("passport");
 
 //importing other ROUTES
 const users = require("./api/users");
+const records = require("./api/records");
 
 //const profiles = require("./src/api/profiles");
 const app = express();
@@ -39,5 +40,6 @@ app.post("/", (req, res) => {
 });
 
 app.use("/api/users", users);
+app.use("/api/records", records);
 
 module.exports = app;

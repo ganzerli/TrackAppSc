@@ -92,18 +92,4 @@ router.post("/login", (req, res) => {
   });
 });
 
-// to make private routes is needed a lybrary like passport, the server needs some middleware to get private requests using passport
-// in app js is implemented the middleware for passport
-router.get(
-  "/mcsrg",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    // passport sets te data sent from the strategy jwt in req.user, whatever name has other else
-    const email = req.user.email;
-    const id = req.user.id;
-    // check the
-    res.json({ id, email });
-  }
-);
-
 module.exports = router;
