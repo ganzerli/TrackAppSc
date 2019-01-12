@@ -1,7 +1,6 @@
 import View from "../View";
 import PageHandler from "../pages/pageHandler";
 import { domSelector } from "../pages/domSelector";
-import Calls from "../Calls/Calls";
 import { crypt } from "../../../util";
 import { getIdSession } from "./index";
 
@@ -16,11 +15,19 @@ export const getCryptAll = () => {
   request.setRequestHeader("Authorization", token);
   request.onload = () => {
     // do something here
-    console.log(request.responseText);
+    const myArr = JSON.parse(request.responseText);
+    console.log(myArr);
+    // load result
+    const view = new View();
+    const ph = new PageHandler();
+
+    ph.setCurrentPage("LOAD-RESULTS");
+    ph.setResultSet(myArr);
+    const elementsArray = domSelector(ph.getCurrentPage());
+    view.fill(elementsArray, ph);
   };
 
   request.send();
-  console.log(request);
 };
 // AJAX POST REQUEST
 export const addCryptRecord = form => {
@@ -29,13 +36,10 @@ export const addCryptRecord = form => {
   const key = form.querySelector("[loading-id=crypt-field-key]").value;
   const sessionId = getIdSession();
   const date = crypt(Date.now(), key);
-
-  console.log("the date" + date);
-  console.log(title, body, key, sessionId, date);
-
   // get token
   const token = document.querySelector("[loading-id=footer]").innerHTML;
 
+  // build object for request
   const data = {
     title,
     body,
@@ -43,14 +47,21 @@ export const addCryptRecord = form => {
     sessionId: crypt(sessionId, key)
   };
 
-  // ASYNCRONOUS REQUEST
+  //REQUEST
   var request = new XMLHttpRequest();
-
   request.open("POST", "http://localhost:5000/api/records/mcsrg", true);
+  //set header
   request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  // set token
   request.setRequestHeader("Authorization", token);
+  // set what to fo with response
+  request.onload = () => {
+    // do something here
+    console.log(request.responseText);
+    getCryptAll();
+  };
+  // send data
   request.send(JSON.stringify(data));
-  console.log(request.response);
 };
 
 ///    C R Y P T           LOAD-CRYPT-OPT  LOAD FORM LOAD FORM      LOAD-CRYPT-OPT

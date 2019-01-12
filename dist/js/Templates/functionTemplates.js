@@ -6,17 +6,28 @@ export const fillResultFromRecord = recordObj => {
   const jsonString = JSON.stringify(recordObj);
   const bgClass = recordObj.checked === "true" ? "checked" : "";
 
-  const sessionBorder = () => {
-    const sessionNumbers = recordObj.sessionId
-      .split("")
-      .splice(recordObj.sessionId.length - 6, recordObj.sessionId.length)
-      .join("");
+  const sessionBorder1 = () => "style=''";
+  console.log(recordObj.sessionId);
 
-    const style = `style="
-                          border-right:5px solid #${sessionNumbers}; 
-                          border-bottom: 1px solid #${sessionNumbers};
-                          
-                          "`;
+  const sessionBorder = () => {
+    let style;
+    let sessionNumbers;
+    // the encrypted string should be tested to be NaN..
+    if (isNaN(recordObj.sessionId)) {
+      console.log(recordObj.sessionId);
+      sessionNumbers = "999999";
+    } else {
+      sessionNumbers = recordObj.sessionId
+        .toString()
+        .split("")
+        .splice(recordObj.sessionId.length - 6, recordObj.sessionId.length)
+        .join("");
+    }
+    style = `style="
+    border-right:5px solid #${sessionNumbers}; 
+    border-bottom: 1px solid #${sessionNumbers};
+    "`;
+
     return style;
   };
   //see if current session using get sessionid

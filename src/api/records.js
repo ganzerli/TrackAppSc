@@ -42,11 +42,8 @@ router.post(
     //  console.log(req);
     recDb
       .insertRecord(userId, title, body, date, sessionId)
-      .then(res => console.log(res))
+      .then(result => res.json(result))
       .catch(err => console.log(err));
-
-    // check the
-    // res.json({ title, body });
   }
 );
 
