@@ -7,7 +7,7 @@ export const fillResultFromRecord = recordObj => {
   const bgClass = recordObj.checked === "true" ? "checked" : "";
 
   const sessionBorder1 = () => "style=''";
-  console.log(recordObj.sessionId);
+  console.log(recordObj);
 
   const sessionBorder = () => {
     let style;

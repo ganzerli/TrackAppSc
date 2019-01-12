@@ -137,11 +137,16 @@ const resultDelegation = e => {
   if (attribute) {
     // split the id and the attribute
     if (attribute.startsWith("delete-record-")) {
+      //
+
+      //
       // taking as array last numbers of attribute to have the id
       let id = attribute.split("").splice(14, attribute.length - 14);
       // id is an array
       id = id.join("");
       deleteRecord(id);
+      //
+
       //
     } else if (attribute.startsWith("check-record-")) {
       console.log("calling action to modify thing in db");
