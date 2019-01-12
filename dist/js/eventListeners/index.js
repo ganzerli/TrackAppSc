@@ -16,7 +16,8 @@ import {
 import {
   getCryptAll,
   addCryptRecord,
-  loadCryptOptions
+  loadCryptOptions,
+  deleteCryptRecord
 } from "../actions/crypt";
 
 import { login, signup } from "../auth";
@@ -132,20 +133,27 @@ export const listenResult = () => {
 
 const resultDelegation = e => {
   // checking if it has a js attribute
-  let attribute = e.target.getAttribute("loading-id") || undefined;
+  let attribute = e.target.getAttribute("loading-id") || null;
   //checking if an attribute with attribute there is
   if (attribute) {
     // split the id and the attribute
     if (attribute.startsWith("delete-record-")) {
-      //
-
-      //
-      // taking as array last numbers of attribute to have the id
-      let id = attribute.split("").splice(14, attribute.length - 14);
-      // id is an array
-      id = id.join("");
-      deleteRecord(id);
-      //
+      if (
+        e.target.getAttribute("is-crypt") !== "" &&
+        e.target.getAttribute("is-crypt") !== null &&
+        e.target.getAttribute("is-crypt") !== undefined
+      ) {
+        // delete record from db
+        const id = e.target.getAttribute("is-crypt");
+        deleteCryptRecord(id);
+      } else {
+        // taking as array last numbers of attribute to have the id
+        let id = attribute.split("").splice(14, attribute.length - 14);
+        // id is an array
+        id = id.join("");
+        deleteRecord(id);
+        //
+      }
 
       //
     } else if (attribute.startsWith("check-record-")) {

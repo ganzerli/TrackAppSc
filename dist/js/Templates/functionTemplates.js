@@ -6,9 +6,19 @@ export const fillResultFromRecord = recordObj => {
   const jsonString = JSON.stringify(recordObj);
   const bgClass = recordObj.checked === "true" ? "checked" : "";
 
-  const sessionBorder1 = () => "style=''";
+  // if comes from backend get is-crypt attr
+  const isCryptAttr = () => {
+    // getting one attribute undefined if msg comes from backend
+    if (recordObj.alarm === undefined) {
+      return `is-crypt=${recordObj.id}`;
+    } else {
+      return "";
+    }
+  };
+
   console.log(recordObj);
 
+  // taking the numers of the session give border color
   const sessionBorder = () => {
     let style;
     let sessionNumbers;
@@ -30,6 +40,7 @@ export const fillResultFromRecord = recordObj => {
 
     return style;
   };
+
   //see if current session using get sessionid
   const checkSession = () => {
     if (getIdSession() === recordObj.sessionId) {
@@ -38,6 +49,7 @@ export const fillResultFromRecord = recordObj => {
       return recordObj.sessionId;
     }
   };
+
   // get the goals from local storage
   const insertGoals = () => {
     const storedArray = JSON.parse(localStorage.getItem("session-goals"));
@@ -146,7 +158,7 @@ export const fillResultFromRecord = recordObj => {
     <h3 class="result-record-title" crypt >${recordObj.title}</h3>
 
     ${
-      isAlarm(recordObj)
+      isAlarm(recordObj) || isCryptAttr() !== ""
         ? ""
         : '<button class="result-record-btn-marktext" loading-id="select-highlighted">selext</button>'
     }
@@ -158,9 +170,9 @@ export const fillResultFromRecord = recordObj => {
     <span class="result-record-marked" loading-id="check-record-${
       recordObj.id
     }"> ${recordObj.checked}</span>
-    <button class="result-record-delete" loading-id="delete-record-${
-      recordObj.id
-    }">DELETE</button>
+    <button class="result-record-delete" ${isCryptAttr()} loading-id="delete-record-${
+    recordObj.id
+  }">DELETE</button>
     
   </div>
   `;

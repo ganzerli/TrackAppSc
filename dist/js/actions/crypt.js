@@ -207,3 +207,7 @@ function uncovresult(e) {
 
   console.log(allArr);
 }
+
+export function deleteCryptRecord(id) {
+  console.log("deleting.." + id);
+}
