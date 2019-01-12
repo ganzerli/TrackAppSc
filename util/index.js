@@ -59,3 +59,13 @@ export const isEmpty = value =>
   (typeof value === "object" && Object.keys(value).length === 0) || //if the object has no keys is empty
   (typeof value === "string" && value.trim().length === 0); //if empty string
 // basically the function returns false if does not meet any of those prerequisites.
+
+const getfirstN = (str, n) => {
+  //13
+  const numbers = str
+    .split("")
+    .filter(x => !isNaN(x))
+    .splice(0, n)
+    .join("");
+  return numbers;
+};

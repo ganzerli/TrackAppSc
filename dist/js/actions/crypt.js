@@ -35,7 +35,10 @@ export const addCryptRecord = form => {
   const body = form.querySelector("[loading-id=crypt-textarea-input]").value;
   const key = form.querySelector("[loading-id=crypt-field-key]").value;
   const sessionId = getIdSession();
-  const date = crypt(Date.now(), key);
+
+  const stringDate = new Date(Date.now()).toLocaleString();
+  console.log(stringDate);
+  const date = crypt(stringDate, key);
   // get token
   const token = document.querySelector("[loading-id=footer]").innerHTML;
 
@@ -44,7 +47,7 @@ export const addCryptRecord = form => {
     title,
     body,
     date,
-    sessionId: crypt(sessionId, key)
+    sessionId
   };
 
   //REQUEST
@@ -67,14 +70,17 @@ export const addCryptRecord = form => {
 ///    C R Y P T           LOAD-CRYPT-OPT  LOAD FORM LOAD FORM      LOAD-CRYPT-OPT
 
 export const loadCryptOptions = () => {
+  // instanciate classes
   const view = new View();
   const ph = new PageHandler();
+
   // set the new page to load
   ph.setCurrentPage("LOAD-CRYPT-OPT");
   // take the element wanted and prepare layout with page
   const page = ph.getCurrentPage();
   const elementsArray = domSelector(page);
-  // the view needs this instance of the object to load the html template extracting the oject of records
+
+  // creating the results
   view.fill(elementsArray, ph);
 
   // adding event listeners for the textarea
@@ -83,6 +89,44 @@ export const loadCryptOptions = () => {
     const keyInput = form.querySelector("[loading-id=crypt-field-key]");
     keyInput.addEventListener("keyup", liveCryptOnTyping);
   }
+
+  if (!document.querySelector("[form-crypt=show]")) {
+    // ADDING SOMETHING TO DECRYPT THE MESSAGE
+    const subForm = document.createElement("form");
+    subForm.setAttribute("form-crypt", "show");
+    //create and feed input
+    const crynput = document.createElement("input");
+    crynput.setAttribute("loading-id", "crynput");
+    crynput.setAttribute("type", "text");
+
+    //create button
+    const submit = document.createElement("input");
+    submit.setAttribute("type", "submit");
+    submit.setAttribute("value", "load records");
+
+    // feed form
+    subForm.appendChild(crynput);
+    subForm.appendChild(submit);
+
+    // loading reasults func
+    subForm.addEventListener("submit", e => {
+      e.preventDefault();
+      // load results on click
+      console.log("load results");
+      crynput.value = "";
+      getCryptAll();
+      return false;
+    });
+
+    // append it to the document
+    document
+      .querySelector("[loading-id=section-commands]")
+      .appendChild(subForm);
+
+    //event listener decryption
+    crynput.addEventListener("keyup", uncovresult);
+  }
+  //
 };
 
 function liveCryptOnTyping(e) {
@@ -115,4 +159,51 @@ function liveCryptOnTyping(e) {
     textArea.value = resultTextarea;
     inputTitle.value = resultTitle;
   }
+}
+
+// decrypt result
+function uncovresult(e) {
+  console.log(e.target.value);
+  // select result items
+  const result = document.querySelector("[loading-id=result-container]");
+  const allArr = result.querySelectorAll("[crypt]");
+
+  const key = e.target.value;
+
+  // set an attribute to remember the data to encrypt
+  if (e.key !== "Backspace") {
+    if (key.length < 2) {
+      allArr.forEach(el => {
+        //take the other attribute and set as attribute
+        el.setAttribute("encr-text", el.innerHTML);
+
+        //filter out the date
+        if (el.hasAttribute("crypt-date")) {
+          el.setAttribute("encr-text", el.getAttribute("loading-id"));
+          // if el is span date
+        }
+
+        //
+      });
+      console.log("atribite set.. ");
+    }
+  }
+  // save the forst text
+
+  allArr.forEach(el => {
+    // set html
+    // IF THE KEYFIELD IS EMPTY RESET REMEMBERED TEXT
+    if (key.length < 2) {
+      // reset
+      console.log("key short");
+      el.innerHTML = el.getAttribute("encr-text");
+      console.log(el);
+    } else {
+      el.innerHTML = crypt(el.getAttribute("encr-text"), key);
+      console.log("key good");
+      console.log(el);
+    }
+  });
+
+  console.log(allArr);
 }

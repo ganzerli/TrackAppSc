@@ -94,6 +94,12 @@ export function listenNavbar() {
   const delegationNavbar = e => {
     // get attribute of clicked element
     const trgt = e.target.getAttribute("loading-id");
+    const cryptForm = document.querySelector("[form-crypt=show]");
+    if (cryptForm) {
+      document
+        .querySelector("[loading-id=section-commands]")
+        .removeChild(cryptForm);
+    }
 
     if (trgt === "search-data") {
       //load form to search

@@ -48,7 +48,7 @@ class Records {
 
   async insertRecord(userId, title, body, date, sessionId) {
     const newRecord = {
-      userId: "123",
+      userId,
       id: uuid(),
       title,
       body,
@@ -57,8 +57,8 @@ class Records {
       sessionId
     };
 
-    await this.records.push(newRecord);
-    const response = await this.searchAllUserId("123");
+    await this.records.unshift(newRecord);
+    const response = await this.searchAllUserId(userId);
 
     return response;
   }

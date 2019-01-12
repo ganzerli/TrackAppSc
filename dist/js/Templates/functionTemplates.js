@@ -137,11 +137,13 @@ export const fillResultFromRecord = recordObj => {
   )}" json-data='${jsonString}' loading-id="result-record-${
     recordObj.id
   }"  ${sessionBorder()}   >
-    <h4 class="result-record-session">${
+
+    <h6 class="result-record-session" >${
       isAlarm(recordObj) ? "ALARM" : checkSession()
-    }  </h4>
+    }  </h6>
+
     <small> ${insertGoals()} </small>
-    <h3 class="result-record-title">${recordObj.title}</h3>
+    <h3 class="result-record-title" crypt >${recordObj.title}</h3>
 
     ${
       isAlarm(recordObj)
@@ -149,8 +151,8 @@ export const fillResultFromRecord = recordObj => {
         : '<button class="result-record-btn-marktext" loading-id="select-highlighted">selext</button>'
     }
     
-    <p class="result-record-body">${recordObj.body}</p>
-    <span class="result-record-date" loading-id="date-${
+    <p class="result-record-body" crypt>${recordObj.body}</p>
+    <span class="result-record-date" crypt-date crypt loading-id="${
       recordObj.date
     }">${theDate}</span>
     <span class="result-record-marked" loading-id="check-record-${

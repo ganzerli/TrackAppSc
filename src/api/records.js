@@ -23,7 +23,7 @@ router.get(
     const id = req.user.id;
     // find msg by id
     recDb
-      .searchAllUserId("123")
+      .searchAllUserId(id)
       .then(record => res.json(record))
       .catch(err => res.status(400).json(err));
   }
