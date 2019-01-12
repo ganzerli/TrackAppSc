@@ -7,8 +7,9 @@ const passport = require("passport");
 
 //
 const Records = require("../database/Records");
-const recDB = new Records();
+const recDb = new Records();
 /// init router
+
 const router = express.Router();
 router.use(express.static(path.resolve(__dirname, "..", "..", "dist")));
 
@@ -19,10 +20,12 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // passport sets te data sent from the strategy jwt in req.user, whatever name has other else
-    const email = req.user.email;
     const id = req.user.id;
-    // check the
-    res.json({ id, email });
+    // find msg by id
+    recDb
+      .searchAllUserId("123")
+      .then(record => res.json(record))
+      .catch(err => res.status(400).json(err));
   }
 );
 
@@ -33,9 +36,17 @@ router.post(
     // passport sets te data sent from the strategy jwt in req.user, whatever name has other else
     const title = req.body.title;
     const body = req.body.body;
-    console.log(req);
+    const userId = req.user.id;
+    const date = req.body.date;
+    const sessionId = req.body.sessionId;
+    //  console.log(req);
+    recDb
+      .insertRecord(userId, title, body, date, sessionId)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+
     // check the
-    res.json({ title, body });
+    // res.json({ title, body });
   }
 );
 

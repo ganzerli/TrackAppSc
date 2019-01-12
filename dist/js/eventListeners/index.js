@@ -13,7 +13,11 @@ import {
   setAlarm,
   refreshResultGoals
 } from "../actions";
-import { getCryptAll } from "../actions/crypt";
+import {
+  getCryptAll,
+  addCryptRecord,
+  loadCryptOptions
+} from "../actions/crypt";
 
 import { login, signup } from "../auth";
 
@@ -52,26 +56,26 @@ const submitForm = e => {
   // GETTING THE VALUE FROM THE FIRST DIV IN THE TEMPLATE
   const submitted = e.target.firstChild.nextSibling.getAttribute("loading-id");
   const form = e.target;
-  // initiate a class that handles the calls
+  // switch for the first child of the form.. defined in templatesarr
   switch (submitted) {
     case "SEARCH-DATA":
-      // console.log(submitted);
       // displaying the result set
       loadRecords();
       // calling action to query api and fill the new view of the result
       break;
     case "INSERT-DATA":
-      // if crypt somewhere then run the other
       insertRecord(form);
-      //  console.log(submitted);
       break;
     case "LOAD-SESSION-GOAL":
       setGoal(form);
       break;
-
     case "LOAD-ALARM-INPUT":
       setAlarm(form);
       alarmsCheck();
+      break;
+    case "LOAD-CRYPT-OPT":
+      addCryptRecord(form);
+      console.log("wow it works .. here we can bild an action now");
       break;
 
     default:
@@ -95,20 +99,20 @@ export function listenNavbar() {
       //load form to search
       loadSearchData();
       activateSearchListener();
-      console.log(trgt);
-      // loads the result
+      // refresh the result
       loadRecords();
     } else if (trgt === "add-data") {
       // load the form
       loadInsertData();
-      console.log(trgt);
     } else if (trgt === "set-session-goal") {
       loadInputsSessionGoal();
       activateGoalLoad();
     } else if (trgt === "set-session-alarm") {
       loadInputAlarm();
     } else if ("set-session-cryptmsg") {
-      getCryptAll();
+      // set event listeners for the crypt otions
+      loadCryptOptions();
+      //getCryptAll();
     }
   };
 }

@@ -32,6 +32,12 @@ export function domSelector(page) {
       elementsArray.push(loadingId("result-container"));
       break;
 
+    case "LOAD-CRYPT-OPT":
+      elementsArray = [];
+      elementsArray.push(loadingId("form-commands"));
+      elementsArray.push(loadingId("subtitle"));
+      break;
+
     default:
       console.log("default");
   }

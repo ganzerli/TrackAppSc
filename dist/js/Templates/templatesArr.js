@@ -88,7 +88,46 @@ export const templatesArr = [
     </div>
     </div>
     `
-  }
+  },
   // FIRST WRAPPER MUST HAVE THE LOADING-ID ATTRIBUTE TO CALL THE FUNCTION FROM THE FORM
+  {
+    name: "LOAD-CRYPT-OPT",
+    html: `
+    <div class="form-wrap" loading-id="LOAD-CRYPT-OPT"> 
+
+      <input
+        loading-id="crypt-field-title"
+        type="text"
+        name="infogoal"
+        class="result-record-textfield"
+      />
+      <textarea
+        loading-id="crypt-textarea-input"
+        type="text"
+        name="infogoal"
+        class="result-record-textfield"
+      /></textarea>
+      <input
+        loading-id="crypt-field-key"
+        type="text"
+        name="infogoal"
+        class="result-record-textfield"
+      />
+      <input
+        type="submit"
+        loading-id="crypt-submit"
+        name="submit"
+        class="btn-submit-crypt"
+      />
+
+    </div>
+    `
+  }
+
+  // FIRST WRAPPER MUST HAVE THE LOADING-ID ATTRIBUTE TO CALL THE FUNCTION FROM THE FORM
+
+  // FIRST WRAPPER MUST HAVE THE LOADING-ID ATTRIBUTE TO CALL THE FUNCTION FROM THE FORM
+  // FIRST WRAPPER MUST HAVE THE LOADING-ID ATTRIBUTE TO CALL THE FUNCTION FROM THE FORM
+
   // FIRST WRAPPER MUST HAVE THE LOADING-ID ATTRIBUTE TO CALL THE FUNCTION FROM THE FORM
 ];
