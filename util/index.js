@@ -5,18 +5,20 @@ export function crypt(input, key) {
   const str = input.toString();
   // if the key is not divisible / 2 cut the last char
   let alp = "";
+  const secretKey = noDupString(key);
 
-  if (key.length % 2 === 0) {
-    alp += key.substring(1, key.length);
-    alp += " .abcdefghijklmnopqrstuvwxyz" + "1234567890" + "!?,:=-_";
+  if (secretKey.length % 2 === 0) {
+    alp+= secretKey;
+    alp += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?@%+/'!#$?:.(){}[]-_";
   } else {
-    alp += key;
-    alp += " .abcdefghijklmnopqrstuvwxyz" + "1234567890" + "?!,:=-_";
+    alp+= secretKey.substring(1,secretKey.length);  
+    alp += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?@%+/'!#$?:.(){}[]-_";
   }
 
-  alp += "abcdefghijklmnorspqtuvwxyz".toUpperCase();
+  const secretSet = " "+noDupString(alp);
 
-  const alphabetArr = alp.split("");
+  const alphabetArr = secretSet.split("");
+  
   let n = alphabetArr.length / 2;
 
   const checkRightIndex = i => {
@@ -61,4 +63,28 @@ const getfirstN = (str, n) => {
     .splice(0, n)
     .join("");
   return numbers;
+};
+
+
+// returns a string without duplicates
+const noDupString = string => {
+  //reduce arg to string without duplicates
+  const myString = string.split(" ").join("");
+  let set = "";
+
+  //storing the found chars
+  let alreadyFound = {};
+
+  // looping throught myString
+  myString.split("").forEach(char => {
+    //if no prop named as the char
+    if (!alreadyFound[char]) {
+      //update alreadyfound
+      alreadyFound[char] = 1;
+      //and concatenate the result
+      set += char;
+    }
+  });
+
+  return set;
 };
