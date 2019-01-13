@@ -47,4 +47,20 @@ router.post(
   }
 );
 
+router.delete(
+  "/mcsrg/:id",
+  passport.authenticate("jwt",{session:false}),
+  (req, res)=>{
+    //get id from params
+    const recordId = req.params.id;
+    // get user id from jwt payload
+    const userId = req.user.id;
+    // getdata.user from token take id and delete
+    recDb.deleteRecord(userId,recordId)
+    .then(found=>{res.json(found)})
+    .catch(err=>res.status(400).json({err:"record not found"}));
+  }
+);
+
+
 module.exports = router;

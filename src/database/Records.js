@@ -62,5 +62,17 @@ class Records {
 
     return response;
   }
+
+deleteRecord(userId, recordId) {
+ return new Promise((resolve,reject)=>{
+   const updated = this.records.filter(record=>! ((record.userId === userId)&&(record.id === recordId)) );
+    this.records = [...updated];
+    resolve({success:"yes"});
+ });
 }
+
+}// end class
+
+
+
 module.exports = Records;
