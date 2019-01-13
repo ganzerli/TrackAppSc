@@ -26,7 +26,6 @@ const loadingId = x => document.querySelector("[loading-id=" + x + "]");
 
 export const activateFormButton = () => {
   const form = loadingId("form-commands");
-
   if (form) {
     form.addEventListener("submit", e => {
       e.preventDefault();
@@ -35,7 +34,7 @@ export const activateFormButton = () => {
   }
 };
 
-//goal bar listener
+// listener for goals displayed in the record ( to open input field )
 export const goalListener = () => {
   const goalsBar = document.querySelectorAll("[loading-id=goals-listener]");
   if (goalsBar && goalsBar.length > 0) {
@@ -45,7 +44,7 @@ export const goalListener = () => {
   }
 };
 
-//search
+// FUNCTION SEARCH ON KEYUP, TÖ SEARCH INPUT FIELD
 export const activateSearchListener = () => {
   const searchInput = document.querySelector("[loading-id=input-search]");
   if (searchInput) {
@@ -53,6 +52,7 @@ export const activateSearchListener = () => {
   }
 };
 
+//  MAIN FORM LISTENER, TARGETING THE FIRST ELEMENT ( loaded as template on navbar click ).
 const submitForm = e => {
   // GETTING THE VALUE FROM THE FIRST DIV IN THE TEMPLATE
   const submitted = e.target.firstChild.nextSibling.getAttribute("loading-id");
@@ -72,6 +72,7 @@ const submitForm = e => {
       break;
     case "LOAD-ALARM-INPUT":
       setAlarm(form);
+      // starting check of alarms
       alarmsCheck();
       break;
     case "LOAD-CRYPT-OPT":
@@ -82,10 +83,9 @@ const submitForm = e => {
     default:
       console.log("default value of switch for form event listener");
   }
-
-  // take the inputs and send a post request to backend for to load the record
 };
 
+// GIVING TO ENTIRE NAVBAR CLICK EVENT, then event fires different actions for different options in the nav
 export function listenNavbar() {
   const navbar = loadingId("navbar-commands");
   if (navbar) {
@@ -101,7 +101,6 @@ export function listenNavbar() {
         .querySelector("[loading-id=section-commands]")
         .removeChild(cryptForm);
     }
-
     if (trgt === "search-data") {
       //load form to search
       loadSearchData();
@@ -124,44 +123,46 @@ export function listenNavbar() {
   };
 }
 
+// LISTENER FOR THE RESULT
 export const listenResult = () => {
   const resultContainer = loadingId("result-container");
   if (resultContainer) {
     resultContainer.addEventListener("click", resultDelegation);
   }
 };
-
+// not needed anywhere else yet..
 const resultDelegation = e => {
   // checking if it has a js attribute
   let attribute = e.target.getAttribute("loading-id") || null;
-  //checking if an attribute with attribute there is
+
+  // SERCHING FOR DELETE BUTTON
   if (attribute) {
     // split the id and the attribute
     if (attribute.startsWith("delete-record-")) {
+      // CHECK FOR IS CRYPT ATTRIBUTE
       if (
         e.target.getAttribute("is-crypt") !== "" &&
         e.target.getAttribute("is-crypt") !== null &&
         e.target.getAttribute("is-crypt") !== undefined
       ) {
-        // delete record from db
+        // !! Attr. given from template if object comes FROM BACKEND !!
         const id = e.target.getAttribute("is-crypt");
         deleteCryptRecord(id);
+
+        //if the object has the props of local storage object
       } else {
         // taking as array last numbers of attribute to have the id
         let id = attribute.split("").splice(14, attribute.length - 14);
-        // id is an array
         id = id.join("");
         deleteRecord(id);
-        //
       }
 
-      //
+      // SEARCHING FOR CHECK BUTTON
     } else if (attribute.startsWith("check-record-")) {
       console.log("calling action to modify thing in db");
       let id = attribute.split("").splice(13, attribute.length - 13);
       // id is an array
       id = id.join("");
-
       checkRecord(id);
       deleteRecord(id);
       loadRecords();
@@ -179,7 +180,7 @@ function goalsListenerDelegation(e) {
   checkGoalFromRecord(goalElement);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  EVENT LISTENER ON DOCUMENT !! IF GOAL INPUT IS OPEN IN THE MAIN MESSAGE FEATURE CLOSE IT CLICKING " SOMEWHERE ELSE"
 export function mainClickListenerForClosingContents() {
   document.addEventListener("click", e => {
     //check for elements
@@ -201,6 +202,7 @@ export function mainClickListenerForClosingContents() {
   });
 }
 
+// if an alarm is set every 10 seconds checks for date
 export function alarmsCheck() {
   const alarms = localStorage.getItem("alarms");
   let timeout = setTimeout(alarmsCheck, 1000 * 10);
@@ -231,6 +233,7 @@ export function activateGoalLoad() {
   }
 }
 
+//  LOGIN FORM
 export function loginForm(startFunction) {
   //
   const BACKEND = true;
@@ -249,9 +252,10 @@ export function loginForm(startFunction) {
         //
         login(email, password)
           .then(data => {
+            // check if the response from backend contains {err:"something"}
             if (data.err) {
               console.log(data.err);
-              // say user not found
+              // USER NOT FOUND
               feedback.classList.add("form-feedback-error");
               feedback.innerHTML = data.err;
               setTimeout(() => {
@@ -259,7 +263,7 @@ export function loginForm(startFunction) {
                 feedback.innerHTML = "";
               }, 3000);
             } else {
-              //all good call function
+              // USER FOUND, FURTHER
               if (data.success) {
                 document.querySelector("[loading-id=footer]").innerHTML =
                   data.token;
@@ -268,10 +272,11 @@ export function loginForm(startFunction) {
               //
               feedback.parentElement.innerHTML = "WELCOME";
               console.log(data);
-
               //get token from data
+
               //
-              //
+
+              /// WORK IN PROGRESS
               console.log("WELCOME");
               // DO SOMETHING WITHF RESULT
 

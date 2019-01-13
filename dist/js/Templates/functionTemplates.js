@@ -50,7 +50,7 @@ export const fillResultFromRecord = recordObj => {
     }
   };
 
-  // get the goals from local storage
+  // display goals with textfield and button to update goal
   const insertGoals = () => {
     const storedArray = JSON.parse(localStorage.getItem("session-goals"));
     if (storedArray) {
@@ -110,7 +110,7 @@ export const fillResultFromRecord = recordObj => {
     }
   };
 
-  // style goals
+  // style goals with his vslue
   const goalStyle = (done, resetted) => {
     let resClass = "goal";
     if (done && !resetted) {
@@ -122,6 +122,7 @@ export const fillResultFromRecord = recordObj => {
     return resClass; //different class or styles for different value
   };
 
+  // true if is an alarm
   const isAlarm = recordObject => {
     if (recordObject.alarm) {
       if (recordObj.alarm !== "" || recordObj.body === "") {
@@ -132,8 +133,7 @@ export const fillResultFromRecord = recordObj => {
     }
   };
 
-  isAlarm(recordObj);
-
+  // other styling for alarms set
   const setAlarmStyle = recordObj => {
     if (isAlarm(recordObj)) {
       //return a class for alarm
@@ -164,12 +164,15 @@ export const fillResultFromRecord = recordObj => {
     }
     
     <p class="result-record-body" crypt>${recordObj.body}</p>
+
     <span class="result-record-date" crypt-date crypt loading-id="${
       recordObj.date
     }">${theDate}</span>
+
     <span class="result-record-marked" loading-id="check-record-${
       recordObj.id
     }"> ${recordObj.checked}</span>
+
     <button class="result-record-delete" ${isCryptAttr()} loading-id="delete-record-${
     recordObj.id
   }">DELETE</button>

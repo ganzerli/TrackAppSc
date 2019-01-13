@@ -7,21 +7,14 @@ export function crypt(input, key) {
   let alp = "";
 
   if (key.length % 2 === 0) {
-    alp +=
-      "]abcdefghijklm nopqrstuvwxyz" +
-      "1234}5€6[789{0" +
-      "#*+~<>.:;,-_?=)(/&%$!@°";
+    alp += key.substring(1, key.length);
+    alp += " .abcdefghijklmnopqrstuvwxyz" + "1234567890" + "!?,:=-_";
   } else {
-    alp += "§";
-
-    alp +=
-      "1234}5€6[789{0" +
-      "]abcdefghijklm nopqrstuvwxyz" +
-      "#*+~<>.:;,-_?=)(/&%$!@°";
+    alp += key;
+    alp += " .abcdefghijklmnopqrstuvwxyz" + "1234567890" + "?!,:=-_";
   }
 
-  alp += "abcdefghijklmnorspqtuvwxyzü".toUpperCase();
-  alp += key;
+  alp += "abcdefghijklmnorspqtuvwxyz".toUpperCase();
 
   const alphabetArr = alp.split("");
   let n = alphabetArr.length / 2;
