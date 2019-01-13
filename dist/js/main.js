@@ -8,7 +8,8 @@ import {
   listenResult,
   mainClickListenerForClosingContents,
   alarmsCheck,
-  loginForm
+  loginForm,
+  logoutBtnListener
 } from "./eventListeners";
 //on page loaded
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,4 +30,5 @@ const start = () => {
   listenResult();
   mainClickListenerForClosingContents();
   alarmsCheck();
+  // logoutBtnListener();
 }; //end if login

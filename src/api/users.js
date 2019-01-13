@@ -79,8 +79,7 @@ router.post("/login", (req, res) => {
               });
             }
           );
-          //
-          //res.json(user);
+
         } else {
           res.status(400).json({ err: "Password does not match" });
         }

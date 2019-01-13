@@ -208,14 +208,13 @@ function uncovresult(e) {
 }
 
 export function deleteCryptRecord(id) {
-
   console.log("deleting.." + id);
-const token = document.querySelector("[loading-id=footer]").innerHTML;
+  const token = document.querySelector("[loading-id=footer]").innerHTML;
   //REQUEST
   var request = new XMLHttpRequest();
   request.open("DELETE", `http://localhost:5000/api/records/mcsrg/${id}`, true);
   //set header
-  request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   // set token
   request.setRequestHeader("Authorization", token);
   // set what to fo with response
@@ -223,19 +222,13 @@ const token = document.querySelector("[loading-id=footer]").innerHTML;
     // do something here
     console.log(request.responseText);
 
-  const parent = document.querySelector(`[loading-id=result-container]`);
-  const deleted = document.querySelector(`[loading-id=result-record-${id}]`);
-  parent.removeChild(deleted);
-    
+    const parent = document.querySelector(`[loading-id=result-container]`);
+    const deleted = document.querySelector(`[loading-id=result-record-${id}]`);
+    parent.removeChild(deleted);
   };
   // send data
   request.send();
 }
 
-  //`/api/profile/handle/${handle}`
-  // request to server with id and token
-
-
-
-
-
+//`/api/profile/handle/${handle}`
+// request to server with id and token

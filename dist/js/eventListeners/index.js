@@ -294,3 +294,25 @@ export function loginForm(startFunction) {
     startFunction();
   }
 }
+
+export const logoutBtnListener = () => {
+  document.querySelector("[loading-id=logout]").addEventListener("click", e => {
+    document.querySelector("[loading-id=footer]").innerHTML = "";
+
+    //instanciate request
+    const xmlhttp = new XMLHttpRequest();
+    //open request
+    xmlhttp.open("GET", "http://localhost:5000/api/users/index", true);
+    //set header
+    xmlhttp.setRequestHeader(
+      "Content-Type",
+      "Application/json ; charset=UTF-8"
+    );
+    //set the onload
+    xmlhttp.onload = () => {
+      console.log("redirected");
+    };
+    //send request
+    xmlhttp.send();
+  });
+};
