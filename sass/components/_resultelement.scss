@@ -1,0 +1,50 @@
+.checked {
+  background-color: rgba(139, 203, 223, 0.1);
+  border: solid 1px rgba(139, 203, 223, 0.3);
+}
+
+/* json-data   attribute*/
+
+[json-data] {
+  color: #333;
+  padding: 0.5rem;
+}
+
+.alarm {
+  background: rgb(255, 175, 175) !important;
+}
+
+.result-record {
+  &-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    transform: translateX(65rem);
+    animation: slide-left 0.2s ease-in forwards;
+  }
+
+  &-session {
+  }
+
+  &-title {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+  &-goals {
+  }
+
+  &-btn-marktext {
+  }
+
+  &-body {
+    grid-column: 1/4;
+  }
+
+  &-date {
+  }
+  &-marked {
+  }
+  &-delete {
+    grid-column: 3/4;
+    grid-row: 3/4;
+  }
+}

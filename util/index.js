@@ -8,15 +8,17 @@ export function crypt(input, key) {
   let alp = "";
   const secretKey = noDupString(key);
   if (secretKey.length % 2 === 0) {
-    alp+= secretKey;
-    alp += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?@%+/'!#$?:.(){}[]-_";
+    alp += secretKey;
+    alp +=
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?@%+/'!#$?:.(){}[]-_";
   } else {
-    alp+= secretKey.substring(1,secretKey.length);  
-    alp += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?@%+/'!#$?:.(){}[]-_";
+    alp += secretKey.substring(1, secretKey.length);
+    alp +=
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?@%+/'!#$?:.(){}[]-_";
   }
   //add the special char " " to make a super secret set
-  const secretSet = " "+noDupString(alp);
-  
+  const secretSet = " " + noDupString(alp);
+
   // all in arr to loop and search and super crypting all
   const alphabetArr = secretSet.split("");
   let n = alphabetArr.length / 2;
@@ -45,15 +47,13 @@ export function crypt(input, key) {
   return theResult;
 }
 
-
-// 
+//
 export const isEmpty = value =>
   value === undefined ||
   value === null ||
   (typeof value === "object" && Object.keys(value).length === 0) || //if the object has no keys is empty
   (typeof value === "string" && value.trim().length === 0); //if empty string
 // basically the function returns false if does not meet any of those prerequisites.
-
 
 // returns a string without duplicates
 const noDupString = string => {

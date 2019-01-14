@@ -154,14 +154,17 @@ export const fillResultFromRecord = recordObj => {
       isAlarm(recordObj) ? "ALARM" : checkSession()
     }  </h6>
 
-    <small> ${insertGoals()} </small>
+    <small class="result-record-goals"> ${insertGoals()} </small>
     <h3 class="result-record-title" crypt >${recordObj.title}</h3>
+
+    <!--
 
     ${
       isAlarm(recordObj) || isCryptAttr() !== ""
         ? ""
         : '<button class="result-record-btn-marktext" loading-id="select-highlighted">selext</button>'
     }
+    -->
     
     <p class="result-record-body" crypt>${recordObj.body}</p>
 
@@ -173,11 +176,15 @@ export const fillResultFromRecord = recordObj => {
       recordObj.id
     }"> ${recordObj.checked}</span>
 
-    <button class="result-record-delete" ${isCryptAttr()} loading-id="delete-record-${
+    <span class="result-record-delete">
+      
+      <button  ${isCryptAttr()} class="btn-record-delete" loading-id="delete-record-${
     recordObj.id
   }">DELETE</button>
-    
-  </div>
+      
+    </span>
+  
+    </div>
   `;
 };
 

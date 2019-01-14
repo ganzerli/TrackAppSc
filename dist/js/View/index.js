@@ -19,22 +19,24 @@ export default class View {
           if (false) {
           } else {
             const resultSet = ph.getResultSet();
+            value = document.createElement("div");
             value = Templates.prototype.getResultElements(resultSet, ph);
-            value ? (domElement.innerHTML = value) : undefined;
+            console.log(value, domElement);
+            value ? domElement.appendChild(value) : null;
           }
           break;
         case "form-commands":
           // get static templates
           value = Templates.prototype.getAssignedHtml(ph);
           // set the template as content of the dom element in scope  ---  domElement  --
-          value ? (domElement.innerHTML = value) : undefined;
+          value ? (domElement.innerHTML = value) : null;
 
           break;
         case "subtitle":
           // get static templates
           const page = ph.getCurrentPage();
           value = Templates.prototype.refreshSubtitle(page);
-          value ? (domElement.innerHTML = value) : undefined;
+          value ? (domElement.innerHTML = value) : null;
 
           break;
         default:

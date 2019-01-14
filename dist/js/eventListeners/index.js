@@ -96,9 +96,11 @@ export function listenNavbar() {
     // get attribute of clicked element
     const trgt = e.target.getAttribute("loading-id");
     const cryptForm = document.querySelector("[form-crypt=show]");
+
+    // load the texfieltd to decrypt incase of crypt form
     if (cryptForm) {
       document
-        .querySelector("[loading-id=section-commands]")
+        .querySelector("[loading-id=subtitle-container]")
         .removeChild(cryptForm);
     }
     if (trgt === "search-data") {
@@ -236,7 +238,7 @@ export function activateGoalLoad() {
 //  LOGIN FORM
 export function loginForm(startFunction) {
   //
-  const BACKEND = true;
+  const BACKEND = false;
   if (BACKEND) {
     //
     const form = document.querySelector("[loading-id=login-form]");

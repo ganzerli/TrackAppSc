@@ -1,0 +1,17 @@
+@keyframes span-in {
+  100% {
+    height: 2rem;
+  }
+}
+
+@keyframes top-down {
+  100% {
+    transform: translateY(10%);
+  }
+}
+
+@keyframes slide-left {
+  100% {
+    transform: translateX(0);
+  }
+}

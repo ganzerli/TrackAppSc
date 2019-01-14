@@ -1,0 +1,15 @@
+.subtitle {
+  position: absolute;
+  left: 60%;
+  transform: translateY(-2rem);
+
+  &-container {
+    display: block;
+    position: relative;
+    text-align: right;
+    height: 0;
+    width: 100%;
+    overflow: hidden;
+    animation: span-in 0.3s ease-out forwards;
+  }
+}

@@ -1,0 +1,16 @@
+.form-feedback {
+  &-error {
+    background: rgb(255, 175, 175);
+  }
+  &-go {
+    background: rgb(184, 255, 175);
+  }
+}
+
+.login-form {
+  flex-direction: column;
+  display: block;
+  text-align: center;
+  align-items: center;
+  display: flex;
+}

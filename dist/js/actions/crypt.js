@@ -94,6 +94,7 @@ export const loadCryptOptions = () => {
     // ADDING SOMETHING TO DECRYPT THE MESSAGE
     const subForm = document.createElement("form");
     subForm.setAttribute("form-crypt", "show");
+    subForm.classList.add("form-decrypt-record");
     //create and feed input
     const crynput = document.createElement("input");
     crynput.setAttribute("loading-id", "crynput");
@@ -120,7 +121,7 @@ export const loadCryptOptions = () => {
 
     // append it to the document
     document
-      .querySelector("[loading-id=section-commands]")
+      .querySelector("[loading-id=subtitle-container]")
       .appendChild(subForm);
 
     //event listener decryption

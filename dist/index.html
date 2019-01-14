@@ -9,15 +9,13 @@
   </head>
   <body>
     <!--header start-->
-    <header class="header">
+    <header class="header container">
       <h1 id="app-title">A NEW APP AGAIN</h1>
       <a href="http://localhost:5000" loading-id="logout">logout</a>
     </header>
     <!--header end-->
     <!--main start-->
-    <main class="main">
-      <h2 class="subtitle" loading-id="subtitle">NEW SUBTITLE</h2>
-      <!--########-->
+    <main class="main container">
       <section class="commands" loading-id="section-commands">
         <nav class="commands-navbar" loading-id="navbar-commands">
           <ul class="nav-list">
@@ -33,7 +31,17 @@
           </ul>
         </nav>
 
-        <form onsubmit="return false" loading-id="form-commands"></form>
+        <form
+          class="form-main"
+          onsubmit="return false"
+          loading-id="form-commands"
+        ></form>
+
+        <div class="subtitle-container" loading-id="subtitle-container">
+          <h2 class="subtitle" loading-id="subtitle">NEW SUBTITLE</h2>
+        </div>
+        <!--########-->
+      
       </section>
       <!--########-->
       <section class="display">
@@ -43,9 +51,13 @@
             onsubmit="return false"
             loading-id="login-form"
           >
+
+          <div class="form-group form-group-login">
             <input type="email" name="email" placeholder="email" />
             <input type="password" name="password" placeholder="password" />
-            <br />
+          </div>
+
+          <div class="form-group form-group-login">
             <label for="login-signup">Login</label>
             <input
               type="radio"
@@ -54,14 +66,23 @@
               loading-id="form-radio-login"
               checked
             />
+          </div>
+          
+          <div class="form-group form-group-login">  
             <label for="login-signup">Sign Up</label>
-            <input
-              type="radio"
-              name="login-signup"
-              value="register"
-              loading-id="form-radio-signup"
-            />
+              <input
+                type="radio"
+                name="login-signup"
+                value="register"
+                loading-id="form-radio-signup"
+              />
+          </div>
+
+          <div class="form-group form-group-login">  
             <input type="submit" />
+          </div>
+
+            </form>
           </form>
           <div class="form-feedback" loading-id="form-feedback"></div>
         </div>
