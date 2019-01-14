@@ -1,0 +1,29 @@
+.btn {
+  &-load-goals {
+    outline: none;
+    @include btn-style();
+  }
+  &-record {
+    &-delete {
+      @include btn-style();
+    }
+  }
+
+  &-submit {
+    &-goals {
+      border: none;
+      @include btn-style();
+    }
+  }
+
+  &-goal-delete {
+    @include btn-style();
+  }
+}
+
+.form-input-submit {
+  border: none;
+  padding: 0.5rem 1rem;
+  background: $btn-submit-background;
+  @include btn-style();
+}

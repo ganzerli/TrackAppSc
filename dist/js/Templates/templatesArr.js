@@ -78,7 +78,7 @@ export const templatesArr = [
       </div>
       
       <div class="form-group form-group-manage-goal">
-        <button class="form-btn-load" loading-id="load-goals" >MANAGE GOALS</button>
+        <button class="btn-load-goals" loading-id="load-goals" >MANAGE GOALS</button>
       </div>
     
 

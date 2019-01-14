@@ -19,10 +19,8 @@ export default class View {
           if (false) {
           } else {
             const resultSet = ph.getResultSet();
-            value = document.createElement("div");
             value = Templates.prototype.getResultElements(resultSet, ph);
-            console.log(value, domElement);
-            value ? domElement.appendChild(value) : null;
+            value ? (domElement.innerHTML = value) : null;
           }
           break;
         case "form-commands":

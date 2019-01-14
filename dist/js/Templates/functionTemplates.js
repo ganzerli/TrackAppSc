@@ -300,7 +300,10 @@ export const fillResultFromGoal = obj => {
     return result.join("");
   };
   return `<div class="result-goal-container" loading-id="result-goal">
-  <h3 class="result-record-title">${obj.sessionId}</h3>
-  <div class="goal-display">${goalsInfo(obj.goals)}</div>
+  
+  <div class="goal-display">
+    <h3 class="result-record-title">${obj.sessionId}</h3>
+    ${goalsInfo(obj.goals)}
+  </div>
   </div>`;
 };

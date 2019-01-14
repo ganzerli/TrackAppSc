@@ -1,0 +1,15 @@
+@mixin btn-style() {
+  display: inline-block;
+  background: inherit;
+  font-family: inherit;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  transition: all 0.15s ease-out;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.3);
+  }
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3);
+  }
+}

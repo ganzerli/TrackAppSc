@@ -31,6 +31,16 @@ export const loadRecords = () => {
     const elementsArray = domSelector(page);
     // the view needs this instance of the object to load the html template extracting the oject of records
     view.fill(elementsArray, ph);
+    // gitve the new created elements a animation delay
+
+    sortedArray.forEach((el, i) => {
+      const id = el.id;
+      el = document.querySelector(`[loading-id=result-record-${id}]`);
+      if (el) {
+        el.style.animationDelay = `${i * 50}ms`;
+      }
+    });
+
     console.log(
       "###############--------result refreshed-----------####################"
     );
@@ -510,7 +520,8 @@ function deleteGoal(e) {
   const grandParent = parent.parentElement;
   grandParent.removeChild(parent);
   //get the goal name and delete
-  Calls.prototype.deleteGoal(name);
+  //Calls.prototype.deleteGoal(name);
+  console.log(grandParent);
 }
 
 function checkGoal(e) {

@@ -29,16 +29,11 @@ export default class Templates {
   // resultSet comes from the action, passed with ph in the view, in case of result component to update passes the result set
   getResultElements(resultSet, ph) {
     // getting the result set from the page handler, loop throught the array and generate tempplate for each element,
-
+    this.template = "";
     if (ph.getCurrentPage() === "LOAD-RESULTS") {
-      resultSet.forEach((obj, i) => {
+      resultSet.forEach(obj => {
         // somehow pass the obkect and return the template
-        const newDiv = document.createElement("div");
-        newDiv.innerHTML = fillResultFromRecord(obj);
-        newDiv.classList.add("anim-wrap");
-        newDiv.style.animationDelay = `${i * 20}ms`;
-        console.log(newDiv);
-        return newDiv;
+        this.template += fillResultFromRecord(obj);
       });
     } else if (ph.getCurrentPage() === "LOAD-GOALS") {
       resultSet.forEach(obj => {

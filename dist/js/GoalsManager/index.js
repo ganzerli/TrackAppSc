@@ -63,7 +63,6 @@ export default class GoalsManager {
     this.info = info;
 
     if (this.goalStatus()) {
-      // everything should have a sense now
       //getting reference from stored object from the local storage
       const newObject = {
         name: this.name,
@@ -82,9 +81,14 @@ export default class GoalsManager {
   getGoals() {
     let goals = [];
     const itemArr = JSON.parse(localStorage.getItem("session-goals"));
-    if (itemArr) {
-      goals = [...itemArr];
+    console.log(itemArr);
+    // loop to check for .goals.length;
+    for (let i in itemArr) {
+      if (itemArr[i].goals.length > 0) {
+        goals.push(itemArr[i]);
+      }
     }
+
     return goals;
   }
 
@@ -104,9 +108,17 @@ export default class GoalsManager {
       });
     });
 
+    //removing from goals array with indexes
     itemArr[sessionIndex].goals.splice([goalIndex], 1);
 
+    // if no goals remove the session object from array
+    if (itemArr[sessionIndex].goals.length < 1) {
+      itemArr.splice([sessionIndex], 1);
+    }
+
+    //reset storage
     localStorage.setItem("session-goals", JSON.stringify(itemArr));
+
     return itemArr;
   }
 }
