@@ -8,9 +8,61 @@
 }
 
 .login-form {
-  flex-direction: column;
-  display: block;
-  text-align: center;
-  align-items: center;
   display: flex;
+  flex-direction: column;
+  margin: 10vh auto;
+  background: rgb(245, 245, 245);
+  width: 25rem;
+  padding: 2rem;
+  border-radius: 2px;
+  box-shadow: 0 3px 0.6rem rgba(0, 0, 0, 0.1);
+  &-group {
+    padding: 0.5rem;
+  }
+
+  &-radio-group {
+    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &-input {
+    &-text,
+    &:focus {
+      text-align: center;
+      font-size: 0.9rem;
+      width: 80%;
+      margin: 0.5rem;
+      padding: 0.5rem;
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      border-radius: 2px;
+    }
+    &-radio {
+      width: 4rem;
+      height: 2rem;
+      opacity: 0;
+      cursor: pointer;
+      @include absolute-center();
+
+      // selecting the direct sibling of the label, direct after the input
+      &:checked + .login-form-label-radio {
+        color: $blue-text;
+        font-size: 1.5rem;
+        text-shadow: 1px 2px 0px $blue-bar;
+      }
+    }
+    &-submit {
+      @include btn-style();
+    }
+  }
+
+  &-label {
+    &-radio {
+      color: inherit;
+      font-size: 1.4rem;
+      font-weight: bold;
+      text-shadow: 0px 0px 0px blue;
+      transition: all 0.3s ease;
+    }
+  }
 }

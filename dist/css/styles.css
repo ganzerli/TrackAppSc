@@ -49,6 +49,9 @@ input {
   margin: 0 auto;
   width: 80%; }
 
+.relative {
+  position: relative; }
+
 .header {
   display: grid;
   grid-template-rows: 1fr;
@@ -114,7 +117,8 @@ input {
 
 .form-group {
   min-height: 2rem;
-  overflow: hidden; }
+  overflow: hidden;
+  text-align: center; }
   .form-group-input {
     grid-row: 1/3;
     grid-column: 1/2;
@@ -168,11 +172,60 @@ input {
   background: #b8ffaf; }
 
 .login-form {
+  display: flex;
   flex-direction: column;
-  display: block;
-  text-align: center;
-  align-items: center;
-  display: flex; }
+  margin: 10vh auto;
+  background: whitesmoke;
+  width: 25rem;
+  padding: 2rem;
+  border-radius: 2px;
+  box-shadow: 0 3px 0.6rem rgba(0, 0, 0, 0.1); }
+  .login-form-group {
+    padding: 0.5rem; }
+  .login-form-radio-group {
+    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); }
+  .login-form-input-text, .login-form-input:focus {
+    text-align: center;
+    font-size: 0.9rem;
+    width: 80%;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 2px; }
+  .login-form-input-radio {
+    width: 4rem;
+    height: 2rem;
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+    .login-form-input-radio:checked + .login-form-label-radio {
+      color: #0c4f79;
+      font-size: 1.5rem;
+      text-shadow: 1px 2px 0px #37cde4; }
+  .login-form-input-submit {
+    display: inline-block;
+    background: inherit;
+    font-family: inherit;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    transition: all 0.15s ease-out;
+    border: none; }
+    .login-form-input-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.3); }
+    .login-form-input-submit:active {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
+  .login-form-label-radio {
+    color: inherit;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-shadow: 0px 0px 0px blue;
+    transition: all 0.3s ease; }
 
 .green {
   color: green; }
