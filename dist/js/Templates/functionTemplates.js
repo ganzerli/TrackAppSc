@@ -46,7 +46,10 @@ export const fillResultFromRecord = recordObj => {
     if (getIdSession() === recordObj.sessionId) {
       return "Current Session";
     } else {
-      return recordObj.sessionId;
+      const date = new Date(parseInt(recordObj.sessionId))
+        .toLocaleString()
+        .substr(0, 9);
+      return date;
     }
   };
 
@@ -285,6 +288,28 @@ export const fillResultFromGoal = obj => {
     }
   };
 
+  const sessionBorder = () => {
+    let style;
+    let sessionNumbers;
+    // the encrypted string should be tested to be NaN..
+    if (isNaN(obj.sessionId)) {
+      console.log(obj.sessionId);
+      sessionNumbers = "999999";
+    } else {
+      sessionNumbers = obj.sessionId
+        .toString()
+        .split("")
+        .splice(obj.sessionId.length - 6, obj.sessionId.length)
+        .join("");
+    }
+    style = `style="
+    border-right:5px solid #${sessionNumbers}; 
+    border-bottom: 1px solid #${sessionNumbers};
+    "`;
+
+    return style;
+  };
+
   const goalsInfo = goals => {
     let result = goals.map(
       g => `<div class="goal-container loading-id="${g.name}">
@@ -299,10 +324,16 @@ export const fillResultFromGoal = obj => {
     );
     return result.join("");
   };
+
+  // main
   return `<div class="result-goal-container" loading-id="result-goal">
   
-  <div class="goal-display">
-    <h3 class="result-record-title">${obj.sessionId}</h3>
+  <div class="goal-display" ${sessionBorder()}>
+
+    <h3 class="result-record-title">
+    ${new Date(parseInt(obj.sessionId)).toLocaleString().substr(0, 9)}
+      </h3>
+  
     ${goalsInfo(obj.goals)}
   </div>
   </div>`;

@@ -94,15 +94,18 @@ export const loadCryptOptions = () => {
     // ADDING SOMETHING TO DECRYPT THE MESSAGE
     const subForm = document.createElement("form");
     subForm.setAttribute("form-crypt", "show");
-    subForm.classList.add("form-decrypt-record");
+    subForm.classList.add("form-decrypt-records");
+
     //create and feed input
     const crynput = document.createElement("input");
     crynput.setAttribute("loading-id", "crynput");
+    crynput.classList.add("form-decrypt-records-field");
     crynput.setAttribute("type", "text");
 
     //create button
     const submit = document.createElement("input");
     submit.setAttribute("type", "submit");
+    submit.classList.add("btn-submit-decrypt-records");
     submit.setAttribute("value", "load records");
 
     // feed form

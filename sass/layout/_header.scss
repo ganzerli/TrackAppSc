@@ -2,4 +2,12 @@
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 4fr 1fr;
+  &-logout,
+  &:visited,
+  &:link {
+    color: inherit;
+    text-align: right;
+    font-size: 1.6rem;
+    text-decoration: none;
+  }
 }

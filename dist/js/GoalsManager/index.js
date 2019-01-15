@@ -23,8 +23,7 @@ export default class GoalsManager {
         if (session.sessionId === this.sessionId) {
           this.sessionIndex = index;
         }
-        // searching for a goal, no duplicates , , looping throught the {session:"123" , goals:[]}
-
+        // searching for a goal, looping throught the {session:"123" , goals:[]}
         session.goals.forEach((g, i) => {
           // find which index is this goal
           if (g.name === this.name) {
@@ -58,6 +57,7 @@ export default class GoalsManager {
     }
   }
 
+  // UPDATE STATE GOAL
   writeGoal(newInfo) {
     const info = newInfo || "";
     this.info = info;
@@ -78,6 +78,7 @@ export default class GoalsManager {
     }
   }
 
+  // GET GOALS
   getGoals() {
     let goals = [];
     const itemArr = JSON.parse(localStorage.getItem("session-goals"));
@@ -92,6 +93,7 @@ export default class GoalsManager {
     return goals;
   }
 
+  // DELETE SINGLE GOAL
   deleteGoal(name) {
     let sessionIndex;
     let goalIndex;

@@ -238,7 +238,7 @@ export function activateGoalLoad() {
 //  LOGIN FORM
 export function loginForm(startFunction) {
   //
-  const BACKEND = false;
+  const BACKEND = true;
   if (BACKEND) {
     //
     const form = document.querySelector("[loading-id=login-form]");

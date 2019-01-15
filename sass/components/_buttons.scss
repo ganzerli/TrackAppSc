@@ -19,6 +19,19 @@
   &-goal-delete {
     @include btn-style();
   }
+
+  &-submit {
+    &-form-crypt {
+      color: blue;
+      @include btn-style();
+    }
+    &-decrypt-records {
+      margin: 0.5rem 1.5rem;
+      color: red;
+      max-width: 6rem;
+      @include btn-style();
+    }
+  }
 }
 
 .form-input-submit {

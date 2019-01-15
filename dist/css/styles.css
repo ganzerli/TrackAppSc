@@ -16,8 +16,8 @@
   margin: 0; }
 
 body {
-  background: #969696;
-  color: white;
+  background: #f0f6f3;
+  color: #222;
   font-family: sans-serif;
   font-size: 62.5%;
   overflow-x: hidden; }
@@ -53,6 +53,11 @@ input {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 4fr 1fr; }
+  .header-logout, .header:visited, .header:link {
+    color: inherit;
+    text-align: right;
+    font-size: 1.6rem;
+    text-decoration: none; }
 
 .commands-navbar {
   padding: 1rem 0; }
@@ -62,7 +67,8 @@ input {
   justify-content: space-around; }
   .nav-list-item {
     flex: 1;
-    text-align: center; }
+    text-align: center;
+    cursor: pointer; }
 
 .form-main {
   transition: height 0.5s ease-in;
@@ -89,12 +95,22 @@ input {
   padding: 1rem;
   transform: translateX(-110%);
   animation: slide-0 0.15s ease-in forwards; }
+  .form-input-textfield-crypt {
+    width: 100%;
+    padding: 0.5rem;
+    transform: translateX(-110%);
+    animation: slide-0 0.15s ease-in forwards; }
 
-.form-decrypt-record {
+.form-decrypt-records {
   height: 0;
   overflow: hidden;
   animation: span-in 0.3s ease-out forwards;
-  text-align: left; }
+  text-align: left;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(3, 1fr); }
+  .form-decrypt-records-field {
+    margin: 0.5rem; }
 
 .form-group {
   min-height: 2rem;
@@ -104,6 +120,8 @@ input {
     grid-column: 1/2;
     height: 100%;
     padding: 0.5rem 0; }
+    .form-group-input-crypt {
+      margin-top: 0.5rem; }
   .form-group-body {
     grid-row: 1/4;
     grid-column: 2/3;
@@ -200,7 +218,8 @@ input {
   background: inherit;
   font-family: inherit;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out; }
+  transition: all 0.15s ease-out;
+  border: none; }
   .btn-load-goals:hover {
     transform: translateY(-2px);
     box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.3); }
@@ -213,7 +232,8 @@ input {
   background: inherit;
   font-family: inherit;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out; }
+  transition: all 0.15s ease-out;
+  border: none; }
   .btn-record-delete:hover {
     transform: translateY(-2px);
     box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.3); }
@@ -227,7 +247,8 @@ input {
   background: inherit;
   font-family: inherit;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out; }
+  transition: all 0.15s ease-out;
+  border: none; }
   .btn-submit-goals:hover {
     transform: translateY(-2px);
     box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.3); }
@@ -240,11 +261,44 @@ input {
   background: inherit;
   font-family: inherit;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out; }
+  transition: all 0.15s ease-out;
+  border: none; }
   .btn-goal-delete:hover {
     transform: translateY(-2px);
     box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.3); }
   .btn-goal-delete:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
+
+.btn-submit-form-crypt {
+  color: blue;
+  display: inline-block;
+  background: inherit;
+  font-family: inherit;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  transition: all 0.15s ease-out;
+  border: none; }
+  .btn-submit-form-crypt:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.3); }
+  .btn-submit-form-crypt:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
+
+.btn-submit-decrypt-records {
+  margin: 0.5rem 1.5rem;
+  color: red;
+  max-width: 6rem;
+  display: inline-block;
+  background: inherit;
+  font-family: inherit;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  transition: all 0.15s ease-out;
+  border: none; }
+  .btn-submit-decrypt-records:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.3); }
+  .btn-submit-decrypt-records:active {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
 
@@ -256,7 +310,8 @@ input {
   background: inherit;
   font-family: inherit;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out; }
+  transition: all 0.15s ease-out;
+  border: none; }
   .form-input-submit:hover {
     transform: translateY(-2px);
     box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.3); }

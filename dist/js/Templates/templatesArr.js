@@ -142,7 +142,7 @@ export const templatesArr = [
           loading-id="crypt-field-title"
           type="text"
           name="infogoal"
-          class="form-input-textfiled"
+          class="form-input-textfield-crypt"
         />
       </div>
 
@@ -160,7 +160,7 @@ export const templatesArr = [
           loading-id="crypt-field-key"
           type="text"
           name="infogoal"
-          class="form-input-textfiled"
+          class="form-input-textfield-crypt"
         />
       </div>
 
@@ -169,7 +169,7 @@ export const templatesArr = [
           type="submit"
           loading-id="crypt-submit"
           name="submit"
-          class="btn-submit-crypt"
+          class="btn-submit-form-crypt"
         />
       </div>
 

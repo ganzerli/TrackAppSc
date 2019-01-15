@@ -25,21 +25,32 @@
       height: 70%;
       width: 100%;
       padding: 1rem;
-
       transform: translateX(-110%);
       animation: slide-0 0.15s ease-in forwards;
+      &-crypt {
+        width: 100%;
+        padding: 0.5rem;
+        transform: translateX(-110%);
+        animation: slide-0 0.15s ease-in forwards;
+      }
     }
 
     &-text {
     }
   }
 
-  // crypt
-  &-decrypt-record {
+  // RIGHT UNDER CRYPT FORM, result decryption
+  &-decrypt-records {
     height: 0;
     overflow: hidden;
     animation: span-in 0.3s ease-out forwards;
     text-align: left;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    &-field {
+      margin: 0.5rem;
+    }
   }
 
   &-group {
@@ -50,6 +61,9 @@
       grid-column: 1/2;
       height: 100%;
       padding: 0.5rem 0;
+      &-crypt {
+        margin-top: 0.5rem;
+      }
     }
     &-body {
       // takes from the forst line to the last
