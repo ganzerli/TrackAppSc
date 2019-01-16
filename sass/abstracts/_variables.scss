@@ -11,3 +11,6 @@ $blue-text: #0c4f79;
 $red-on: #ff4f19;
 $yellow-on: #ffd300;
 $red: #f53240;
+
+$red-gradient: linear-gradient(48deg, $red, $red-on);
+$blue-gradient: linear-gradient(42deg, $blue-info, $blue-bar);

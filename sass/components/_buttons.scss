@@ -6,7 +6,7 @@
   &-record {
     &-delete {
       @include btn-style();
-      background: $red;
+      background: $red-gradient;
       color: white;
     }
   }

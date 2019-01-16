@@ -65,6 +65,16 @@ input {
   100% {
     transform: translateX(0); } }
 
+@keyframes feedback-show {
+  0% {
+    transform: translateY(-2rem); }
+  25% {
+    transform: translateY(2rem); }
+  75% {
+    transform: translateY(2rem); }
+  100% {
+    transform: translateY(-3rem); } }
+
 .container {
   margin: 0 auto;
   width: 80%; }
@@ -112,7 +122,8 @@ input {
     transition: all 0.1s; }
     .nav-list-item:hover {
       color: #0c4f79;
-      background: white; }
+      background: white;
+      box-shadow: 0 0 0.5rem 1px white; }
     .nav-list-item:active {
       color: #00d86b;
       background: inherit; }
@@ -232,16 +243,23 @@ input {
 .goal {
   color: #06a0fa; }
 
-.form-feedback-error {
-  background: #ffafaf; }
-
-.form-feedback-go {
-  background: #b8ffaf; }
+.form-feedback {
+  height: 0px;
+  margin: 0 auto;
+  display: inline-block;
+  transition: all 0.3s ease;
+  font-size: 0.8rem; }
+  .form-feedback-error {
+    background: #ffafaf;
+    height: 1rem; }
+  .form-feedback-go {
+    background: #b8ffaf;
+    height: 1rem; }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  margin: 5vh auto;
+  margin: 5vh auto 0 auto;
   background: whitesmoke;
   width: 25rem;
   padding: 2rem;
@@ -276,7 +294,7 @@ input {
       text-shadow: 1px 2px 0px #37cde4; }
   .login-form-input-submit {
     display: inline-block;
-    background: #06a0fa;
+    background: linear-gradient(42deg, #06a0fa, #37cde4);
     font-family: inherit;
     padding: 0.5rem 0.8rem;
     box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
@@ -298,7 +316,7 @@ input {
     color: inherit;
     font-size: 1.4rem;
     font-weight: bold;
-    text-shadow: 0px 0px 0px blue;
+    text-shadow: 0px 0px 0px #37cde4;
     transition: all 0.3s ease; }
 
 .green {
@@ -352,7 +370,7 @@ input {
   background: transparent;
   z-index: -1;
   display: inline-block;
-  background: #06a0fa;
+  background: linear-gradient(42deg, #06a0fa, #37cde4);
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
@@ -390,7 +408,7 @@ input {
 .btn-load-goals {
   outline: none;
   display: inline-block;
-  background: #06a0fa;
+  background: linear-gradient(42deg, #06a0fa, #37cde4);
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
@@ -411,7 +429,7 @@ input {
 
 .btn-record-delete {
   display: inline-block;
-  background: #06a0fa;
+  background: linear-gradient(42deg, #06a0fa, #37cde4);
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
@@ -423,7 +441,7 @@ input {
   color: white;
   font-weight: bold;
   transition: all 0.1s ease-out;
-  background: #f53240;
+  background: linear-gradient(48deg, #f53240, #ff4f19);
   color: white; }
   .btn-record-delete:hover {
     transform: translateY(-1px);
@@ -435,7 +453,7 @@ input {
 .btn-submit-goals {
   border: none;
   display: inline-block;
-  background: #06a0fa;
+  background: linear-gradient(42deg, #06a0fa, #37cde4);
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
@@ -457,7 +475,7 @@ input {
 
 .btn-goal-delete {
   display: inline-block;
-  background: #06a0fa;
+  background: linear-gradient(42deg, #06a0fa, #37cde4);
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
@@ -478,7 +496,7 @@ input {
 
 .btn-submit-form-crypt {
   display: inline-block;
-  background: #06a0fa;
+  background: linear-gradient(42deg, #06a0fa, #37cde4);
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
@@ -501,7 +519,7 @@ input {
   margin: 0.5rem 1.5rem;
   max-width: 6.5rem;
   display: inline-block;
-  background: #06a0fa;
+  background: linear-gradient(42deg, #06a0fa, #37cde4);
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
@@ -524,7 +542,7 @@ input {
   border: none;
   padding: 0.5rem 1rem;
   display: inline-block;
-  background: #06a0fa;
+  background: linear-gradient(42deg, #06a0fa, #37cde4);
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);

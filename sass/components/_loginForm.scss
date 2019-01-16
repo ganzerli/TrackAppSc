@@ -1,16 +1,24 @@
 .form-feedback {
+  height: 0px;
+  margin: 0 auto;
+  display: inline-block;
+  transition: all 0.3s ease;
+  font-size: 0.8rem;
+
   &-error {
     background: rgb(255, 175, 175);
+    height: 1rem;
   }
   &-go {
     background: rgb(184, 255, 175);
+    height: 1rem;
   }
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  margin: 5vh auto;
+  margin: 5vh auto 0 auto;
   background: rgb(245, 245, 245);
   width: 25rem;
   padding: 2rem;
@@ -61,7 +69,7 @@
       color: inherit;
       font-size: 1.4rem;
       font-weight: bold;
-      text-shadow: 0px 0px 0px blue;
+      text-shadow: 0px 0px 0px $blue-bar;
       transition: all 0.3s ease;
     }
   }

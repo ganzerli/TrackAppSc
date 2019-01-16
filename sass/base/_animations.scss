@@ -15,3 +15,18 @@
     transform: translateX(0);
   }
 }
+
+@keyframes feedback-show {
+  0% {
+    transform: translateY(-2rem);
+  }
+  25% {
+    transform: translateY(2rem);
+  }
+  75% {
+    transform: translateY(2rem);
+  }
+  100% {
+    transform: translateY(-3rem);
+  }
+}
