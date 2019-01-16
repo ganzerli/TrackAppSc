@@ -4,7 +4,6 @@
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out;
   border: none;
   border-radius: 2px;
   font-family: inherit;
@@ -12,6 +11,8 @@
   font-size: 0.85rem;
   color: white;
   font-weight: bold;
+
+  transition: all 0.1s ease-out;
   &:hover {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3);

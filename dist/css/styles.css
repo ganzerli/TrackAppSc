@@ -280,14 +280,14 @@ input {
     font-family: inherit;
     padding: 0.5rem 0.8rem;
     box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
-    transition: all 0.15s ease-out;
     border: none;
     border-radius: 2px;
     font-family: inherit;
     margin-top: 0.3rem;
     font-size: 0.85rem;
     color: white;
-    font-weight: bold; }
+    font-weight: bold;
+    transition: all 0.1s ease-out; }
     .login-form-input-submit:hover {
       transform: translateY(-1px);
       box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
@@ -356,14 +356,14 @@ input {
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out;
   border: none;
   border-radius: 2px;
   font-family: inherit;
   margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
-  font-weight: bold; }
+  font-weight: bold;
+  transition: all 0.1s ease-out; }
   .result-record-btn-marktext:hover {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
@@ -394,14 +394,14 @@ input {
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out;
   border: none;
   border-radius: 2px;
   font-family: inherit;
   margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
-  font-weight: bold; }
+  font-weight: bold;
+  transition: all 0.1s ease-out; }
   .btn-load-goals:hover {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
@@ -415,7 +415,6 @@ input {
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out;
   border: none;
   border-radius: 2px;
   font-family: inherit;
@@ -423,6 +422,7 @@ input {
   font-size: 0.85rem;
   color: white;
   font-weight: bold;
+  transition: all 0.1s ease-out;
   background: #f53240;
   color: white; }
   .btn-record-delete:hover {
@@ -439,7 +439,6 @@ input {
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out;
   border: none;
   border-radius: 2px;
   font-family: inherit;
@@ -447,6 +446,7 @@ input {
   font-size: 0.85rem;
   color: white;
   font-weight: bold;
+  transition: all 0.1s ease-out;
   padding: 0.2rem !important; }
   .btn-submit-goals:hover {
     transform: translateY(-1px);
@@ -461,14 +461,14 @@ input {
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out;
   border: none;
   border-radius: 2px;
   font-family: inherit;
   margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
-  font-weight: bold; }
+  font-weight: bold;
+  transition: all 0.1s ease-out; }
   .btn-goal-delete:hover {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
@@ -483,14 +483,14 @@ input {
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out;
   border: none;
   border-radius: 2px;
   font-family: inherit;
   margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
-  font-weight: bold; }
+  font-weight: bold;
+  transition: all 0.1s ease-out; }
   .btn-submit-form-crypt:hover {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
@@ -507,14 +507,14 @@ input {
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out;
   border: none;
   border-radius: 2px;
   font-family: inherit;
   margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
-  font-weight: bold; }
+  font-weight: bold;
+  transition: all 0.1s ease-out; }
   .btn-submit-decrypt-records:hover {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
@@ -530,14 +530,14 @@ input {
   font-family: inherit;
   padding: 0.5rem 0.8rem;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease-out;
   border: none;
   border-radius: 2px;
   font-family: inherit;
   margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
-  font-weight: bold; }
+  font-weight: bold;
+  transition: all 0.1s ease-out; }
   .form-input-submit:hover {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
