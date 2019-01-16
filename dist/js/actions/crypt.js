@@ -7,7 +7,9 @@ import { getIdSession } from "./index";
 // AJAX GET REQUEST
 export const getCryptAll = () => {
   console.log("crypt all");
-  const token = document.querySelector("[loading-id=footer]").innerHTML;
+  const token = document
+    .querySelector("[loading-id=footer]")
+    .getAttribute("token");
 
   var request = new XMLHttpRequest();
   request.open("GET", "http://localhost:5000/api/records/mcsrg", true);
@@ -29,7 +31,8 @@ export const getCryptAll = () => {
 
   request.send();
 };
-// AJAX POST REQUEST
+
+// AJAX POST REQUEST WITH TOKEN
 export const addCryptRecord = form => {
   const title = form.querySelector("[loading-id=crypt-field-title]").value;
   const body = form.querySelector("[loading-id=crypt-textarea-input]").value;
@@ -39,8 +42,11 @@ export const addCryptRecord = form => {
   const stringDate = new Date(Date.now()).toLocaleString();
   console.log(stringDate);
   const date = crypt(stringDate, key);
-  // get token
-  const token = document.querySelector("[loading-id=footer]").innerHTML;
+
+  // GET TOKEN
+  const token = document
+    .querySelector("[loading-id=footer]")
+    .getAttribute("token");
 
   // build object for request
   const data = {
@@ -91,7 +97,7 @@ export const loadCryptOptions = () => {
   }
 
   if (!document.querySelector("[form-crypt=show]")) {
-    // ADDING SOMETHING TO DECRYPT THE MESSAGE
+    // ADDING A FORM TO DECRYPT THE MESSAGE
     const subForm = document.createElement("form");
     subForm.setAttribute("form-crypt", "show");
     subForm.classList.add("form-decrypt-records");
@@ -101,6 +107,7 @@ export const loadCryptOptions = () => {
     crynput.setAttribute("loading-id", "crynput");
     crynput.classList.add("form-decrypt-records-field");
     crynput.setAttribute("type", "text");
+    crynput.setAttribute("placeholder", "Your Key");
 
     //create button
     const submit = document.createElement("input");
@@ -213,7 +220,9 @@ function uncovresult(e) {
 
 export function deleteCryptRecord(id) {
   console.log("deleting.." + id);
-  const token = document.querySelector("[loading-id=footer]").innerHTML;
+  const token = document
+    .querySelector("[loading-id=footer]")
+    .getAttribute("token");
   //REQUEST
   var request = new XMLHttpRequest();
   request.open("DELETE", `http://localhost:5000/api/records/mcsrg/${id}`, true);

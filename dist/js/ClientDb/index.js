@@ -27,7 +27,7 @@ export default class ClientDb {
       objectStore.createIndex("title", "title", { unique: false });
       objectStore.createIndex("body", "body", { unique: false });
       objectStore.createIndex("date", "date", { unique: false });
-      objectStore.createIndex("checked", "checked", { unique: false });
+      objectStore.createIndex("checked", "false", { unique: false });
       objectStore.createIndex("sessionId", "sessionId", { unique: false });
       objectStore.createIndex("alarm", "alarm", { unique: false });
 

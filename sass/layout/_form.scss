@@ -1,6 +1,7 @@
 .form {
   &-main {
     transition: height 0.5s ease-in;
+    font-size: 0.9rem;
   }
 
   &-wrap {
@@ -22,8 +23,8 @@
       animation: slide-0 0.2s ease-in forwards;
     }
     &-textfield {
-      height: 50%;
       width: 100%;
+      height: 2.5rem;
       padding: 1rem;
       transform: translateX(-110%);
       animation: slide-0 0.15s ease-in forwards;
@@ -50,13 +51,16 @@
     grid-template-columns: repeat(3, 1fr);
     &-field {
       margin: 0.5rem;
+      padding: 0.5rem;
     }
   }
 
+  //    GRID PROPERTIES
   &-group {
     min-height: 2rem;
     overflow: hidden;
     text-align: center;
+
     &-input {
       grid-row: 1/3;
       grid-column: 1/2;
@@ -65,8 +69,9 @@
       &-crypt {
         margin-top: 0.5rem;
       }
-      &-submit {
-        padding-top: 0.5rem;
+      //setting info higher if form info is from search
+      &-search {
+        grid-row: 2/3;
       }
     }
 
@@ -75,16 +80,23 @@
       grid-row: 1/4;
       //takes from the second line to the third(here are only 3);
       grid-column: 2/3;
-
       padding: 0.5rem 1rem;
     }
     &-submit {
       grid-row: 3 / 4;
       text-align: center;
+      padding-top: 0.5rem;
     }
+
     &-info {
       grid-row: 3/4;
       grid-column: 2/3;
+
+      &-search {
+        // The search form leave too much space when almost empty
+        grid-row: 2/4;
+        padding: 0 1rem;
+      }
     }
 
     // for main set goal form

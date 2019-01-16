@@ -21,6 +21,7 @@ import {
 } from "../actions/crypt";
 
 import { login, signup } from "../auth";
+import { welcomePage } from "../pages/welcomePage";
 
 const loadingId = x => document.querySelector("[loading-id=" + x + "]");
 
@@ -267,22 +268,17 @@ export function loginForm(startFunction) {
             } else {
               // USER FOUND, FURTHER
               if (data.success) {
-                document.querySelector("[loading-id=footer]").innerHTML =
-                  data.token;
+                // SAVE THE TOKEN SOMEWHERE
+                const token = data.token;
+
+                document
+                  .querySelector("[loading-id=footer]")
+                  .setAttribute("token", data.token);
               }
               startFunction();
-              //
-              feedback.parentElement.innerHTML = "WELCOME";
-              console.log(data);
-              //get token from data
-
-              //
-
-              /// WORK IN PROGRESS
+              // the welcome page is just a variable in folder pages, template for just entered
+              feedback.parentElement.innerHTML = welcomePage;
               console.log("WELCOME");
-              // DO SOMETHING WITHF RESULT
-
-              //
             }
           })
           .catch(err => console.log(err));

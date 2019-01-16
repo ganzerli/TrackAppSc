@@ -1,7 +1,8 @@
 .subtitle {
   position: absolute;
-  left: 60%;
+  left: 55%;
   color: #ffd300;
+  letter-spacing: 0.2rem;
   text-shadow: -1px -1px 0 #f53240, 1px 1px 0 #f53240, 1px -1px 0 #f53240, -1px 1px 0 #f53240; }
   .subtitle-container {
     display: block;
@@ -117,7 +118,8 @@ input {
       background: inherit; }
 
 .form-main {
-  transition: height 0.5s ease-in; }
+  transition: height 0.5s ease-in;
+  font-size: 0.9rem; }
 
 .form-wrap {
   display: grid;
@@ -136,8 +138,8 @@ input {
   animation: slide-0 0.2s ease-in forwards; }
 
 .form-input-textfield {
-  height: 50%;
   width: 100%;
+  height: 2.5rem;
   padding: 1rem;
   transform: translateX(-110%);
   animation: slide-0 0.15s ease-in forwards; }
@@ -156,7 +158,8 @@ input {
   grid-template-rows: 1fr;
   grid-template-columns: repeat(3, 1fr); }
   .form-decrypt-records-field {
-    margin: 0.5rem; }
+    margin: 0.5rem;
+    padding: 0.5rem; }
 
 .form-group {
   min-height: 2rem;
@@ -169,18 +172,22 @@ input {
     padding: 0.5rem 0; }
     .form-group-input-crypt {
       margin-top: 0.5rem; }
-    .form-group-input-submit {
-      padding-top: 0.5rem; }
+    .form-group-input-search {
+      grid-row: 2/3; }
   .form-group-body {
     grid-row: 1/4;
     grid-column: 2/3;
     padding: 0.5rem 1rem; }
   .form-group-submit {
     grid-row: 3 / 4;
-    text-align: center; }
+    text-align: center;
+    padding-top: 0.5rem; }
   .form-group-info {
     grid-row: 3/4;
     grid-column: 2/3; }
+    .form-group-info-search {
+      grid-row: 2/4;
+      padding: 0 1rem; }
   .form-group-manage-goal {
     grid-row: 2/3;
     grid-column: 2/3; }
@@ -277,6 +284,7 @@ input {
     border: none;
     border-radius: 2px;
     font-family: inherit;
+    margin-top: 0.3rem;
     font-size: 0.85rem;
     color: white;
     font-weight: bold; }
@@ -284,7 +292,7 @@ input {
       transform: translateY(-1px);
       box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
     .login-form-input-submit:active {
-      transform: translateY(-2px);
+      transform: translateY(1px);
       box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
   .login-form-label-radio {
     color: inherit;
@@ -352,6 +360,7 @@ input {
   border: none;
   border-radius: 2px;
   font-family: inherit;
+  margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
   font-weight: bold; }
@@ -359,7 +368,7 @@ input {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
   .result-record-btn-marktext:active {
-    transform: translateY(-2px);
+    transform: translateY(1px);
     box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
 
 .result-record-body {
@@ -389,6 +398,7 @@ input {
   border: none;
   border-radius: 2px;
   font-family: inherit;
+  margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
   font-weight: bold; }
@@ -396,7 +406,7 @@ input {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
   .btn-load-goals:active {
-    transform: translateY(-2px);
+    transform: translateY(1px);
     box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
 
 .btn-record-delete {
@@ -409,6 +419,7 @@ input {
   border: none;
   border-radius: 2px;
   font-family: inherit;
+  margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
   font-weight: bold;
@@ -418,7 +429,7 @@ input {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
   .btn-record-delete:active {
-    transform: translateY(-2px);
+    transform: translateY(1px);
     box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
 
 .btn-submit-goals {
@@ -432,6 +443,7 @@ input {
   border: none;
   border-radius: 2px;
   font-family: inherit;
+  margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
   font-weight: bold;
@@ -440,7 +452,7 @@ input {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
   .btn-submit-goals:active {
-    transform: translateY(-2px);
+    transform: translateY(1px);
     box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
 
 .btn-goal-delete {
@@ -453,6 +465,7 @@ input {
   border: none;
   border-radius: 2px;
   font-family: inherit;
+  margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
   font-weight: bold; }
@@ -460,7 +473,7 @@ input {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
   .btn-goal-delete:active {
-    transform: translateY(-2px);
+    transform: translateY(1px);
     box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
 
 .btn-submit-form-crypt {
@@ -474,6 +487,7 @@ input {
   border: none;
   border-radius: 2px;
   font-family: inherit;
+  margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
   font-weight: bold; }
@@ -481,7 +495,7 @@ input {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
   .btn-submit-form-crypt:active {
-    transform: translateY(-2px);
+    transform: translateY(1px);
     box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
 
 .btn-submit-decrypt-records {
@@ -497,6 +511,7 @@ input {
   border: none;
   border-radius: 2px;
   font-family: inherit;
+  margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
   font-weight: bold; }
@@ -504,7 +519,7 @@ input {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
   .btn-submit-decrypt-records:active {
-    transform: translateY(-2px);
+    transform: translateY(1px);
     box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
 
 .form-input-submit {
@@ -519,6 +534,7 @@ input {
   border: none;
   border-radius: 2px;
   font-family: inherit;
+  margin-top: 0.3rem;
   font-size: 0.85rem;
   color: white;
   font-weight: bold; }
@@ -526,7 +542,7 @@ input {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
   .form-input-submit:active {
-    transform: translateY(-2px);
+    transform: translateY(1px);
     box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
 
 .result-goals-display {
@@ -545,3 +561,6 @@ input {
 
 .result-goals-delete {
   padding: 0 1rem; }
+
+.welcome {
+  font-size: 0.9rem; }

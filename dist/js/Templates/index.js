@@ -45,7 +45,17 @@ export default class Templates {
   }
 
   refreshSubtitle(page) {
-    this.template = page;
+    this.template = "NO Subtitle";
+    templatesArr.forEach(templateObj => {
+      console.log(templateObj.name);
+
+      if (templateObj.name === page) {
+        this.template = templateObj.subtitle;
+      }
+    });
+
     return this.template;
   }
+
+  // end class
 }

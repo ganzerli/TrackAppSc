@@ -22,7 +22,6 @@ export function signup(email, password) {
   const data = { email, password };
   // axios calls the the data in the response ..... .. ..  .data!
   let feedback = document.querySelector("[loading-id=form-feedback]");
-  let response;
 
   axios
     .post("http://localhost:5000/api/users/register", data)

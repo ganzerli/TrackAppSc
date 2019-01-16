@@ -1,7 +1,8 @@
 .subtitle {
   position: absolute;
-  left: 60%;
+  left: 55%;
   color: $yellow-on;
+  letter-spacing: 0.2rem;
   @include outline-text($red);
   &-container {
     display: block;

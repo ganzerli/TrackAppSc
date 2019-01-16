@@ -178,7 +178,7 @@ export const fillResultFromRecord = recordObj => {
     <span class="result-record-marked" loading-id="check-record-${
       recordObj.id
     }"> ${
-    recordObj.checked === "true"
+    recordObj.checked === "false"
       ? "<span class='goal result-record-marked-text'>...</span>"
       : "<span class='red result-record-marked-text'>IMPORTANT!</span>"
   }</span>
