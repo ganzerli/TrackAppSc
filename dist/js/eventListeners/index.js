@@ -37,6 +37,7 @@ export const activateFormButton = () => {
 
 // listener for goals displayed in the record ( to open input field )
 export const goalListener = () => {
+  //display of goals in main records
   const goalsBar = document.querySelectorAll("[loading-id=goals-listener]");
   if (goalsBar && goalsBar.length > 0) {
     goalsBar.forEach(bar => {
@@ -175,9 +176,10 @@ const resultDelegation = e => {
 
 /***
  *  GOAL LISTENER IS IN THE MAIN LISTENER FOR CLOSING CONTEN..
- * FOR FLOW REASON
+ * FOR FLOW REASONS
  */
 function goalsListenerDelegation(e) {
+  // closes the form if the result set is the standard messages
   const goalElement = e.target;
   console.log(goalElement); // prints the whole node of results the outer span
   checkGoalFromRecord(goalElement);

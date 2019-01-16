@@ -325,7 +325,7 @@ export const fillResultFromGoal = obj => {
         <span class="result-goals-delete">
           <button class="btn-record-delete" sessionId="${
             obj.sessionId
-          }" loading-id="delete-goals" info="${g.name}">delete</button>
+          }" loading-id="delete-goal" info="${g.name}">delete</button>
         </span>
 
         <p class="result-goals-info">${g.info}</p>

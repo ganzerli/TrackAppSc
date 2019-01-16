@@ -25,14 +25,12 @@
 
   &-submit {
     &-form-crypt {
-      color: blue;
       @include btn-style();
     }
 
     &-decrypt-records {
       margin: 0.5rem 1.5rem;
-      color: red;
-      max-width: 6rem;
+      max-width: 6.5rem;
       @include btn-style();
     }
   }

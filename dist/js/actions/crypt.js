@@ -12,7 +12,7 @@ export const getCryptAll = () => {
     .getAttribute("token");
 
   var request = new XMLHttpRequest();
-  request.open("GET", "http://localhost:5000/api/records/mcsrg", true);
+  request.open("GET", "https://pryvapp.herokuapp.com/api/records/mcsrg", true);
   request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   request.setRequestHeader("Authorization", token);
   request.onload = () => {
@@ -58,7 +58,7 @@ export const addCryptRecord = form => {
 
   //REQUEST
   var request = new XMLHttpRequest();
-  request.open("POST", "http://localhost:5000/api/records/mcsrg", true);
+  request.open("POST", "https://pryvapp.herokuapp.com/api/records/mcsrg", true);
   //set header
   request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   // set token
@@ -225,7 +225,11 @@ export function deleteCryptRecord(id) {
     .getAttribute("token");
   //REQUEST
   var request = new XMLHttpRequest();
-  request.open("DELETE", `http://localhost:5000/api/records/mcsrg/${id}`, true);
+  request.open(
+    "DELETE",
+    `https://pryvapp.herokuapp.com/api/records/mcsrg/${id}`,
+    true
+  );
   //set header
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   // set token

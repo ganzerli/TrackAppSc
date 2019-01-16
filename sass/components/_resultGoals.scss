@@ -5,6 +5,8 @@
   &-wrap {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    transition: transform 0.2s;
+    overflow: hidden;
   }
   &-name {
     color: $blue-text;

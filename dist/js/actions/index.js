@@ -511,12 +511,20 @@ export const refreshResultGoals = () => {
 
 function deleteGoal(e) {
   const name = e.target.getAttribute("info");
-  const parent = e.target.parentElement;
-  const grandParent = parent.parentElement;
-  grandParent.removeChild(parent);
+
+  // REACHING SOMEHOW THE CONTAINER
+  const span = e.target.parentElement;
+  const goalContainer = span.parentElement;
+
+  // set style to hide;
+  goalContainer.style.transform = "scaleY(0)";
+
   //get the goal name and delete
-  //Calls.prototype.deleteGoal(name);
-  console.log(grandParent);
+
+  Calls.prototype.deleteGoal(name);
+  console.log(goalContainer);
+  console.log(span);
+  console.log(name);
 }
 
 function checkGoal(e) {

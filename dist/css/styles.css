@@ -477,7 +477,6 @@ input {
     box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
 
 .btn-submit-form-crypt {
-  color: blue;
   display: inline-block;
   background: #06a0fa;
   font-family: inherit;
@@ -500,8 +499,7 @@ input {
 
 .btn-submit-decrypt-records {
   margin: 0.5rem 1.5rem;
-  color: red;
-  max-width: 6rem;
+  max-width: 6.5rem;
   display: inline-block;
   background: #06a0fa;
   font-family: inherit;
@@ -550,7 +548,9 @@ input {
 
 .result-goals-wrap {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); }
+  grid-template-columns: repeat(4, 1fr);
+  transition: transform 0.2s;
+  overflow: hidden; }
 
 .result-goals-name {
   color: #0c4f79; }

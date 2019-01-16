@@ -4,7 +4,7 @@ export async function login(email, password) {
   // need to return a promise to have errors in res.json
   const requestBody = { email, password };
   let res;
-  res = await fetch("http://localhost:5000/api/users/login", {
+  res = await fetch("https://pryvapp.herokuapp.com/api/users/login", {
     method: "post",
     body: JSON.stringify(requestBody),
     headers: {
@@ -24,7 +24,7 @@ export function signup(email, password) {
   let feedback = document.querySelector("[loading-id=form-feedback]");
 
   axios
-    .post("http://localhost:5000/api/users/register", data)
+    .post("https://pryvapp.herokuapp.com/api/users/register", data)
     .then(res => {
       console.log(res.data);
       //go does not run if error
