@@ -1,13 +1,28 @@
 .commands-navbar {
-  padding: 1rem 0;
+  font-size: 1rem;
 }
 
 .nav-list {
   display: flex;
   justify-content: space-around;
+  text-transform: capitalize;
+  font-weight: 600;
+  margin: 0.5rem 0;
   &-item {
+    padding: 0.4rem;
     flex: 1;
     text-align: center;
     cursor: pointer;
+    border-left: 1px solid $blue-info;
+    border-right: 1px solid $blue-bar;
+    transition: all 0.1s;
+    &:hover {
+      color: $blue-text;
+      background: white;
+    }
+    &:active {
+      color: $green-go;
+      background: inherit;
+    }
   }
 }

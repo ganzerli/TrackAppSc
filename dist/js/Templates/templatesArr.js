@@ -105,11 +105,13 @@ export const templatesArr = [
       </div>
       
       <div class="form-group form-group-input-radio">
+
+          <label for="alarm-time-hours" class="form-input-radio-label">Hr:</label>
           <input loading-id="alarm-time-hours"  type="number" name="alarm-time-hours" placeholder="00" min="0" max="23" class="form-input-radio" />
-          <label for="alarm-time-hours" class="form-input-radio-label">Hour</label>
-        
+      
+          <label for="alarm-time-minutes" class="form-input-radio-label">Min:</label>
           <input loading-id="alarm-time-minutes"  type="number" name="alarm-time-minutes" placeholder="00" min="0" max="59" class="form-input-radio" />
-          <label for="alarm-time-minutes" class="form-input-radio-label">Minutes</label>
+          
       </div>
 
       <div class="form-group form-group-submit">

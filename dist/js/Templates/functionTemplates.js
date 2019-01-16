@@ -177,7 +177,11 @@ export const fillResultFromRecord = recordObj => {
 
     <span class="result-record-marked" loading-id="check-record-${
       recordObj.id
-    }"> ${recordObj.checked}</span>
+    }"> ${
+    recordObj.checked === "true"
+      ? "<span class='goal result-record-marked-text'>...</span>"
+      : "<span class='red result-record-marked-text'>IMPORTANT!</span>"
+  }</span>
 
     <span class="result-record-delete">
       
@@ -279,12 +283,12 @@ export const fillResultFromGoal = obj => {
 
   const getStauts = goal => {
     if (goal.resetted) {
-      return '<span class="goal">Goal Resetted</span>';
+      return '<span class="red result-goals-status">Goal Resetted</span>';
     }
     if (goal.done) {
-      return '<span class="green">Goal Done</span>';
+      return '<span class="green result-goals-status">Goal Done</span>';
     } else {
-      return '<span class="goal">Goal To Do</span>';
+      return '<span class="goal result-goals-status">Goal To Do</span>';
     }
   };
 
@@ -312,29 +316,32 @@ export const fillResultFromGoal = obj => {
 
   const goalsInfo = goals => {
     let result = goals.map(
-      g => `<div class="goal-container loading-id="${g.name}">
-      <h3 class="result-goal-name">${g.name}</h3>
-      <span class="result-goal-status">${getStauts(g)}</span>
-      <span class="result-goal-status-btn">${btnStatus(g)}</span>
-      <p class="result-goal-info">${g.info}</p>
-      <button class="btn-goal-delete" sessionId="${
-        obj.sessionId
-      }" loading-id="delete-goal" info="${g.name}">delete</button>
+      g => `
+      <div class="result-goals-wrap loading-id="${g.name}">
+        <h3 class="result-goals-name">${g.name}</h3>
+        <span class="result-goals-status">${getStauts(g)}</span>
+        <span class="result-goals-status-btn">${btnStatus(g)}</span>
+        
+        <span class="result-goals-delete">
+          <button class="btn-record-delete" sessionId="${
+            obj.sessionId
+          }" loading-id="delete-goals" info="${g.name}">delete</button>
+        </span>
+
+        <p class="result-goals-info">${g.info}</p>
       </div>`
     );
     return result.join("");
   };
 
   // main
-  return `<div class="result-goal-container" loading-id="result-goal">
-  
-  <div class="goal-display" ${sessionBorder()}>
+  return `<div class="result-goals-display loading-id="result-goal"" ${sessionBorder()}>
 
-    <h3 class="result-record-title">
+    <h3 class="result-goals-title">
     ${new Date(parseInt(obj.sessionId)).toLocaleString().substr(0, 9)}
       </h3>
   
     ${goalsInfo(obj.goals)}
-  </div>
+  
   </div>`;
 };

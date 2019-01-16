@@ -1,0 +1,26 @@
+.result-goals {
+  &-display {
+    font-size: 0.9rem;
+  }
+  &-wrap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  &-name {
+    color: $blue-text;
+  }
+  &-status {
+    text-align: center;
+    font-weight: bold;
+  }
+  &-status-btn {
+  }
+  &-info {
+  }
+  &-delete {
+    padding: 0 1rem;
+  }
+}
+
+.goal-display {
+}

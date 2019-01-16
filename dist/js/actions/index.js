@@ -133,17 +133,12 @@ export const checkRecord = id => {
   data = JSON.parse(data);
   // toggle the checked value
 
-  let checkedHtmlElement = element.querySelector(
-    `[loading-id=check-record-${id}]`
-  );
-
   if (data.checked === "true") {
-    checkedHtmlElement.innerHTML = "false";
     data.checked = "false";
   } else {
-    checkedHtmlElement.innerHTML = "true";
     data.checked = "true";
   }
+
   call.updateRecord(data);
 };
 

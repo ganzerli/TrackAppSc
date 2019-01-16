@@ -1,12 +1,34 @@
 [loading-id="goal-info-input"] {
   color: green;
   height: 0;
+  opacity: 0;
+  transition: all 0.2s;
   display: none;
 }
-.active {
-  height: auto;
-  display: inline-block;
-}
+
+// when clicking on the goal in the result element a
 .the-form {
+  display: inline-block;
+  transition: opacity 0.2s;
+
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: bold;
+  line-height: 0.6;
+
+  &:first-child {
+    margin-top: 0.5rem;
+  }
+  &:hover {
+    font-size: 0.85rem;
+    text-shadow: 1px 1px 0 0 $green-go;
+  }
+}
+
+.active {
+  height: 1.4rem;
+  margin-top: 3px;
+  opacity: 1;
+  transform: translateX(-20%);
   display: inline-block;
 }

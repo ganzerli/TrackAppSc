@@ -1,17 +1,23 @@
 @mixin btn-style() {
   display: inline-block;
-  background: inherit;
+  background: $blue-info;
   font-family: inherit;
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 0.8rem;
+  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
   transition: all 0.15s ease-out;
   border: none;
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: white;
+  font-weight: bold;
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.3);
-  }
-  &:active {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3);
+  }
+  &:active {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -20,4 +26,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@mixin outline-text($color) {
+  text-shadow: -1px -1px 0 $color, 1px 1px 0 $color, 1px -1px 0 $color,
+    -1px 1px 0 $color;
 }

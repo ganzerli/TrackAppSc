@@ -1,7 +1,6 @@
 .form {
   &-main {
     transition: height 0.5s ease-in;
-    background: rgb(223, 223, 223);
   }
 
   &-wrap {
@@ -11,6 +10,7 @@
     grid-gap: 0.5rem;
     padding: 0.5rem 0;
     padding-left: 0.5rem;
+    min-height: 10rem;
   }
 
   &-input {
@@ -22,7 +22,7 @@
       animation: slide-0 0.2s ease-in forwards;
     }
     &-textfield {
-      height: 70%;
+      height: 50%;
       width: 100%;
       padding: 1rem;
       transform: translateX(-110%);
@@ -65,7 +65,11 @@
       &-crypt {
         margin-top: 0.5rem;
       }
+      &-submit {
+        padding-top: 0.5rem;
+      }
     }
+
     &-body {
       // takes from the forst line to the last
       grid-row: 1/4;

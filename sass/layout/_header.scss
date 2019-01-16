@@ -2,12 +2,25 @@
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 4fr 1fr;
+  padding: 1rem 0;
   &-logout,
   &:visited,
   &:link {
     color: inherit;
     text-align: right;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     text-decoration: none;
+    margin-top: 0.5rem;
+    color: $blue-text;
+    @include outline-text(white);
+    transition: all 0.2s;
+    &:hover {
+      color: white;
+      @include outline-text($blue-text);
+    }
+    &:active {
+      color: white;
+      @include outline-text(white);
+    }
   }
 }
