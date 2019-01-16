@@ -269,8 +269,6 @@ export function loginForm(startFunction) {
               // USER FOUND, FURTHER
               if (data.success) {
                 // SAVE THE TOKEN SOMEWHERE
-                const token = data.token;
-
                 document
                   .querySelector("[loading-id=footer]")
                   .setAttribute("token", data.token);

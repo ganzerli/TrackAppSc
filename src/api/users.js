@@ -36,7 +36,7 @@ router.get("/all", (req, res) => {
 router.post("/register", (req, res) => {
   db.findEmail(req.body.email).then(user => {
     if (user) {
-      res.status(400).json({ email: "email already exists" });
+      res.status(400).json({ err: "email already exists" });
     } else {
       //crypt password
       bcrypt.genSalt(10, (err, salt) => {
@@ -79,7 +79,6 @@ router.post("/login", (req, res) => {
               });
             }
           );
-
         } else {
           res.status(400).json({ err: "Password does not match" });
         }

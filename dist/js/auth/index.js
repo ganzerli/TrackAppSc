@@ -26,7 +26,7 @@ export function signup(email, password) {
   axios
     .post("http://localhost:5000/api/users/register", data)
     .then(res => {
-      response = res.data;
+      console.log(res.data);
       //go does not run if error
 
       feedback.classList.add("form-feedback-go");
@@ -38,6 +38,7 @@ export function signup(email, password) {
     })
     .catch(err => {
       // nothing, say the user is already in
+      console.log(err);
       feedback.classList.add("form-feedback-error");
       feedback.innerHTML = "Email already exist";
       setTimeout(() => {

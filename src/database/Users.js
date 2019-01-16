@@ -2,7 +2,7 @@ const uuid = require("uuid");
 
 class Users {
   constructor() {
-    this.users = [{ id: 0, email: "a@a.a", password: "982h3d" }];
+    this.users = [{ id: 0, email: "a@a.a", password: "123456" }];
 
     this.modelAndSend = (email, password) => {
       const obj = {
