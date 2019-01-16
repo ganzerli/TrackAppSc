@@ -4,6 +4,9 @@ import { domSelector } from "../pages/domSelector";
 import { crypt } from "../../../util";
 import { getIdSession } from "./index";
 
+const PROXY = "https://pryvapp.herokuapp.com";
+const DEV = "http://localhost:5000";
+
 // AJAX GET REQUEST
 export const getCryptAll = () => {
   console.log("crypt all");
@@ -12,7 +15,7 @@ export const getCryptAll = () => {
     .getAttribute("token");
 
   var request = new XMLHttpRequest();
-  request.open("GET", "https://pryvapp.herokuapp.com/api/records/mcsrg", true);
+  request.open("GET", `${dev}/api/records/mcsrg`, true);
   request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   request.setRequestHeader("Authorization", token);
   request.onload = () => {
@@ -58,7 +61,7 @@ export const addCryptRecord = form => {
 
   //REQUEST
   var request = new XMLHttpRequest();
-  request.open("POST", "https://pryvapp.herokuapp.com/api/records/mcsrg", true);
+  request.open("POST", `${dev}/api/records/mcsrg`, true);
   //set header
   request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   // set token
@@ -225,11 +228,7 @@ export function deleteCryptRecord(id) {
     .getAttribute("token");
   //REQUEST
   var request = new XMLHttpRequest();
-  request.open(
-    "DELETE",
-    `https://pryvapp.herokuapp.com/api/records/mcsrg/${id}`,
-    true
-  );
+  request.open("DELETE", `${dev}/api/records/mcsrg/${id}`, true);
   //set header
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   // set token

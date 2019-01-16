@@ -1,10 +1,13 @@
 import axios from "axios";
 
+const PROXY = "https://pryvapp.herokuapp.com";
+const DEV = "http://localhost:5000";
+
 export async function login(email, password) {
   // need to return a promise to have errors in res.json
   const requestBody = { email, password };
   let res;
-  res = await fetch("https://pryvapp.herokuapp.com/api/users/login", {
+  res = await fetch(`${DEV}/api/users/login`, {
     method: "post",
     body: JSON.stringify(requestBody),
     headers: {
@@ -18,32 +21,21 @@ export async function login(email, password) {
   return response;
 }
 
-export function signup(email, password) {
+export function signup(email, password, displayFeed) {
   const data = { email, password };
   // axios calls the the data in the response ..... .. ..  .data!
-  let feedback = document.querySelector("[loading-id=form-feedback]");
+  //
+  //let feedback = document.querySelector("[loading-id=form-feedback]");
 
   axios
-    .post("https://pryvapp.herokuapp.com/api/users/register", data)
+    .post(`${DEV}/api/users/register`, data)
     .then(res => {
       console.log(res.data);
       //go does not run if error
-
-      feedback.classList.add("form-feedback-go");
-      feedback.innerHTML = "Now you can log in";
-      setTimeout(() => {
-        feedback.classList.remove("form-feedback-go");
-        feedback.innerHTML = "";
-      }, 3000);
+      displayFeed(true, "now you can log in");
     })
     .catch(err => {
       // nothing, say the user is already in
-      console.log(err);
-      feedback.classList.add("form-feedback-error");
-      feedback.innerHTML = "Email already exist";
-      setTimeout(() => {
-        feedback.classList.remove("form-feedback-error");
-        feedback.innerHTML = "";
-      }, 3000);
+      displayFeed(false, "Email aready registered");
     });
 }

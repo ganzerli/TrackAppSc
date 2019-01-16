@@ -238,20 +238,55 @@ export function activateGoalLoad() {
   }
 }
 
-//  LOGIN FORM
+//  LOGIN FORM --- if the login succeed the app starts all the listeners
 export function loginForm(startFunction) {
-  //
+  // private show feedback function
+
+  const displayFeed = (pass, message) => {
+    let feedback = document.querySelector("[loading-id=form-feedback]");
+    if (pass) {
+      // feedback GREEN
+      feedback.classList.add("form-feedback-go");
+      feedback.innerHTML = message;
+      setTimeout(() => {
+        feedback.classList.remove("form-feedback-go");
+        feedback.innerHTML = "";
+      }, 3000);
+    } else {
+      // feedback red
+      feedback.classList.add("form-feedback-error");
+      feedback.innerHTML = message;
+      setTimeout(() => {
+        feedback.classList.remove("form-feedback-error");
+        feedback.innerHTML = "";
+      }, 3000);
+    }
+  };
+
+  // .......dev reasons
   const BACKEND = true;
   if (BACKEND) {
     //
     const form = document.querySelector("[loading-id=login-form]");
+
     form.addEventListener("submit", () => {
-      let feedback = document.querySelector("[loading-id=form-feedback]");
       const email = form.querySelector("[name=email]").value;
       const password = form.querySelector("[name=password]").value;
-      const logIn = form.querySelector("[loading-id=form-radio-login]").checked;
-      const signUp = form.querySelector("[loading-id=form-radio-signup]")
-        .checked;
+      let logIn = form.querySelector("[loading-id=form-radio-login]").checked;
+      let signUp = form.querySelector("[loading-id=form-radio-signup]").checked;
+
+      // CHECKING IF FIELDS ARE EMPTY
+      if (
+        email === "" ||
+        email === " " ||
+        password === "" ||
+        password === " "
+      ) {
+        // SET ALL FALSE TO SKIP THE NEXT IF STATEMENT
+        logIn = false;
+        signUp = false;
+        displayFeed(false, "There are empty fields");
+      }
 
       if (logIn && !signUp) {
         //
@@ -261,12 +296,7 @@ export function loginForm(startFunction) {
             if (data.err) {
               console.log(data.err);
               // USER NOT FOUND
-              feedback.classList.add("form-feedback-error");
-              feedback.innerHTML = data.err;
-              setTimeout(() => {
-                feedback.classList.remove("form-feedback-error");
-                feedback.innerHTML = "";
-              }, 3000);
+              displayFeed(false, data.err);
             } else {
               // USER FOUND, FURTHER
               if (data.success) {
@@ -275,17 +305,19 @@ export function loginForm(startFunction) {
                   .querySelector("[loading-id=footer]")
                   .setAttribute("token", data.token);
               }
+              form.parentElement.innerHTML = welcomePage;
+              //form.outerHTML = "";
               startFunction();
-              // the welcome page is just a variable in folder pages, template for just entered
-              feedback.parentElement.innerHTML = welcomePage;
+              // the welcome page is just a variable in folder pages, template for first page
               console.log("WELCOME");
             }
           })
           .catch(err => console.log(err));
       } else if (!logIn && signUp) {
         // signup is just a function that show if the user is registered.
-        signup(email, password);
+        signup(email, password, displayFeed);
       }
+      // login signup end if
     });
   } else {
     // if no backend just leave the normal functions
@@ -293,6 +325,7 @@ export function loginForm(startFunction) {
   }
 }
 
+// LOGOUT LISTENER
 export const logoutBtnListener = () => {
   document.querySelector("[loading-id=logout]").addEventListener("click", e => {
     document.querySelector("[loading-id=footer]").innerHTML = "";
