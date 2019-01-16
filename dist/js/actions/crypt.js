@@ -15,7 +15,7 @@ export const getCryptAll = () => {
     .getAttribute("token");
 
   var request = new XMLHttpRequest();
-  request.open("GET", `${dev}/api/records/mcsrg`, true);
+  request.open("GET", `${PROXY}/api/records/mcsrg`, true);
   request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   request.setRequestHeader("Authorization", token);
   request.onload = () => {
@@ -61,7 +61,7 @@ export const addCryptRecord = form => {
 
   //REQUEST
   var request = new XMLHttpRequest();
-  request.open("POST", `${dev}/api/records/mcsrg`, true);
+  request.open("POST", `${PROXY}/api/records/mcsrg`, true);
   //set header
   request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   // set token
@@ -228,7 +228,7 @@ export function deleteCryptRecord(id) {
     .getAttribute("token");
   //REQUEST
   var request = new XMLHttpRequest();
-  request.open("DELETE", `${dev}/api/records/mcsrg/${id}`, true);
+  request.open("DELETE", `${PROXY}/api/records/mcsrg/${id}`, true);
   //set header
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   // set token
