@@ -21,6 +21,10 @@
       padding: 1rem;
       transform: translateY(110%);
       animation: slide-0 0.2s ease-in forwards;
+      //browser compatibility, and linux
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 2px;
+      box-shadow: 0 4px 10px -6px rgba(0, 0, 0, 0.2);
     }
 
     &-textfield {
