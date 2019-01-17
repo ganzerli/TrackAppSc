@@ -17,22 +17,18 @@
       @include btn-style();
       padding: 0.2rem !important;
     }
+    &-form-crypt {
+      @include btn-style();
+    }
+    &-decrypt-records {
+      margin: 0.5rem 1.5rem;
+      max-width: 7rem;
+      @include btn-style();
+    }
   }
 
   &-goal-delete {
     @include btn-style();
-  }
-
-  &-submit {
-    &-form-crypt {
-      @include btn-style();
-    }
-
-    &-decrypt-records {
-      margin: 0.5rem 1.5rem;
-      max-width: 6.5rem;
-      @include btn-style();
-    }
   }
 }
 

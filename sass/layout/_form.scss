@@ -22,10 +22,13 @@
       transform: translateY(110%);
       animation: slide-0 0.2s ease-in forwards;
     }
+
     &-textfield {
       width: 100%;
       height: 2.5rem;
       padding: 1rem;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 2px;
       transform: translateX(-110%);
       animation: slide-0 0.15s ease-in forwards;
       &-crypt {
@@ -33,6 +36,9 @@
         padding: 0.5rem;
         transform: translateX(-110%);
         animation: slide-0 0.15s ease-in forwards;
+        //browser compatibility, and linux
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        border-radius: 2px;
       }
     }
 
@@ -52,6 +58,9 @@
     &-field {
       margin: 0.5rem;
       padding: 0.5rem;
+      //browser compatibility, and linux
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 2px;
     }
   }
 
@@ -66,6 +75,7 @@
       grid-column: 1/2;
       height: 100%;
       padding: 0.5rem 0;
+
       &-crypt {
         margin-top: 0.5rem;
       }
@@ -82,6 +92,7 @@
       grid-column: 2/3;
       padding: 0.5rem 1rem;
     }
+
     &-submit {
       grid-row: 3 / 4;
       text-align: center;

@@ -55,7 +55,7 @@ input {
 
 @keyframes span-in {
   100% {
-    height: 3rem; } }
+    height: 3.5rem; } }
 
 @keyframes slide-0 {
   100% {
@@ -77,7 +77,7 @@ input {
 
 .container {
   margin: 0 auto;
-  width: 80%; }
+  width: 70%; }
 
 .relative {
   position: relative; }
@@ -152,13 +152,17 @@ input {
   width: 100%;
   height: 2.5rem;
   padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
   transform: translateX(-110%);
   animation: slide-0 0.15s ease-in forwards; }
   .form-input-textfield-crypt {
     width: 100%;
     padding: 0.5rem;
     transform: translateX(-110%);
-    animation: slide-0 0.15s ease-in forwards; }
+    animation: slide-0 0.15s ease-in forwards;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 2px; }
 
 .form-decrypt-records {
   height: 0;
@@ -170,7 +174,9 @@ input {
   grid-template-columns: repeat(3, 1fr); }
   .form-decrypt-records-field {
     margin: 0.5rem;
-    padding: 0.5rem; }
+    padding: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 2px; }
 
 .form-group {
   min-height: 2rem;
@@ -473,27 +479,6 @@ input {
     transform: translateY(1px);
     box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
 
-.btn-goal-delete {
-  display: inline-block;
-  background: linear-gradient(42deg, #06a0fa, #37cde4);
-  font-family: inherit;
-  padding: 0.5rem 0.8rem;
-  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
-  border: none;
-  border-radius: 2px;
-  font-family: inherit;
-  margin-top: 0.3rem;
-  font-size: 0.85rem;
-  color: white;
-  font-weight: bold;
-  transition: all 0.1s ease-out; }
-  .btn-goal-delete:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
-  .btn-goal-delete:active {
-    transform: translateY(1px);
-    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
-
 .btn-submit-form-crypt {
   display: inline-block;
   background: linear-gradient(42deg, #06a0fa, #37cde4);
@@ -517,7 +502,7 @@ input {
 
 .btn-submit-decrypt-records {
   margin: 0.5rem 1.5rem;
-  max-width: 6.5rem;
+  max-width: 7rem;
   display: inline-block;
   background: linear-gradient(42deg, #06a0fa, #37cde4);
   font-family: inherit;
@@ -535,6 +520,27 @@ input {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
   .btn-submit-decrypt-records:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
+
+.btn-goal-delete {
+  display: inline-block;
+  background: linear-gradient(42deg, #06a0fa, #37cde4);
+  font-family: inherit;
+  padding: 0.5rem 0.8rem;
+  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 2px;
+  font-family: inherit;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: white;
+  font-weight: bold;
+  transition: all 0.1s ease-out; }
+  .btn-goal-delete:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.3); }
+  .btn-goal-delete:active {
     transform: translateY(1px);
     box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
 
