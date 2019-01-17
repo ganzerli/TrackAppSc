@@ -139,7 +139,7 @@ input {
   grid-gap: 0.5rem;
   padding: 0.5rem 0;
   padding-left: 0.5rem;
-  min-height: 10rem; }
+  min-height: 11rem; }
 
 .form-input-textarea {
   width: 100%;
@@ -152,17 +152,19 @@ input {
   width: 100%;
   height: 2.5rem;
   padding: 1rem;
+  transform: translateX(-110%);
+  animation: slide-0 0.15s ease-in forwards;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 2px;
-  transform: translateX(-110%);
-  animation: slide-0 0.15s ease-in forwards; }
+  box-shadow: 0 0 6px -3px rgba(0, 0, 0, 0.9); }
   .form-input-textfield-crypt {
     width: 100%;
     padding: 0.5rem;
     transform: translateX(-110%);
     animation: slide-0 0.15s ease-in forwards;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 2px; }
+    border-radius: 2px;
+    box-shadow: 0 0 6px -3px rgba(0, 0, 0, 0.9); }
 
 .form-decrypt-records {
   height: 0;
@@ -176,7 +178,8 @@ input {
     margin: 0.5rem;
     padding: 0.5rem;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 2px; }
+    border-radius: 2px;
+    box-shadow: 0 0 6px -3px rgba(0, 0, 0, 0.9); }
 
 .form-group {
   min-height: 2rem;
@@ -197,8 +200,7 @@ input {
     padding: 0.5rem 1rem; }
   .form-group-submit {
     grid-row: 3 / 4;
-    text-align: center;
-    padding-top: 0.5rem; }
+    text-align: center; }
   .form-group-info {
     grid-row: 3/4;
     grid-column: 2/3; }
