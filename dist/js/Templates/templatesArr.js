@@ -112,10 +112,10 @@ export const templatesArr = [
       <div class="form-group form-group-input-hour">
 
           <label for="alarm-time-hours" class="form-input-radio-label">Hr:</label>
-          <input loading-id="alarm-time-hours"  type="number" name="alarm-time-hours" placeholder="00" min="0" max="23" class="form-input-radio" />
+          <input loading-id="alarm-time-hours"  type="number" name="alarm-time-hours" placeholder="00" min="0" max="23" class="form-input-alarm-time" />
       
           <label for="alarm-time-minutes" class="form-input-radio-label">Min:</label>
-          <input loading-id="alarm-time-minutes"  type="number" name="alarm-time-minutes" placeholder="00" min="0" max="59" class="form-input-radio" />
+          <input loading-id="alarm-time-minutes"  type="number" name="alarm-time-minutes" placeholder="00" min="0" max="59" class="form-input-alarm-time" />
           
       </div>
 

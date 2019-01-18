@@ -2,7 +2,7 @@
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 4fr 1fr;
-  padding: 1rem 0;
+
   &-logout,
   &:visited,
   &:link {
@@ -10,7 +10,7 @@
     text-align: right;
     font-size: 1.7rem;
     text-decoration: none;
-    margin-top: 0.5rem;
+    margin: 3rem auto;
     color: $blue-text;
     @include outline-text(white);
     @include responsive(tab-portrait) {

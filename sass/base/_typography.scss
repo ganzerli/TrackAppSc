@@ -25,10 +25,9 @@
   letter-spacing: 6vw;
   color: $green-go;
   position: relative;
+  margin: 2rem 0;
   @include outline-text(black);
-  @include responsive(tab-portrait) {
-    margin-left: 3rem;
-  }
+
   &::after {
     content: "Plan safe, encrypting your Data";
     font-size: 0.9rem;
