@@ -33,3 +33,33 @@
   text-shadow: -1px -1px 0 $color, 1px 1px 0 $color, 1px -1px 0 $color,
     -1px 1px 0 $color;
 }
+
+// for browser compatibility is better to use em
+//  1em = 16px;
+
+@mixin responsive($device) {
+  @if $device == phone {
+    @media (max-width: 37.5em) {
+      // 600px / 16px (1 em).. how many em is 600px..
+      @content;
+    }
+  }
+  @if $device == tab-portrait {
+    @media (max-width: 56.25em) {
+      //900 px
+      @content;
+    }
+  }
+  @if $device == tab-landscape {
+    @media (max-width: 75em) {
+      // 1200 px
+      @content;
+    }
+  }
+  @if $device == big-desktop {
+    @media (min-width: 120em) {
+      //1800+
+      @content;
+    }
+  }
+}

@@ -4,6 +4,9 @@
   color: #ffd300;
   letter-spacing: 0.2rem;
   text-shadow: -1px -1px 0 #f53240, 1px 1px 0 #f53240, 1px -1px 0 #f53240, -1px 1px 0 #f53240; }
+  @media (max-width: 56.25em) {
+    .subtitle {
+      display: none; } }
   .subtitle-container {
     display: block;
     position: relative;
@@ -15,32 +18,45 @@
 
 #app-title {
   font-size: 3rem;
-  letter-spacing: 4rem;
+  letter-spacing: 6vw;
   color: #00d86b;
   position: relative;
   text-shadow: -1px -1px 0 black, 1px 1px 0 black, 1px -1px 0 black, -1px 1px 0 black; }
+  @media (max-width: 56.25em) {
+    #app-title {
+      margin-left: 3rem; } }
   #app-title::after {
-    content: "Plan safely, encrypting your information";
-    font-size: 0.65rem;
+    content: "Plan safe, encrypting your Data";
+    font-size: 0.9rem;
     color: black;
     left: 0;
     bottom: -0.7rem;
+    word-break: keep-all;
     position: absolute;
     text-shadow: none;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.8vw;
     text-transform: capitalize; }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0; }
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%; }
+  @media (min-width: 120em) {
+    html {
+      font-size: 75%; } }
 
 body {
+  box-sizing: border-box;
   background: #fafafa;
   color: #222;
   font-family: "Roboto", sans-serif;
-  font-size: 62.5%;
   overflow-x: hidden; }
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
 
 ul {
   list-style: none; }
@@ -78,6 +94,10 @@ input {
 .container {
   margin: 0 auto;
   width: 70%; }
+  @media (max-width: 56.25em) {
+    .container {
+      width: 100%;
+      padding: 0 1rem; } }
 
 .relative {
   position: relative; }
@@ -90,12 +110,15 @@ input {
   .header-logout, .header:visited, .header:link {
     color: inherit;
     text-align: right;
-    font-size: 1.3rem;
+    font-size: 2.2rem;
     text-decoration: none;
     margin-top: 0.5rem;
     color: #0c4f79;
     text-shadow: -1px -1px 0 white, 1px 1px 0 white, 1px -1px 0 white, -1px 1px 0 white;
     transition: all 0.2s; }
+    @media (max-width: 56.25em) {
+      .header-logout, .header:visited, .header:link {
+        padding-right: 3rem; } }
     .header-logout:hover, .header:visited:hover, .header:link:hover {
       color: white;
       text-shadow: -1px -1px 0 #0c4f79, 1px 1px 0 #0c4f79, 1px -1px 0 #0c4f79, -1px 1px 0 #0c4f79; }
@@ -104,14 +127,14 @@ input {
       text-shadow: -1px -1px 0 white, 1px 1px 0 white, 1px -1px 0 white, -1px 1px 0 white; }
 
 .commands-navbar {
-  font-size: 1rem; }
+  font-size: 1.3rem; }
 
 .nav-list {
   display: flex;
   justify-content: space-around;
   text-transform: capitalize;
   font-weight: 600;
-  margin: 0.5rem 0; }
+  margin: 1rem 0; }
   .nav-list-item {
     padding: 0.4rem;
     flex: 1;
@@ -272,7 +295,7 @@ input {
   flex-direction: column;
   margin: 5vh auto 0 auto;
   background: whitesmoke;
-  width: 25rem;
+  width: 30rem;
   padding: 2rem;
   border-radius: 2px;
   box-shadow: 0 3px 0.6rem rgba(0, 0, 0, 0.1); }
@@ -284,10 +307,10 @@ input {
     grid-template-columns: repeat(2, 1fr); }
   .login-form-input-text, .login-form-input:focus {
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     width: 80%;
-    margin: 0.5rem;
-    padding: 0.5rem;
+    margin: 1rem;
+    padding: 0.8rem;
     border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 2px; }
   .login-form-input-radio {
@@ -301,7 +324,7 @@ input {
     transform: translate(-50%, -50%); }
     .login-form-input-radio:checked + .login-form-label-radio {
       color: #0c4f79;
-      font-size: 1.5rem;
+      font-size: 2.3rem;
       text-shadow: 1px 2px 0px #37cde4; }
   .login-form-input-submit {
     display: inline-block;
@@ -325,7 +348,7 @@ input {
       box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); }
   .login-form-label-radio {
     color: inherit;
-    font-size: 1.4rem;
+    font-size: 2.2rem;
     font-weight: bold;
     text-shadow: 0px 0px 0px #37cde4;
     transition: all 0.3s ease; }

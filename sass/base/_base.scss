@@ -1,20 +1,38 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+html {
+  // defined 1rem as 10px; 10px/16px = 62.5%
+  // IN THE MIXIN IS DEFINED WHICH MEDIA QUERY TO LOOK TO APPLY THIS CONTENT
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+  //@include responsive(phone) {
+  //  font-size: 50%;
+  //}
+  // if same as other values is not needed, tab portrait is declared alredy as less then 900px, then is also for less then 400;
+
+  @include responsive(big-desktop) {
+    font-size: 75%;
+  }
 }
 
 body {
+  box-sizing: border-box;
   background: rgb(250, 250, 250);
   color: #222;
   font-family: "Roboto", sans-serif;
-  font-size: 62.5%; // defined 1rem as 10px; 10px/16px = 62.5%
   overflow-x: hidden;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
 ul {
   list-style: none;
 }
+
 button {
   outline: none;
   border: none;

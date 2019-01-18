@@ -4,6 +4,11 @@
   color: $yellow-on;
   letter-spacing: 0.2rem;
   @include outline-text($red);
+
+  @include responsive(tab-portrait) {
+    display: none;
+  }
+
   &-container {
     display: block;
     position: relative;
@@ -14,21 +19,26 @@
     animation: span-in 0.3s ease-out forwards;
   }
 }
+
 #app-title {
   font-size: 3rem;
-  letter-spacing: 4rem;
+  letter-spacing: 6vw;
   color: $green-go;
   position: relative;
   @include outline-text(black);
+  @include responsive(tab-portrait) {
+    margin-left: 3rem;
+  }
   &::after {
-    content: "Plan safely, encrypting your information";
-    font-size: 0.65rem;
+    content: "Plan safe, encrypting your Data";
+    font-size: 0.9rem;
     color: black;
     left: 0;
     bottom: -0.7rem;
+    word-break: keep-all;
     position: absolute;
     text-shadow: none;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.8vw;
     text-transform: capitalize;
   }
 }
