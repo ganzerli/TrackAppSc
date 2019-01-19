@@ -5,6 +5,9 @@
     width: 100%;
     padding: 0 2rem;
   }
+  @include responsive(phone) {
+    padding: 1rem;
+  }
 }
 .relative {
   position: relative;

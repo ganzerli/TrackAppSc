@@ -12,12 +12,21 @@
     padding: 0.5rem 0;
     padding-left: 0.5rem;
     min-height: 11rem;
+    // make respponsive with flex only some forms
+    &[loading-id="SEARCH-DATA"],
+    &[loading-id="LOAD-ALARM-INPUT"],
+    &[loading-id="LOAD-SESSION-GOAL"] {
+      @include responsive(phone) {
+        display: flex;
+        flex-direction: column;
+      }
+    }
   }
 
   &-input {
     &-textarea {
       width: 100%;
-      height: 100%;
+      height: 95%;
       padding: 1rem;
       transform: translateY(110%);
       animation: slide-0 0.2s ease-in forwards;
@@ -30,13 +39,15 @@
     &-textfield {
       width: 100%;
       height: 2.5rem;
-      padding: 1.3rem 1rem;
+
       transform: translateX(-110%);
       animation: slide-0 0.15s ease-in forwards;
       //browser compatibility, and linux
       border: 1px solid rgba(0, 0, 0, 0.3);
       border-radius: 2px;
       box-shadow: 0 2px 6px -4px rgba(0, 0, 0, 0.9);
+      margin-bottom: 0.4rem;
+      padding: 1.7rem 1rem;
       &-crypt {
         width: 100%;
         transform: translateX(-110%);
@@ -45,7 +56,8 @@
         border: 1px solid rgba(0, 0, 0, 0.3);
         border-radius: 2px;
         box-shadow: 0 2px 6px -4px rgba(0, 0, 0, 0.9);
-        padding: 1.3rem 1rem;
+        padding: 1.3rem;
+        margin-bottom: 0.4rem;
       }
     }
 
@@ -81,6 +93,7 @@
     min-height: 2rem;
     overflow-x: hidden;
     text-align: center;
+    padding: 3px;
 
     &-input {
       grid-row: 1/3;

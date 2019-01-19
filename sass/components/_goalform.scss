@@ -10,7 +10,6 @@
 .the-form {
   display: inline-block;
   transition: opacity 0.2s;
-
   cursor: pointer;
   transition: all 0.2s;
   font-weight: bold;
@@ -19,16 +18,12 @@
   &:first-child {
     margin-top: 0.5rem;
   }
-  &:hover {
-    font-size: 0.85rem;
-    text-shadow: 1px 1px 0 0 $green-go;
-  }
 }
 
 .active {
-  height: 1.4rem;
+  height: 1.5rem;
   margin-top: 3px;
   opacity: 1;
-  transform: translateX(-20%);
+  max-width: 20vw;
   display: inline-block;
 }

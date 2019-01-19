@@ -13,9 +13,9 @@
     margin: 3rem auto;
     color: $blue-text;
     @include outline-text(white);
-    @include responsive(tab-portrait) {
-      padding-right: 3rem;
-    }
+    /* @include responsive(phone) {
+      padding-right: 1rem;
+    }*/
     transition: all 0.2s;
     &:hover {
       color: white;

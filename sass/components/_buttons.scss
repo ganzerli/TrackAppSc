@@ -16,14 +16,14 @@
       border: none;
       @include btn-style();
       padding: 0.2rem !important;
+      height: 2.5rem;
     }
     &-form-crypt {
       @include btn-style();
     }
     &-decrypt-records {
-      margin: 0.5rem 1.5rem;
-      max-width: 7rem;
       @include btn-style();
+      max-width: 11rem;
     }
   }
 
@@ -33,7 +33,5 @@
 }
 
 .form-input-submit {
-  border: none;
-  padding: 0.5rem 1rem;
   @include btn-style();
 }
