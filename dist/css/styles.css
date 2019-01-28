@@ -40,7 +40,7 @@ p.form-info-text {
 
 html {
   scroll-behavior: smooth;
-  font-size: 62.5%; }
+  font-size: 70%; }
   @media (min-width: 120em) {
     html {
       font-size: 75%; } }
